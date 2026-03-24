@@ -29,7 +29,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 nav.sc{box-shadow:0 4px 32px rgba(0,0,0,.4)}
 .nl{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:#fff;text-decoration:none}.nl span{color:var(--red)}
 .nm{display:flex;align-items:center;gap:28px}.nm a{font-size:.8rem;font-weight:500;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}.nm a:hover{color:#fff}
-.nc{background:var(--red)!important;color:#fff!important;padding:10px 20px;border-radius:4px;font-weight:600!important}.nc:hover{background:var(--red-lt)!important}
+.nc{background:var(--red)!important;color:#fff!important;padding:10px 20px;border-radius:4px;font-weight:600!important;white-space:nowrap}.nc:hover{background:var(--red-lt)!important}
+.nm-phone{font-size:.8rem;font-weight:500;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.03em;transition:color .2s;white-space:nowrap}.nm-phone:hover{color:#fff}
+.nm-mobile-call{display:none}
 .hero{min-height:100vh;background:var(--black);display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;overflow:hidden;padding-top:72px}
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(218,52,52,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(218,52,52,.03) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
 .hero::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--red) 30%,var(--red) 70%,transparent)}
@@ -101,6 +103,8 @@ h1 em{font-style:italic;color:var(--red)}
 .sti{width:44px;height:44px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
 .stt{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--black);margin-bottom:9px}
 .stb{font-size:.84rem;color:var(--tmid);line-height:1.7}
+
+/* CALCULATOR */
 .calc{background:var(--black);padding:96px 80px;position:relative;overflow:hidden}
 .calc::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:48px 48px}
 .calc::after{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--red) 30%,var(--red) 70%,transparent)}
@@ -116,12 +120,14 @@ h1 em{font-style:italic;color:var(--red)}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:rgba(255,255,255,.12);border-radius:2px;outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--red);cursor:pointer;box-shadow:0 0 15px rgba(218,52,52,.5);transition:transform .15s}
 input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
-.crow2{display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+.slider-hints{display:flex;justify-content:space-between;margin-top:7px;font-family:var(--mono);font-size:.58rem;color:rgba(255,255,255,.25);letter-spacing:.05em}
+.crow2{display:flex;flex-direction:column;gap:11px;margin-bottom:16px}
 .cr{display:flex;justify-content:space-between;align-items:center;padding:13px 17px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
 .cr.hl{background:rgba(218,52,52,.1);border-color:rgba(218,52,52,.28)}
 .rl{font-size:.81rem;color:rgba(255,255,255,.48)}
 .cval{font-family:var(--serif);font-size:1.45rem;font-weight:700;color:#fff}
 .cr.hl .cval{color:var(--red);font-size:1.85rem}
+.co-note{font-size:.72rem;color:rgba(255,255,255,.28);line-height:1.55;margin-bottom:24px;font-style:italic}
 .cv2{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:34px;position:sticky;top:94px}
 .cv2l{font-family:var(--mono);font-size:.63rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.12em;margin-bottom:26px}
 .bis{display:flex;flex-direction:column;gap:20px}
@@ -137,6 +143,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
 .rbox{margin-top:26px;text-align:center;padding:17px;background:rgba(218,52,52,.1);border:1px solid rgba(218,52,52,.22);border-radius:8px}
 .rbn{font-family:var(--serif);font-size:2.7rem;font-weight:900;color:var(--red);line-height:1}
 .rbs{font-size:.73rem;color:rgba(255,255,255,.38);margin-top:5px}
+.session-detail{margin-top:22px;border-top:1px solid rgba(255,255,255,.07);padding-top:18px;display:flex;flex-direction:column;gap:9px}
+.sd-row{display:flex;justify-content:space-between;align-items:center}
+.sd-l{font-size:.75rem;color:rgba(255,255,255,.35)}
+.sd-v{font-family:var(--mono);font-size:.78rem;color:rgba(255,255,255,.55)}
+.sd-total .sd-l{color:rgba(255,255,255,.55);font-weight:500}
+.sd-total .sd-v{color:var(--red);font-family:var(--serif);font-size:1.05rem;font-weight:700}
+
 .proof{background:var(--white);padding:92px 80px;border-top:1px solid #eee}
 .pcs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:48px}
 .pcc{padding:34px 30px;position:relative}
@@ -208,7 +221,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 .reveal.in{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 @media(max-width:900px){
-  nav{padding:0 20px}.nm{display:none}
+  nav{padding:0 16px}
+  .nm{display:none}
+  .nm-mobile-call{display:flex;align-items:center;gap:7px;background:var(--red);color:#fff;font-size:.78rem;font-weight:600;padding:9px 14px;border-radius:4px;text-decoration:none;white-space:nowrap}
+  .nm-mobile-call:hover{background:var(--red-lt)}
   .hero,.pg,.cg,.fgrd,.ti{grid-template-columns:1fr;gap:40px}
   .hr2{height:320px}.hl{padding:52px 24px 40px}
   .steps,.pcs{grid-template-columns:1fr}
@@ -219,14 +235,17 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 </style>
 </head>
 <body>
+
 <nav id="nav">
   <a href="#" class="nl">Walk Your Plans <span>Detroit</span></a>
   <div class="nm">
     <a href="#how">How It Works</a>
     <a href="#who">Who It's For</a>
     <a href="#calculator">ROI Calculator</a>
-    <a href="tel:2486020110" class="nc">&#128222; 248-602-0110</a>
+    <a href="tel:2486020110" class="nm-phone">&#128222; 248-602-0110</a>
+    <a href="https://walkyourplansdetroit.as.me/" class="nc" target="_blank">Schedule Now</a>
   </div>
+  <a href="tel:2486020110" class="nm-mobile-call">&#128222; 248-602-0110</a>
 </nav>
 
 <section class="hero">
@@ -235,13 +254,13 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <h1>The average homeowner loses <em>$20,000</em> after construction starts.</h1>
     <p class="hsub">You can't visualize a floor plan from paper. Nobody can. We built a facility where you walk through your home &mdash; at full scale &mdash; before a single wall goes up. One session. One decision. Thousands saved.</p>
     <div class="hstats">
-      <div><div class="sn">$1,500</div><div class="sl">Average session</div></div>
+      <div><div class="sn">$500/hr</div><div class="sl">Session rate</div></div>
       <div><div class="sn">$20K+</div><div class="sl">Change orders prevented</div></div>
       <div><div class="sn">13&times;</div><div class="sl">Return on session</div></div>
     </div>
     <div class="hctas">
-      <a href="tel:2486020110" class="bp"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.95V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>Call to Book &mdash; 248-602-0110</a>
-      <a href="#contact" class="bg">Not ready yet? Get in touch &rarr;</a>
+      <a href="https://walkyourplansdetroit.as.me/" class="bp" target="_blank"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Schedule Now</a>
+      <a href="https://www.walkyourplansdetroit.com/contact" class="bg">Not ready? Schedule later &rarr;</a>
     </div>
   </div>
   <div class="hr2">
@@ -335,28 +354,50 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="cg">
       <div>
         <div class="ey2">Do The Math</div>
-        <h2 class="ch2 reveal">What's your build worth? <em>What's one mistake worth?</em></h2>
-        <p class="csub reveal d1">Drag to your estimated build budget and see what change orders typically cost &mdash; versus what a session costs.</p>
+        <h2 class="ch2 reveal">How big is your project? <em>What's one mistake worth?</em></h2>
+        <p class="csub reveal d1">Drag to your home's square footage. We'll estimate your session cost, your change order exposure, and what you stand to save.</p>
         <div class="slbl reveal d1">
-          <div class="sltt"><span class="slll">Your estimated build budget</span><span class="slv" id="bd">$400,000</span></div>
-          <input type="range" id="slr" min="150000" max="1500000" step="10000" value="400000">
+          <div class="sltt"><span class="slll">Home size</span><span class="slv" id="sqft-display">3,000 sq ft</span></div>
+          <input type="range" id="sqft-slr" min="1000" max="10000" step="100" value="3000">
+          <div class="slider-hints"><span>1,000 sq ft</span><span>10,000 sq ft</span></div>
         </div>
         <div class="crow2 reveal d2">
-          <div class="cr"><span class="rl">Industry avg. change order risk (10%)</span><span class="cval" id="cov">$40,000</span></div>
-          <div class="cr"><span class="rl">Walk Your Plans session</span><span class="cval">$1,500</span></div>
-          <div class="cr hl"><span class="rl" style="color:rgba(255,255,255,.82);font-weight:600;">Your potential savings</span><span class="cval" id="sav">$38,500</span></div>
+          <div class="cr"><span class="rl">Estimated session length</span><span class="cval" id="hours-display">3 hrs</span></div>
+          <div class="cr"><span class="rl">Your session cost</span><span class="cval" id="session-cost">$1,500</span></div>
+          <div class="cr"><span class="rl">Change order risk (<span id="co-pct-label">10.0%</span> of est. build cost)</span><span class="cval" id="cov">$60,000</span></div>
+          <div class="cr hl"><span class="rl" style="color:rgba(255,255,255,.82);font-weight:600;">Your potential savings</span><span class="cval" id="sav">$58,500</span></div>
         </div>
-        <div class="reveal d3"><a href="tel:2486020110" class="bp"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.95V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>Book Your Session &mdash; 248-602-0110</a></div>
+        <div class="co-note reveal d2">* Estimated build cost based on ~$200/sq ft Metro Detroit average. Change order risk % scales with project complexity.</div>
+        <div class="reveal d3"><a href="https://walkyourplansdetroit.as.me/" class="bp" target="_blank"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Schedule Your Session</a></div>
       </div>
       <div class="cv2 reveal d1">
-        <div class="cv2l">Cost comparison &middot; your project</div>
+        <div class="cv2l">Cost breakdown &middot; your project</div>
         <div class="bis">
-          <div class="bi-item"><div class="bit"><span class="bin">Change order risk (10%)</span><span class="bia" id="bco">$40,000</span></div><div class="btr"><div class="bfl fr" id="bcobar" style="width:100%"></div></div></div>
+          <div class="bi-item">
+            <div class="bit"><span class="bin">Change order risk</span><span class="bia" id="bco">$60,000</span></div>
+            <div class="btr"><div class="bfl fr" id="bcobar" style="width:100%"></div></div>
+          </div>
           <hr class="bdvd">
-          <div class="bi-item"><div class="bit"><span class="bin">Walk Your Plans session</span><span class="bia">$1,500</span></div><div class="btr"><div class="bfl fb" id="bsebar" style="width:4%"></div></div></div>
-          <div class="bi-item"><div class="bit"><span class="bin">Net savings</span><span class="bia" id="bsav">$38,500</span></div><div class="btr"><div class="bfl fgn" id="bsavbar" style="width:96%"></div></div></div>
+          <div class="bi-item">
+            <div class="bit"><span class="bin">Session cost</span><span class="bia" id="bse">$1,500</span></div>
+            <div class="btr"><div class="bfl fb" id="bsebar" style="width:3%"></div></div>
+          </div>
+          <div class="bi-item">
+            <div class="bit"><span class="bin">Net savings</span><span class="bia" id="bsav">$58,500</span></div>
+            <div class="btr"><div class="bfl fgn" id="bsavbar" style="width:97%"></div></div>
+          </div>
         </div>
-        <div class="rbox"><div class="rbn" id="roix">13&times;</div><div class="rbs">return on your session investment</div></div>
+        <div class="rbox">
+          <div class="rbn" id="roix">40&times;</div>
+          <div class="rbs">return on your session investment</div>
+        </div>
+        <div class="session-detail">
+          <div class="sd-row"><span class="sd-l">Home size</span><span class="sd-v" id="sd-sqft">3,000 sq ft</span></div>
+          <div class="sd-row"><span class="sd-l">Est. build cost</span><span class="sd-v" id="sd-build">$600,000</span></div>
+          <div class="sd-row"><span class="sd-l">Session length</span><span class="sd-v" id="sd-hrs">3 hours</span></div>
+          <div class="sd-row"><span class="sd-l">Rate</span><span class="sd-v">$500 / hour</span></div>
+          <div class="sd-row sd-total"><span class="sd-l">Session total</span><span class="sd-v" id="sd-total">$1,500</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -367,11 +408,11 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="ey2 reveal">By The Numbers</div>
     <h2 class="sh2 reveal" style="font-size:clamp(1.65rem,2.3vw,2.4rem);">The numbers that make this an easy decision.</h2>
     <div class="pcs">
-      <div class="pcc reveal"><div class="pctag">Session investment</div><div class="pnum or">$1,500</div><div class="pdesc">Half-day and full-day bookings available. Includes custom staging, live on-site customization, and consultation with our team.</div><div class="pvs">vs</div></div>
-      <div class="pcc reveal d1"><div class="pctag">Average change orders prevented</div><div class="pnum or">$20,000</div><div class="pdesc">Based on industry data showing change orders average 10% of contract value. Clients who walk their plans report catching multiple costly issues in a single session.</div><div class="pvs">=</div></div>
+      <div class="pcc reveal"><div class="pctag">Session rate</div><div class="pnum or">$500/hr</div><div class="pdesc">One hour per ~1,000 sq ft. A typical 3,000 sq ft home runs about 3 hours. Larger custom builds scale accordingly &mdash; every room, every decision, at full scale.</div><div class="pvs">vs</div></div>
+      <div class="pcc reveal d1"><div class="pctag">Average change orders prevented</div><div class="pnum or">$20,000</div><div class="pdesc">Based on industry data showing change orders average 10&ndash;18% of contract value. Clients who walk their plans report catching multiple costly issues in a single session.</div><div class="pvs">=</div></div>
       <div class="pcc reveal d2"><div class="pctag">Your net return</div><div class="pnum gr">$18,500+</div><div class="pdesc">That's the conservative case. On a $500K+ custom build, the math only gets more compelling &mdash; and so does the peace of mind.</div></div>
     </div>
-    <p class="psrc">Industry change order data sourced from National Association of Home Builders (NAHB) cost-to-build surveys and construction industry benchmarks. Individual results vary by project scope and complexity.</p>
+    <p class="psrc">Industry change order data sourced from National Association of Home Builders (NAHB) cost-to-build surveys and construction industry benchmarks. Estimated build cost based on ~$200/sq ft Metro Detroit average. Individual results vary by project scope and complexity.</p>
   </div>
 </section>
 
@@ -387,7 +428,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div class="fc reveal d1"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div><div><div class="ft">Builders &amp; Developers</div><div class="fb3">Reduce expensive change orders during construction. When everyone has walked the plans, "I didn't realize" stops being a phrase you hear mid-build.</div><div class="fhk">"This paid for itself the first time we avoided a structural revision."</div></div></div>
       <div class="fc reveal d2"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div class="ft">Commercial Developers</div><div class="fb3">Healthcare, retail, fitness, hospitality &mdash; any space where layout defines the experience. Walk your floor plan with stakeholders before costs are locked in.</div><div class="fhk">"We caught a patient flow issue that would have cost six figures to retrofit."</div></div></div>
     </div>
-    <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="tel:2486020110" class="bn"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.95V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>Call 248-602-0110</a></div>
+    <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="https://walkyourplansdetroit.as.me/" class="bn" target="_blank"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Schedule Now</a></div>
   </div>
 </section>
 
@@ -396,7 +437,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="reveal">
       <div class="ey2">Building Our Track Record</div>
       <h2 class="th2">You don't need to take our word for it. <em>The math speaks for itself.</em></h2>
-      <p class="tb2">We're new to Metro Detroit and building our review base one walk-through at a time. What we can tell you: the concept isn't new. Walk Your Plans operates across the country with the same result &mdash; change orders are expensive, visualization gaps are real, and a $1,500 session that prevents a $20,000 mistake is one of the clearest ROI decisions in construction.</p>
+      <p class="tb2">We're new to Metro Detroit and building our review base one walk-through at a time. What we can tell you: the concept isn't new. Walk Your Plans operates across the country with the same result &mdash; change orders are expensive, visualization gaps are real, and a session that prevents a $20,000 mistake is one of the clearest ROI decisions in construction.</p>
       <div class="tpts">
         <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Architects and builders across Metro Detroit</strong> use this to get client sign-off before ground breaks &mdash; because a session costs a fraction of a single change order.</div></div>
         <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Industry data is unambiguous:</strong> NAHB research shows change orders averaging 10&ndash;25% of contract value on custom residential builds.</div></div>
@@ -422,48 +463,79 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <h2 class="fh2">Stop guessing.<br>Start knowing.</h2>
     <p class="fsub">A 15-minute phone call is all it takes to find out if a session is right for your project. No pressure. No commitment. Just a conversation about what walking your plans would look like &mdash; and what it could save you.</p>
     <div class="fbs">
-      <a href="tel:2486020110" class="bw">&#128222; Call 248-602-0110</a>
-      <a href="https://walkyourplansdetroit.as.me/" class="bow" target="_blank">Schedule Online &rarr;</a>
+      <a href="https://walkyourplansdetroit.as.me/" class="bw" target="_blank">&#128197; Schedule Now</a>
+      <a href="https://www.walkyourplansdetroit.com/contact" class="bow">Not ready? Schedule later &rarr;</a>
     </div>
-    <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out. <a href="mailto:info@walkyourplansdetroit.com">Send us an email</a> and we'll reach out when the timing is right.</p>
+    <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out. <a href="/cdn-cgi/l/email-protection#71181f171e3106101d1a081e0403011d101f02151405031e18055f121e1c">Send us an email</a> and we'll reach out when the timing is right.</p>
   </div>
 </section>
 
 <footer>
   <div class="ftr">
     <a href="#" class="flog">Walk Your Plans <span>Detroit</span></a>
-    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="mailto:info@walkyourplansdetroit.com">info@walkyourplansdetroit.com</a></div>
+    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="/cdn-cgi/l/email-protection#3a53545c557a4d5b565143554f484a565b54495e5f4e4855534e14595557"><span class="__cf_email__" data-cfemail="523b3c343d1225333e392b3d2720223e333c21363726203d3b267c313d3f">[email&#160;protected]</span></a></div>
     <div class="finf" style="text-align:right;"><a href="https://www.walkyourplansdetroit.com/about" style="display:block;margin-bottom:4px;">About</a><a href="https://www.walkyourplansdetroit.com/customers">Who It's For</a></div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
 
-const slr = document.getElementById('slr');
+const sqftSlr = document.getElementById('sqft-slr');
 const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+const fmtNum = n => Math.round(n).toLocaleString('en-US');
+
+// Session: $500/hr, 1 hr per 1,000 sq ft, min 1 hr
+function getHours(sqft) {
+  return Math.max(1, Math.ceil(sqft / 1000));
+}
+function getSessionCost(sqft) {
+  return getHours(sqft) * 500;
+}
+
+// Build cost: $200/sq ft Metro Detroit average
+function getBuildCost(sqft) {
+  return sqft * 200;
+}
+
+// Change order risk: 7% at 1,000 sq ft scaling to 18% at 10,000 sq ft
+// Curve: risk% = 7 + 11 * ((sqft - 1000) / 9000)^0.7
+function getCoPct(sqft) {
+  const t = (sqft - 1000) / 9000;
+  return 7 + 11 * Math.pow(Math.min(Math.max(t, 0), 1), 0.7);
+}
+
 function upd() {
-  const b = +slr.value, co = b * .1, sav = co - 1500, mul = Math.round(co / 1500);
-  document.getElementById('bd').textContent = fmt(b);
+  const sqft = +sqftSlr.value;
+  const hours = getHours(sqft);
+  const sessionCost = getSessionCost(sqft);
+  const buildCost = getBuildCost(sqft);
+  const coPct = getCoPct(sqft);
+  const co = buildCost * (coPct / 100);
+  const sav = co - sessionCost;
+  const mul = Math.round(co / sessionCost);
+  const hrsLabel = hours === 1 ? '1 hr' : hours + ' hrs';
+  const hrsLong = hours === 1 ? '1 hour' : hours + ' hours';
+
+  document.getElementById('sqft-display').textContent = fmtNum(sqft) + ' sq ft';
+  document.getElementById('hours-display').textContent = hrsLabel;
+  document.getElementById('session-cost').textContent = fmt(sessionCost);
+  document.getElementById('co-pct-label').textContent = coPct.toFixed(1) + '%';
   document.getElementById('cov').textContent = fmt(co);
   document.getElementById('sav').textContent = fmt(sav);
   document.getElementById('bco').textContent = fmt(co);
+  document.getElementById('bse').textContent = fmt(sessionCost);
   document.getElementById('bsav').textContent = fmt(sav);
-  document.getElementById('roix').textContent = mul + 'x';
-  document.getElementById('bcobar').style.width = '100%';
-  document.getElementById('bsebar').style.width = Math.max(1, Math.round(1500 / co * 100)) + '%';
-  document.getElementById('bsavbar').style.width = Math.round(sav / co * 100) + '%';
-}
-slr.addEventListener('input', upd);
-upd();
+  document.getElementById('roix').textContent = mul + '\u00d7';
+  document.getElementById('sd-sqft').textContent = fmtNum(sqft) + ' sq ft';
+  document.getElementById('sd-build').textContent = fmt(buildCost);
+  document.getElementById('sd-hrs').textContent = hrsLong;
+  document.getElementById('sd-total').textContent = fmt(sessionCost);
 
-const obs = new IntersectionObserver(es => {
-  es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
-  });
-}, { threshold: .1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-</script>
-</body>
-</html>
+  document.getElementById('bcobar').style.width = '100%';
+  document.getElementById('bsebar').style.width = Math.max(1, Math.round(sessionCost / co * 100)) + '%';
+  document.getElementById('bsavbar').style.width = Math.max(1, Math.round(sav / co * 100)) + '%';
+}
+
+sqftSlr
