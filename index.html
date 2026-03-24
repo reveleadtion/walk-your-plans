@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walk Your Plans Detroit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0c0c0c;
+  --black-mid:#1a1a1a;
+  --red:#da3434;
+  --red-lt:#e86060;
+  --red-dk:#c22020;
+  --white:#ffffff;
+  --gray:#f4f4f4;
+  --tmid:#4a4a4a;
+  --tlt:#888888;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--black);overflow-x:hidden;font-size:16px;line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(12,12,12,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(218,52,52,.12);transition:box-shadow .3s}
+nav.sc{box-shadow:0 4px 32px rgba(0,0,0,.4)}
+.nl{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:#fff;text-decoration:none}.nl span{color:var(--red)}
+.nm{display:flex;align-items:center;gap:28px}.nm a{font-size:.8rem;font-weight:500;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}.nm a:hover{color:#fff}
+.nc{background:var(--red)!important;color:#fff!important;padding:10px 20px;border-radius:4px;font-weight:600!important}.nc:hover{background:var(--red-lt)!important}
+.hero{min-height:100vh;background:var(--black);display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;overflow:hidden;padding-top:72px}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(218,52,52,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(218,52,52,.03) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hero::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--red) 30%,var(--red) 70%,transparent)}
+.hl{padding:80px 56px 80px 80px;position:relative;z-index:2;animation:fu .9s ease both}
+.eyebrow{font-family:var(--mono);font-size:.68rem;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:12px}.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--red)}
+h1{font-family:var(--serif);font-size:clamp(2.5rem,3.6vw,3.9rem);font-weight:900;line-height:1.08;color:#fff;margin-bottom:26px}
+h1 em{font-style:italic;color:var(--red)}
+.hsub{font-size:.98rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.8;max-width:460px;margin-bottom:40px}
+.hstats{display:flex;gap:26px;margin-bottom:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sn{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--red);line-height:1}
+.sl{font-size:.7rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.hctas{display:flex;gap:13px;flex-wrap:wrap}
+.bp{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;font-size:.87rem;font-weight:600;padding:15px 28px;border-radius:4px;text-decoration:none;border:2px solid var(--red);transition:all .25s}
+.bp:hover{background:var(--red-lt);border-color:var(--red-lt);transform:translateY(-2px);box-shadow:0 12px 28px rgba(218,52,52,.3)}
+.bg{display:inline-flex;align-items:center;gap:9px;background:transparent;color:rgba(255,255,255,.65);font-size:.87rem;font-weight:500;padding:15px 28px;border-radius:4px;text-decoration:none;border:1.5px solid rgba(255,255,255,.18);transition:all .25s}
+.bg:hover{color:#fff;border-color:rgba(255,255,255,.45)}
+.bn{display:inline-flex;align-items:center;gap:9px;background:var(--black);color:#fff;font-size:.87rem;font-weight:600;padding:15px 28px;border-radius:4px;text-decoration:none;border:2px solid var(--black);transition:all .25s}
+.bn:hover{background:var(--black-mid);transform:translateY(-2px)}
+.hr2{position:relative;height:100vh;min-height:600px;overflow:hidden;animation:fi 1.1s ease .3s both}
+.hr2::before{content:'';position:absolute;left:0;top:0;bottom:0;width:90px;background:linear-gradient(90deg,var(--black),transparent);z-index:3}
+.pr{position:absolute;inset:0;background:linear-gradient(135deg,#080808 0%,#111 50%,#181818 100%)}
+.flg{position:absolute;bottom:0;left:-15%;right:-15%;height:55%;background:linear-gradient(rgba(218,52,52,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(218,52,52,.04) 1px,transparent 1px);background-size:40px 40px;transform:perspective(700px) rotateX(58deg);transform-origin:bottom center}
+.rf{position:absolute;top:50%;left:50%;transform:translate(-50%,-46%);width:265px;height:205px;border:1.5px solid rgba(218,52,52,.38);box-shadow:0 0 48px rgba(218,52,52,.07)}
+.rf::before{content:'';position:absolute;left:32%;top:0;bottom:0;border-left:1px solid rgba(218,52,52,.18)}
+.rf::after{content:'';position:absolute;left:0;right:0;top:44%;border-top:1px solid rgba(218,52,52,.18)}
+.ck{position:absolute;width:13px;height:13px;border-color:rgba(218,52,52,.55);border-style:solid;border-width:0}
+.ck.tl{top:-2px;left:-2px;border-top-width:2px;border-left-width:2px}
+.ck.tr{top:-2px;right:-2px;border-top-width:2px;border-right-width:2px}
+.ck.bl{bottom:-2px;left:-2px;border-bottom-width:2px;border-left-width:2px}
+.ck.br{bottom:-2px;right:-2px;border-bottom-width:2px;border-right-width:2px}
+.rt{position:absolute;font-family:var(--mono);font-size:.57rem;color:rgba(218,52,52,.6);letter-spacing:.09em;text-transform:uppercase}
+.scln{position:absolute;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,rgba(218,52,52,.45),transparent);animation:scan 4s ease-in-out infinite;pointer-events:none}
+.pdot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 18px rgba(218,52,52,.85),0 0 36px rgba(218,52,52,.35);animation:pdot 2.5s ease-in-out infinite}
+.dh{position:absolute;height:1px;background:rgba(255,255,255,.14)}
+.dv{position:absolute;width:1px;background:rgba(255,255,255,.14)}
+.dtxt{position:absolute;font-family:var(--mono);font-size:.52rem;color:rgba(255,255,255,.28);white-space:nowrap}
+.sbadge{position:absolute;bottom:40px;right:32px;z-index:5;background:rgba(12,12,12,.93);border:1px solid rgba(218,52,52,.22);border-radius:8px;padding:13px 17px;backdrop-filter:blur(10px);animation:fu .9s ease .9s both}
+.sbl{font-family:var(--mono);font-size:.58rem;color:rgba(255,255,255,.28);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.sbv{font-family:var(--serif);font-size:1.35rem;font-weight:700;color:var(--red)}
+.sbs{font-size:.68rem;color:rgba(255,255,255,.35);margin-top:2px}
+.ey2{font-family:var(--mono);font-size:.68rem;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.ey2::before{content:'';display:block;width:28px;height:1px;background:var(--red)}
+.sh2{font-family:var(--serif);font-size:clamp(1.85rem,2.7vw,2.8rem);font-weight:900;line-height:1.1;color:var(--black);margin-bottom:22px}
+.sh2 em{font-style:italic;color:var(--red)}
+.bp2{font-size:.93rem;color:var(--tmid);line-height:1.8;margin-bottom:16px}
+.inn{max-width:1100px;margin:0 auto}
+.prob{background:var(--white);padding:108px 80px;position:relative;overflow:hidden}
+.prob::before{content:'$20,000';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:15rem;font-weight:900;color:rgba(12,12,12,.03);line-height:1;pointer-events:none;white-space:nowrap}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:center}
+.ic{background:var(--black);color:#fff;padding:20px 24px;border-radius:6px;border-left:4px solid var(--red);margin-top:26px}
+.ic-n{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--red);line-height:1}
+.ic-t{font-size:.81rem;color:rgba(255,255,255,.55);margin-top:7px;line-height:1.52}
+.scens{display:flex;flex-direction:column;gap:13px}
+.scn{background:var(--white);border:1px solid #e8e8e8;border-radius:8px;padding:20px 24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.scn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(0,0,0,.07)}
+.scn::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red)}
+.sct{font-size:.83rem;color:var(--tmid);line-height:1.55;margin-bottom:11px}
+.scb{display:flex;align-items:center;justify-content:space-between}
+.sctag{font-size:.66rem;color:var(--tlt);text-transform:uppercase;letter-spacing:.07em}
+.scc{font-family:var(--serif);font-size:1.45rem;font-weight:700;color:var(--black)}
+.scnt{font-size:.66rem;color:var(--tlt);margin-top:3px;font-style:italic}
+.how{background:var(--gray);padding:108px 80px}
+.hhdr{text-align:center;margin-bottom:60px}
+.howsub{font-size:.93rem;color:var(--tmid);max-width:500px;margin:0 auto}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.step{background:var(--white);border-radius:10px;padding:32px 28px;border:1px solid #e8e8e8;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.step:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+.stn{font-family:var(--serif);font-size:4.8rem;font-weight:900;color:rgba(12,12,12,.04);line-height:1;position:absolute;top:10px;right:14px}
+.sti{width:44px;height:44px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.stt{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--black);margin-bottom:9px}
+.stb{font-size:.84rem;color:var(--tmid);line-height:1.7}
+.calc{background:var(--black);padding:96px 80px;position:relative;overflow:hidden}
+.calc::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:48px 48px}
+.calc::after{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--red) 30%,var(--red) 70%,transparent)}
+.ci{max-width:1100px;margin:0 auto;position:relative}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:start}
+.ch2{font-family:var(--serif);font-size:clamp(1.85rem,2.5vw,2.65rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:14px}
+.ch2 em{font-style:italic;color:var(--red)}
+.csub{font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:32px}
+.slbl{margin-bottom:32px}
+.sltt{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px}
+.slll{font-size:.76rem;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.08em}
+.slv{font-family:var(--serif);font-size:1.85rem;font-weight:700;color:#fff}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:rgba(255,255,255,.12);border-radius:2px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--red);cursor:pointer;box-shadow:0 0 15px rgba(218,52,52,.5);transition:transform .15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
+.crow2{display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+.cr{display:flex;justify-content:space-between;align-items:center;padding:13px 17px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.cr.hl{background:rgba(218,52,52,.1);border-color:rgba(218,52,52,.28)}
+.rl{font-size:.81rem;color:rgba(255,255,255,.48)}
+.cval{font-family:var(--serif);font-size:1.45rem;font-weight:700;color:#fff}
+.cr.hl .cval{color:var(--red);font-size:1.85rem}
+.cv2{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:34px;position:sticky;top:94px}
+.cv2l{font-family:var(--mono);font-size:.63rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.12em;margin-bottom:26px}
+.bis{display:flex;flex-direction:column;gap:20px}
+.bit{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.bin{font-size:.76rem;color:rgba(255,255,255,.45)}
+.bia{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff}
+.btr{height:8px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
+.bfl{height:100%;border-radius:4px;transition:width .55s cubic-bezier(.34,1.56,.64,1)}
+.fr{background:linear-gradient(90deg,#8a1010,var(--red))}
+.fb{background:linear-gradient(90deg,#222,#555)}
+.fgn{background:linear-gradient(90deg,#1a3a24,#2d8a4e)}
+.bdvd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:3px 0}
+.rbox{margin-top:26px;text-align:center;padding:17px;background:rgba(218,52,52,.1);border:1px solid rgba(218,52,52,.22);border-radius:8px}
+.rbn{font-family:var(--serif);font-size:2.7rem;font-weight:900;color:var(--red);line-height:1}
+.rbs{font-size:.73rem;color:rgba(255,255,255,.38);margin-top:5px}
+.proof{background:var(--white);padding:92px 80px;border-top:1px solid #eee}
+.pcs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:48px}
+.pcc{padding:34px 30px;position:relative}
+.pcc:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:#eee}
+.pctag{font-family:var(--mono);font-size:.63rem;color:var(--tlt);text-transform:uppercase;letter-spacing:.1em;margin-bottom:13px}
+.pnum{font-family:var(--serif);font-size:clamp(2.1rem,3vw,3.2rem);font-weight:900;line-height:1;margin-bottom:9px}
+.or{color:var(--red)}.gr{color:#1D6A3A}.nv{color:var(--black)}
+.pdesc{font-size:.84rem;color:var(--tmid);line-height:1.65}
+.pvs{position:absolute;top:50%;right:-1px;transform:translate(50%,-50%);background:var(--white);border:1px solid #eee;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.6rem;color:var(--tlt);z-index:1}
+.psrc{font-size:.68rem;color:var(--tlt);margin-top:40px;padding-top:18px;border-top:1px solid #eee;font-style:italic}
+.who{background:var(--gray);padding:92px 80px}
+.fgrd{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.fc{background:var(--white);border:1px solid #e8e8e8;border-radius:10px;padding:28px 30px;display:flex;gap:20px;align-items:flex-start;transition:transform .2s,box-shadow .2s,border-color .2s}
+.fc:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(0,0,0,.07);border-color:rgba(218,52,52,.4)}
+.fi{flex-shrink:0;width:40px;height:40px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.ft{font-family:var(--serif);font-size:1.08rem;font-weight:700;color:var(--black);margin-bottom:7px}
+.fb3{font-size:.83rem;color:var(--tmid);line-height:1.65}
+.fhk{margin-top:9px;font-size:.76rem;color:var(--red);font-weight:600;font-style:italic}
+.mc{text-align:center;margin-top:52px}
+.mcq{font-family:var(--serif);font-size:1.15rem;color:var(--black);font-style:italic;margin-bottom:20px}
+.trust{background:var(--black);padding:84px 80px;position:relative;overflow:hidden}
+.trust::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(218,52,52,.04) 0%,transparent 70%)}
+.ti{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:start;position:relative}
+.th2{font-family:var(--serif);font-size:clamp(1.65rem,2.3vw,2.3rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:16px}
+.th2 em{font-style:italic;color:var(--red)}
+.tb2{font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:26px}
+.tpts{display:flex;flex-direction:column;gap:13px}
+.tpt{display:flex;align-items:flex-start;gap:11px}
+.tdot{flex-shrink:0;width:7px;height:7px;border-radius:50%;background:var(--red);margin-top:8px}
+.ttxt{font-size:.86rem;color:rgba(255,255,255,.52);line-height:1.6}
+.ttxt strong{color:#fff;font-weight:500}
+.rcrd{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.1);border-radius:10px;padding:30px;position:relative}
+.rtag{font-family:var(--mono);font-size:.6rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.rtag::before{content:'';display:block;width:12px;height:1px;background:rgba(255,255,255,.18)}
+.stars2{display:flex;gap:3px;margin-bottom:13px}
+.star{color:var(--red);font-size:.95rem}
+.rq{font-family:var(--serif);font-size:1.02rem;font-style:italic;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px}
+.ra{font-size:.76rem;color:rgba(255,255,255,.28)}
+.ra strong{color:rgba(255,255,255,.45);font-weight:500}
+.rovr{position:absolute;top:0;left:0;right:0;bottom:0;border-radius:10px;background:rgba(8,8,8,.72);backdrop-filter:blur(2px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+.rol{font-family:var(--mono);font-size:.66rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.12em}
+.ros{font-size:.76rem;color:rgba(255,255,255,.18);text-align:center;max-width:190px;line-height:1.5}
+.fcta{background:var(--red);padding:92px 80px;position:relative;overflow:hidden}
+.fcta::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:48px 48px}
+.fcta::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:rgba(255,255,255,.2)}
+.fci{max-width:740px;margin:0 auto;text-align:center;position:relative}
+.fey{font-family:var(--mono);font-size:.66rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.15em;margin-bottom:16px}
+.fh2{font-family:var(--serif);font-size:clamp(2.1rem,3.6vw,3.4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
+.fsub{font-size:.94rem;color:rgba(255,255,255,.78);margin-bottom:40px;line-height:1.75}
+.fbs{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.bw{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--red);font-size:.9rem;font-weight:700;padding:17px 36px;border-radius:4px;text-decoration:none;border:2px solid #fff;transition:all .25s}
+.bw:hover{background:transparent;color:#fff}
+.bow{display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fff;font-size:.9rem;font-weight:500;padding:17px 36px;border-radius:4px;text-decoration:none;border:1.5px solid rgba(255,255,255,.45);transition:all .25s}
+.bow:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.ffne{margin-top:22px;font-size:.76rem;color:rgba(255,255,255,.55)}
+.ffne a{color:rgba(255,255,255,.8);text-decoration:underline}
+footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,255,255,.06)}
+.ftr{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+.flog{font-family:var(--serif);font-size:.97rem;font-weight:700;color:rgba(255,255,255,.45);text-decoration:none}
+.flog span{color:var(--red)}
+.finf{font-size:.76rem;color:rgba(255,255,255,.24);line-height:1.7}
+.finf a{color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+.finf a:hover{color:var(--red)}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes scan{0%,100%{top:18%;opacity:0}8%{opacity:1}92%{opacity:1}50%{top:78%}}
+@keyframes pdot{0%,100%{box-shadow:0 0 18px rgba(218,52,52,.85),0 0 34px rgba(218,52,52,.35)}50%{box-shadow:0 0 28px rgba(218,52,52,1),0 0 54px rgba(218,52,52,.55);transform:scale(1.3)}}
+.reveal{opacity:0;transform:translateY(17px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+@media(max-width:900px){
+  nav{padding:0 20px}.nm{display:none}
+  .hero,.pg,.cg,.fgrd,.ti{grid-template-columns:1fr;gap:40px}
+  .hr2{height:320px}.hl{padding:52px 24px 40px}
+  .steps,.pcs{grid-template-columns:1fr}
+  .pcc::after{display:none}.pvs{display:none}
+  .prob,.how,.calc,.proof,.who,.trust,.fcta,footer{padding:68px 24px}
+  .prob::before{display:none}.cv2{position:static}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="nl">Walk Your Plans <span>Detroit</span></a>
+  <div class="nm">
+    <a href="#how">How It Works</a>
+    <a href="#who">Who It's For</a>
+    <a href="#calculator">ROI Calculator</a>
+    <a href="tel:2486020110" class="nc">&#128222; 248-602-0110</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hl">
+    <div class="eyebrow">Troy, MI &middot; Metro Detroit's Immersive Design Studio</div>
+    <h1>The average homeowner loses <em>$20,000</em> after construction starts.</h1>
+    <p class="hsub">You can't visualize a floor plan from paper. Nobody can. We built a facility where you walk through your home &mdash; at full scale &mdash; before a single wall goes up. One session. One decision. Thousands saved.</p>
+    <div class="hstats">
+      <div><div class="sn">$1,500</div><div class="sl">Average session</div></div>
+      <div><div class="sn">$20K+</div><div class="sl">Change orders prevented</div></div>
+      <div><div class="sn">13&times;</div><div class="sl">Return on session</div></div>
+    </div>
+    <div class="hctas">
+      <a href="tel:2486020110" class="bp"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.95V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>Call to Book &mdash; 248-602-0110</a>
+      <a href="#contact" class="bg">Not ready yet? Get in touch &rarr;</a>
+    </div>
+  </div>
+  <div class="hr2">
+    <div class="pr">
+      <div class="flg"></div>
+      <div class="scln"></div>
+      <div class="rf">
+        <div class="ck tl"></div><div class="ck tr"></div><div class="ck bl"></div><div class="ck br"></div>
+        <div class="rt" style="top:10px;left:10px;">Living</div>
+        <div class="rt" style="top:10px;right:10px;">Kitchen</div>
+        <div class="rt" style="bottom:10px;left:10px;">Primary</div>
+        <div class="rt" style="bottom:10px;right:10px;">Bath</div>
+        <div class="dh" style="bottom:-21px;left:0;right:0;"></div>
+        <div class="dtxt" style="bottom:-35px;left:50%;transform:translateX(-50%);">24' &mdash; 0"</div>
+        <div class="dv" style="right:-21px;top:0;bottom:0;"></div>
+        <div class="dtxt" style="right:-49px;top:50%;transform:translateY(-50%) rotate(90deg);">18' &mdash; 6"</div>
+        <div class="pdot" style="left:16%;top:64%;"></div>
+      </div>
+    </div>
+    <div class="sbadge">
+      <div class="sbl">You are here</div>
+      <div class="sbv">Full Scale</div>
+      <div class="sbs">Walking your floor plan</div>
+    </div>
+  </div>
+</section>
+
+<section class="prob" id="problem">
+  <div class="inn">
+    <div class="pg">
+      <div class="reveal">
+        <div class="ey2">The Real Cost of Guessing</div>
+        <h2 class="sh2">Blueprints look right on paper. They feel <em>wrong</em> when it's too late.</h2>
+        <p class="bp2">Change orders are the hidden tax of every construction project. A wall that needs to move. A kitchen island two feet too wide for how you actually cook. A bedroom that felt spacious at 14&times;16 on paper &mdash; and feels cramped in real life.</p>
+        <p class="bp2">These aren't contractor mistakes. They're visualization gaps &mdash; the natural result of trying to imagine a three-dimensional space from a flat drawing. Nobody can do it perfectly. And when you're wrong after ground breaks, you pay for it.</p>
+        <div class="ic reveal d1">
+          <div class="ic-n">10 &ndash; 25%</div>
+          <div class="ic-t">Industry data shows change orders average 10% of total contract value &mdash; and up to 25% on complex custom builds. On a $300,000 home, that's $30,000 in decisions you wish you'd made before construction started.</div>
+        </div>
+      </div>
+      <div class="scens reveal d1">
+        <div class="scn">
+          <div class="sct"><strong>The kitchen island.</strong> Four feet wide on the plan &mdash; felt perfect. Week three of framing, two people can't pass each other without turning sideways.</div>
+          <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural + labor delay + materials</div></div><div class="scc">$8,400</div></div>
+        </div>
+        <div class="scn">
+          <div class="sct"><strong>The master bedroom.</strong> 14&times;18 sounded generous. Standing in the framed space &mdash; king bed mentally placed &mdash; it doesn't feel right. Moving a load-bearing wall is a different conversation now.</div>
+          <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural engineer + framing revision + delay</div></div><div class="scc">$12,200</div></div>
+        </div>
+        <div class="scn">
+          <div class="sct"><strong>The great room ceiling.</strong> Vaulted to 14 feet sounded dramatic. In person it dwarfs the furniture and kills any sense of warmth. Changing it now means redoing the roofline.</div>
+          <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural redesign + roofline + extended timeline</div></div><div class="scc">$22,500</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="inn">
+    <div class="hhdr reveal">
+      <div class="ey2" style="justify-content:center;">The Process</div>
+      <h2 class="sh2" style="text-align:center;margin-bottom:10px;">Three steps. One session.<br>No surprises after ground breaks.</h2>
+      <p class="howsub">You bring your vision. We bring it to life at full scale.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="stn">01</div>
+        <div class="sti"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.95V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg></div>
+        <div class="stt">Book a 15-min intro call</div>
+        <div class="stb">Tell us about your project &mdash; where you are in the process and what questions keep you up at night. We'll tell you exactly what a session would look like and what it could save you.</div>
+      </div>
+      <div class="step reveal d1">
+        <div class="stn">02</div>
+        <div class="sti"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+        <div class="stt">Send us your floor plans</div>
+        <div class="stb">Upload your plans and elevations. We'll prepare your full-scale projection in our Troy studio. Don't have final plans yet? We can work with preliminary drawings too.</div>
+      </div>
+      <div class="step reveal d2">
+        <div class="stn">03</div>
+        <div class="sti"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
+        <div class="stt">Walk through your home</div>
+        <div class="stb">Stand in your kitchen. Feel how wide the hallway is. See where the light falls. Make every adjustment here &mdash; not on your contractor's invoice. Half-day and full-day sessions available.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="calc" id="calculator">
+  <div class="ci">
+    <div class="cg">
+      <div>
+        <div class="ey2">Do The Math</div>
+        <h2 class="ch2 reveal">What's your build worth? <em>What's one mistake worth?</em></h2>
+        <p class="csub reveal d1">Drag to your estimated build budget and see what change orders typically cost &mdash; versus what a session costs.</p>
+        <div class="slbl reveal d1">
+          <div class="sltt"><span class="slll">Your estimated build budget</span><span class="slv" id="bd">$400,000</span></div>
+          <input type="range" id="slr" min="150000" max="1500000" step="10000" value="400000">
+        </div>
+        <div class="crow2 reveal d2">
+          <div class="cr"><span class="rl">Industry avg. change order risk (10%)</span><span class="cval" id="cov">$40,000</span></div>
+          <div class="cr"><span class="rl">Walk Your Plans session</span><span class="cval">$1,500</span></div>
+          <div class="cr hl"><span class="rl" style="color:rgba(255,255,255,.82);font-weight:600;">Your potential savings</span><span class="cval" id="sav">$38,500</span></div>
+        </div>
+        <div class="reveal d3"><a href="tel:2486020110" class="bp"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.95V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>Book Your Session &mdash; 248-602-0110</a></div>
+      </div>
+      <div class="cv2 reveal d1">
+        <div class="cv2l">Cost comparison &middot; your project</div>
+        <div class="bis">
+          <div class="bi-item"><div class="bit"><span class="bin">Change order risk (10%)</span><span class="bia" id="bco">$40,000</span></div><div class="btr"><div class="bfl fr" id="bcobar" style="width:100%"></div></div></div>
+          <hr class="bdvd">
+          <div class="bi-item"><div class="bit"><span class="bin">Walk Your Plans session</span><span class="bia">$1,500</span></div><div class="btr"><div class="bfl fb" id="bsebar" style="width:4%"></div></div></div>
+          <div class="bi-item"><div class="bit"><span class="bin">Net savings</span><span class="bia" id="bsav">$38,500</span></div><div class="btr"><div class="bfl fgn" id="bsavbar" style="width:96%"></div></div></div>
+        </div>
+        <div class="rbox"><div class="rbn" id="roix">13&times;</div><div class="rbs">return on your session investment</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="inn">
+    <div class="ey2 reveal">By The Numbers</div>
+    <h2 class="sh2 reveal" style="font-size:clamp(1.65rem,2.3vw,2.4rem);">The numbers that make this an easy decision.</h2>
+    <div class="pcs">
+      <div class="pcc reveal"><div class="pctag">Session investment</div><div class="pnum or">$1,500</div><div class="pdesc">Half-day and full-day bookings available. Includes custom staging, live on-site customization, and consultation with our team.</div><div class="pvs">vs</div></div>
+      <div class="pcc reveal d1"><div class="pctag">Average change orders prevented</div><div class="pnum or">$20,000</div><div class="pdesc">Based on industry data showing change orders average 10% of contract value. Clients who walk their plans report catching multiple costly issues in a single session.</div><div class="pvs">=</div></div>
+      <div class="pcc reveal d2"><div class="pctag">Your net return</div><div class="pnum gr">$18,500+</div><div class="pdesc">That's the conservative case. On a $500K+ custom build, the math only gets more compelling &mdash; and so does the peace of mind.</div></div>
+    </div>
+    <p class="psrc">Industry change order data sourced from National Association of Home Builders (NAHB) cost-to-build surveys and construction industry benchmarks. Individual results vary by project scope and complexity.</p>
+  </div>
+</section>
+
+<section class="who" id="who">
+  <div class="inn">
+    <div style="margin-bottom:44px;" class="reveal">
+      <div class="ey2">Who We Work With</div>
+      <h2 class="sh2">Built for anyone who builds.</h2>
+    </div>
+    <div class="fgrd">
+      <div class="fc reveal"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div><div><div class="ft">Homeowners</div><div class="fb3">You've dreamed about this home for years. You can't afford to get it wrong. Walk every room at full scale and build with the confidence that what you approved on paper is what you want to live in.</div><div class="fhk">"I thought I knew what my kitchen would feel like. Walking it changed everything."</div></div></div>
+      <div class="fc reveal d1"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></div><div><div class="ft">Architects &amp; Designers</div><div class="fb3">Get faster client buy-in, fewer revision cycles, and a differentiator no competing firm has. When your clients walk their plans before ground breaks, they arrive at decisions &mdash; not second-guesses.</div><div class="fhk">"We used to spend three meetings on layout approvals. Now it happens in one session."</div></div></div>
+      <div class="fc reveal d1"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div><div><div class="ft">Builders &amp; Developers</div><div class="fb3">Reduce expensive change orders during construction. When everyone has walked the plans, "I didn't realize" stops being a phrase you hear mid-build.</div><div class="fhk">"This paid for itself the first time we avoided a structural revision."</div></div></div>
+      <div class="fc reveal d2"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div class="ft">Commercial Developers</div><div class="fb3">Healthcare, retail, fitness, hospitality &mdash; any space where layout defines the experience. Walk your floor plan with stakeholders before costs are locked in.</div><div class="fhk">"We caught a patient flow issue that would have cost six figures to retrofit."</div></div></div>
+    </div>
+    <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="tel:2486020110" class="bn"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.95V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>Call 248-602-0110</a></div>
+  </div>
+</section>
+
+<section class="trust" id="contact">
+  <div class="ti">
+    <div class="reveal">
+      <div class="ey2">Building Our Track Record</div>
+      <h2 class="th2">You don't need to take our word for it. <em>The math speaks for itself.</em></h2>
+      <p class="tb2">We're new to Metro Detroit and building our review base one walk-through at a time. What we can tell you: the concept isn't new. Walk Your Plans operates across the country with the same result &mdash; change orders are expensive, visualization gaps are real, and a $1,500 session that prevents a $20,000 mistake is one of the clearest ROI decisions in construction.</p>
+      <div class="tpts">
+        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Architects and builders across Metro Detroit</strong> use this to get client sign-off before ground breaks &mdash; because a session costs a fraction of a single change order.</div></div>
+        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Industry data is unambiguous:</strong> NAHB research shows change orders averaging 10&ndash;25% of contract value on custom residential builds.</div></div>
+        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>13 of the 20 most expensive change orders</strong> are discretionary &mdash; the homeowner changed their mind about something they couldn't visualize from a 2D drawing.</div></div>
+        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Located in Troy, MI</strong> &mdash; 780 W Maple Road, Suite F. Bring your architect. Your builder. Your partner. Catch everything before it costs you.</div></div>
+      </div>
+    </div>
+    <div class="reveal d1">
+      <div class="rcrd">
+        <div class="rtag">First client review</div>
+        <div class="stars2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
+        <div class="rq">"We walked our plans three weeks before framing started. Caught two things we would have regretted &mdash; and one that would have cost us real money mid-build. Worth every penny."</div>
+        <div class="ra"><strong>Your name here.</strong> &mdash; Metro Detroit homeowner, custom build 2025</div>
+        <div class="rovr"><div class="rol">&#8635; Building our review base</div><div class="ros">Be our first review. We'll earn it.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fcta">
+  <div class="fci">
+    <div class="fey">Troy, MI &mdash; 780 W Maple Road, Suite F</div>
+    <h2 class="fh2">Stop guessing.<br>Start knowing.</h2>
+    <p class="fsub">A 15-minute phone call is all it takes to find out if a session is right for your project. No pressure. No commitment. Just a conversation about what walking your plans would look like &mdash; and what it could save you.</p>
+    <div class="fbs">
+      <a href="tel:2486020110" class="bw">&#128222; Call 248-602-0110</a>
+      <a href="https://walkyourplansdetroit.as.me/" class="bow" target="_blank">Schedule Online &rarr;</a>
+    </div>
+    <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out. <a href="mailto:info@walkyourplansdetroit.com">Send us an email</a> and we'll reach out when the timing is right.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="ftr">
+    <a href="#" class="flog">Walk Your Plans <span>Detroit</span></a>
+    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="mailto:info@walkyourplansdetroit.com">info@walkyourplansdetroit.com</a></div>
+    <div class="finf" style="text-align:right;"><a href="https://www.walkyourplansdetroit.com/about" style="display:block;margin-bottom:4px;">About</a><a href="https://www.walkyourplansdetroit.com/customers">Who It's For</a></div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
+
+const slr = document.getElementById('slr');
+const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+function upd() {
+  const b = +slr.value, co = b * .1, sav = co - 1500, mul = Math.round(co / 1500);
+  document.getElementById('bd').textContent = fmt(b);
+  document.getElementById('cov').textContent = fmt(co);
+  document.getElementById('sav').textContent = fmt(sav);
+  document.getElementById('bco').textContent = fmt(co);
+  document.getElementById('bsav').textContent = fmt(sav);
+  document.getElementById('roix').textContent = mul + 'x';
+  document.getElementById('bcobar').style.width = '100%';
+  document.getElementById('bsebar').style.width = Math.max(1, Math.round(1500 / co * 100)) + '%';
+  document.getElementById('bsavbar').style.width = Math.round(sav / co * 100) + '%';
+}
+slr.addEventListener('input', upd);
+upd();
+
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
