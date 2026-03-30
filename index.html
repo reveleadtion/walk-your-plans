@@ -32,10 +32,14 @@ nav.sc{box-shadow:0 4px 32px rgba(0,0,0,.4)}
 .nc{background:var(--red)!important;color:#fff!important;padding:10px 20px;border-radius:4px;font-weight:600!important;white-space:nowrap}.nc:hover{background:var(--red-lt)!important}
 .nm-phone{font-size:.8rem;font-weight:500;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.03em;transition:color .2s;white-space:nowrap}.nm-phone:hover{color:#fff}
 .nm-mobile-call{display:none}
-.hero{min-height:100vh;background:var(--black);display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;overflow:hidden;padding-top:72px}
-.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(218,52,52,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(218,52,52,.03) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
-.hero::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--red) 30%,var(--red) 70%,transparent)}
-.hl{padding:80px 56px 80px 80px;position:relative;z-index:2;animation:fu .9s ease both}
+.hero{min-height:100vh;background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding-top:72px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.72) 0%,rgba(8,8,8,.55) 40%,rgba(8,8,8,.82) 75%,rgba(8,8,8,.97) 100%)}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(218,52,52,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(218,52,52,.04) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:1}
+.hero::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--red) 30%,var(--red) 70%,transparent);z-index:2}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:end;width:100%;padding:0 0 72px}
+.hl{padding:80px 56px 0 80px;position:relative;z-index:2;animation:fu .9s ease both}
 .eyebrow{font-family:var(--mono);font-size:.68rem;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:12px}.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--red)}
 h1{font-family:var(--serif);font-size:clamp(2.5rem,3.6vw,3.9rem);font-weight:900;line-height:1.08;color:#fff;margin-bottom:26px}
 h1 em{font-style:italic;color:var(--red)}
@@ -50,9 +54,9 @@ h1 em{font-style:italic;color:var(--red)}
 .bg:hover{color:#fff;border-color:rgba(255,255,255,.45)}
 .bn{display:inline-flex;align-items:center;gap:9px;background:var(--black);color:#fff;font-size:.87rem;font-weight:600;padding:15px 28px;border-radius:4px;text-decoration:none;border:2px solid var(--black);transition:all .25s}
 .bn:hover{background:var(--black-mid);transform:translateY(-2px)}
-.hr2{position:relative;height:100vh;min-height:600px;overflow:hidden;animation:fi 1.1s ease .3s both}
-.hr2::before{content:'';position:absolute;left:0;top:0;bottom:0;width:90px;background:linear-gradient(90deg,var(--black),transparent);z-index:3}
-.pr{position:absolute;inset:0;background:linear-gradient(135deg,#080808 0%,#111 50%,#181818 100%)}
+.hr2{position:relative;height:100%;min-height:500px;overflow:hidden;animation:fi 1.1s ease .3s both;opacity:.45}
+.hr2::before{content:'';position:absolute;left:0;top:0;bottom:0;width:90px;background:linear-gradient(90deg,rgba(8,8,8,.9),transparent);z-index:3}
+.pr{position:absolute;inset:0;background:transparent}
 .flg{position:absolute;bottom:0;left:-15%;right:-15%;height:55%;background:linear-gradient(rgba(218,52,52,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(218,52,52,.04) 1px,transparent 1px);background-size:40px 40px;transform:perspective(700px) rotateX(58deg);transform-origin:bottom center}
 .rf{position:absolute;top:50%;left:50%;transform:translate(-50%,-46%);width:265px;height:205px;border:1.5px solid rgba(218,52,52,.38);box-shadow:0 0 48px rgba(218,52,52,.07)}
 .rf::before{content:'';position:absolute;left:32%;top:0;bottom:0;border-left:1px solid rgba(218,52,52,.18)}
@@ -103,6 +107,25 @@ h1 em{font-style:italic;color:var(--red)}
 .sti{width:44px;height:44px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
 .stt{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--black);margin-bottom:9px}
 .stb{font-size:.84rem;color:var(--tmid);line-height:1.7}
+
+/* VIDEO SECTION */
+.vsec{background:var(--black);padding:96px 80px;border-top:1px solid rgba(255,255,255,.06)}
+.vsub{font-size:.93rem;color:rgba(255,255,255,.45);max-width:520px;margin:0 auto 52px;text-align:center;line-height:1.75}
+.vwrap{display:flex;flex-direction:column;align-items:center;gap:32px}
+.vframe{width:100%;max-width:860px;position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(218,52,52,.22);box-shadow:0 0 0 1px rgba(255,255,255,.05),0 32px 80px rgba(0,0,0,.55)}
+.vframe::before{content:'';display:block;padding-top:56.25%}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block}
+.vcaps{display:flex;gap:0;width:100%;max-width:860px;border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden}
+.vcap{flex:1;padding:20px 24px;border-right:1px solid rgba(255,255,255,.07);display:flex;align-items:flex-start;gap:13px}
+.vcap:last-child{border-right:none}
+.vcap-n{font-family:var(--mono);font-size:.58rem;color:var(--red);letter-spacing:.12em;padding-top:3px;flex-shrink:0}
+.vcap-t{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.55}
+@media(max-width:900px){
+  .vsec{padding:68px 24px}
+  .vcaps{flex-direction:column}
+  .vcap{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
+  .vcap:last-child{border-bottom:none}
+}
 
 /* CALCULATOR */
 .calc{background:var(--black);padding:96px 80px;position:relative;overflow:hidden}
@@ -225,8 +248,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   .nm{display:none}
   .nm-mobile-call{display:flex;align-items:center;gap:7px;background:var(--red);color:#fff;font-size:.78rem;font-weight:600;padding:9px 14px;border-radius:4px;text-decoration:none;white-space:nowrap}
   .nm-mobile-call:hover{background:var(--red-lt)}
-  .hero,.pg,.cg,.fgrd,.ti{grid-template-columns:1fr;gap:40px}
-  .hr2{height:320px}.hl{padding:52px 24px 40px}
+  .hero-inner,.pg,.cg,.fgrd,.ti{grid-template-columns:1fr;gap:40px}
+  .hr2{display:none}
+  .hl{padding:52px 24px 40px}
+  .hero-inner{padding:0 0 52px}
   .steps,.pcs{grid-template-columns:1fr}
   .pcc::after{display:none}.pvs{display:none}
   .prob,.how,.calc,.proof,.who,.trust,.fcta,footer{padding:68px 24px}
@@ -249,6 +274,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 </nav>
 
 <section class="hero">
+  <div class="hero-bg">
+    <img src="hero.jpg" alt="Walk Your Plans Detroit — immersive floor plan projection studio" fetchpriority="high">
+  </div>
+  <div class="hero-inner">
   <div class="hl">
     <div class="eyebrow">Troy, MI &middot; Metro Detroit's Immersive Design Studio</div>
     <h1>The average homeowner loses <em>$20,000</em> after construction starts.</h1>
@@ -285,6 +314,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div class="sbv">Full Scale</div>
       <div class="sbs">Walking your floor plan</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -344,6 +374,42 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="sti"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
         <div class="stt">Walk through your home</div>
         <div class="stb">Stand in your kitchen. Feel how wide the hallway is. See where the light falls. Make every adjustment here &mdash; not on your contractor's invoice. Half-day and full-day sessions available.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vsec">
+  <div class="inn">
+    <div class="vhdr reveal">
+      <div class="ey2" style="justify-content:center;">See It In Action</div>
+      <h2 class="sh2" style="text-align:center;margin-bottom:10px;">Watch what walking your plans <em>actually looks like.</em></h2>
+      <p class="vsub">Two minutes. Your floor plan. Full scale. This is what our clients experience before a single wall goes up.</p>
+    </div>
+    <div class="vwrap reveal d1">
+      <div class="vframe">
+        <!-- Replace YOUR_YOUTUBE_ID with your YouTube video ID -->
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID?rel=0&modestbranding=1&color=white"
+          title="Walk Your Plans Detroit — See the Experience"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="vcaps">
+        <div class="vcap reveal d1">
+          <div class="vcap-n">01</div>
+          <div class="vcap-t">Your plans projected at full scale</div>
+        </div>
+        <div class="vcap reveal d2">
+          <div class="vcap-n">02</div>
+          <div class="vcap-t">Walk every room before framing starts</div>
+        </div>
+        <div class="vcap reveal d3">
+          <div class="vcap-n">03</div>
+          <div class="vcap-t">Catch what blueprints can't show you</div>
+        </div>
       </div>
     </div>
   </div>
@@ -466,19 +532,19 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <a href="https://walkyourplansdetroit.as.me/" class="bw" target="_blank">&#128197; Schedule Now</a>
       <a href="https://www.walkyourplansdetroit.com/contact" class="bow">Not ready? Schedule later &rarr;</a>
     </div>
-    <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out. Click "Schedule Later" (above) and fill out the form or <a href="mailto:hello@walkyourplansdetroit.com">send us an email</a> and we'll reach out when the timing is right.</p>
+    <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out. Click "Schedule Later" (above) and fill out the form or <a href="/cdn-cgi/l/email-protection#8de5e8e1e1e2cdfaece1e6f4e2f8fffde1ece3fee9e8f9ffe2e4f9a3eee2e0">send us an email</a> and we'll reach out when the timing is right.</p>
   </div>
 </section>
 
 <footer>
   <div class="ftr">
     <a href="#" class="flog">Walk Your Plans <span>Detroit</span></a>
-    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="mailto:hello@walkyourplansdetroit.com">hello@walkyourplansdetroit.com</a></div>
+    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="/cdn-cgi/l/email-protection#244c4148484b645345484f5d4b51565448454a57404150564b4d500a474b49"><span class="__cf_email__" data-cfemail="95fdf0f9f9fad5e2f4f9feecfae0e7e5f9f4fbe6f1f0e1e7fafce1bbf6faf8">[email&#160;protected]</span></a></div>
     <div class="finf" style="text-align:right;"><a href="https://www.walkyourplansdetroit.com/about" style="display:block;margin-bottom:4px;">About</a><a href="https://www.walkyourplansdetroit.com/customers">Who It's For</a></div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Nav scroll shadow
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
@@ -543,17 +609,9 @@ sqftSlr.addEventListener('input', upd);
 upd();
 
 // Scroll-reveal with IntersectionObserver
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      obs.unobserve(e.target);
-    }
-  });
+const revEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); } });
 }, { threshold: 0.12 });
-
-reveals.forEach(el => obs.observe(el));
-</script>
-</body>
-</html>
+revEls.forEach(el => revObs.observe(el));
+</script></body></html>
