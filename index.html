@@ -61,9 +61,37 @@ h1 em{font-style:italic;color:var(--red)}
 .sh2 em{font-style:italic;color:var(--red)}
 .bp2{font-size:.93rem;color:var(--tmid);line-height:1.8;margin-bottom:16px}
 .inn{max-width:1100px;margin:0 auto}
+/* SECTION IMAGES — mobile-first */
+.si{width:100%;border-radius:10px;overflow:hidden;position:relative;display:block}
+.si img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Problem section photo */
+.prob-img{aspect-ratio:4/3;border-radius:10px;overflow:hidden;margin-bottom:32px}
+.prob-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s ease}
+.prob-img:hover img{transform:scale(1.03)}
+.prob-img-caption{font-family:var(--mono);font-size:.6rem;color:var(--tlt);letter-spacing:.08em;text-transform:uppercase;margin-top:10px}
+
+/* How It Works studio strip */
+.studio-strip{margin-top:52px;border-radius:12px;overflow:hidden;position:relative;aspect-ratio:16/6}
+.studio-strip img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+.studio-strip-label{position:absolute;bottom:20px;left:24px;background:rgba(8,8,8,.78);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:10px 16px;display:flex;align-items:center;gap:10px}
+.ssl-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0}
+.ssl-txt{font-family:var(--mono);font-size:.62rem;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase}
+
+/* Who section photo pair */
+.who-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.who-photo{border-radius:10px;overflow:hidden;position:relative}
+.who-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .5s ease}
+.who-photo:hover img{transform:scale(1.04)}
+.who-photo-label{position:absolute;bottom:0;left:0;right:0;padding:28px 16px 14px;background:linear-gradient(to top,rgba(8,8,8,.82),transparent);font-family:var(--mono);font-size:.6rem;color:rgba(255,255,255,.7);letter-spacing:.09em;text-transform:uppercase}
+
+/* Trust section review card photo */
+.rcrd-photo{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;margin-bottom:22px}
+.rcrd-photo img{width:100%;height:100%;object-fit:cover;display:block}
+
 .prob{background:var(--white);padding:108px 80px;position:relative;overflow:hidden}
 .prob::before{content:'$20,000';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:15rem;font-weight:900;color:rgba(12,12,12,.03);line-height:1;pointer-events:none;white-space:nowrap}
-.pg{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:center}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:start}
 .ic{background:var(--black);color:#fff;padding:20px 24px;border-radius:6px;border-left:4px solid var(--red);margin-top:26px}
 .ic-n{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--red);line-height:1}
 .ic-t{font-size:.81rem;color:rgba(255,255,255,.55);margin-top:7px;line-height:1.52}
@@ -232,6 +260,12 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   .pcc::after{display:none}.pvs{display:none}
   .prob,.how,.calc,.proof,.who,.trust,.fcta,footer{padding:68px 24px}
   .prob::before{display:none}.cv2{position:static}
+  /* Image section mobile */
+  .prob-img{aspect-ratio:3/2;margin-bottom:0}
+  .studio-strip{aspect-ratio:16/7;margin-top:36px}
+  .who-photos{grid-template-columns:1fr;gap:12px;margin-top:32px}
+  .who-photo img{aspect-ratio:3/2}
+  .rcrd-photo{aspect-ratio:3/2}
 }
 </style>
 </head>
@@ -285,6 +319,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         </div>
       </div>
       <div class="scens reveal d1">
+        <div class="prob-img reveal">
+          <img src="img-problem.jpg" alt="Construction framing mid-build — the moment change orders become expensive" loading="lazy">
+        </div>
+        <p class="prob-img-caption">780 W Maple Rd, Suite F &middot; Troy, MI</p>
         <div class="scn">
           <div class="sct"><strong>The kitchen island.</strong> Four feet wide on the plan &mdash; felt perfect. Week three of framing, two people can't pass each other without turning sideways.</div>
           <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural + labor delay + materials</div></div><div class="scc">$8,400</div></div>
@@ -329,10 +367,15 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="stb">Stand in your kitchen. Feel how wide the hallway is. See where the light falls. Make every adjustment here &mdash; not on your contractor's invoice. Half-day and full-day sessions available.</div>
       </div>
     </div>
+    <div class="studio-strip reveal d1">
+      <img src="img-studio.jpg" alt="Walk Your Plans Detroit projection studio — full scale floor plan experience" loading="lazy">
+      <div class="studio-strip-label">
+        <div class="ssl-dot"></div>
+        <span class="ssl-txt">The Walk Your Plans Studio &middot; Troy, MI</span>
+      </div>
+    </div>
   </div>
 </section>
-
-<section class="vsec">
   <div class="inn">
     <div class="vhdr reveal">
       <div class="ey2" style="justify-content:center;">See It In Action</div>
@@ -448,6 +491,16 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div class="fc reveal d2"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div class="ft">Commercial Developers</div><div class="fb3">Healthcare, retail, fitness, hospitality &mdash; any space where layout defines the experience. Walk your floor plan with stakeholders before costs are locked in.</div><div class="fhk">"We caught a patient flow issue that would have cost six figures to retrofit."</div></div></div>
     </div>
     <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="https://walkyourplansdetroit.as.me/" class="bn" target="_blank"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Schedule Now</a></div>
+    <div class="who-photos">
+      <div class="who-photo reveal">
+        <img src="img-clients.jpg" alt="Homeowners walking their floor plan at Walk Your Plans Detroit" loading="lazy">
+        <div class="who-photo-label">Homeowners &middot; custom build</div>
+      </div>
+      <div class="who-photo reveal d1">
+        <img src="img-architect.jpg" alt="Architect and builder reviewing plans at full scale" loading="lazy">
+        <div class="who-photo-label">Architects &amp; builders</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -466,6 +519,9 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     </div>
     <div class="reveal d1">
       <div class="rcrd">
+        <div class="rcrd-photo">
+          <img src="img-studio-interior.jpg" alt="Walk Your Plans Detroit studio interior — immersive projection space" loading="lazy">
+        </div>
         <div class="rtag">First client review</div>
         <div class="stars2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
         <div class="rq">"We walked our plans three weeks before framing started. Caught two things we would have regretted &mdash; and one that would have cost us real money mid-build. Worth every penny."</div>
