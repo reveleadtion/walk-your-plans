@@ -66,12 +66,16 @@ h1 em{font-style:italic;color:var(--red)}
 .si img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Problem section photo */
-.prob-img{aspect-ratio:4/3;border-radius:10px;overflow:hidden;margin-bottom:32px}
+.prob-img{border-radius:10px;overflow:hidden;position:relative}
 .prob-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s ease}
 .prob-img:hover img{transform:scale(1.03)}
 .prob-img-caption{font-family:var(--mono);font-size:.6rem;color:var(--tlt);letter-spacing:.08em;text-transform:uppercase;margin-top:10px}
+.prob-top{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;margin-bottom:48px}
+.prob-intro{max-width:580px}
+.prob-body{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 
-/* How It Works studio strip */
+.prob{background:var(--white);padding:108px 80px;position:relative;overflow:hidden}
+.prob::before{content:'$20,000';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:15rem;font-weight:900;color:rgba(12,12,12,.03);line-height:1;pointer-events:none;white-space:nowrap}
 .studio-strip{margin-top:52px;border-radius:12px;overflow:hidden;position:relative;aspect-ratio:16/6}
 .studio-strip img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
 .studio-strip-label{position:absolute;bottom:20px;left:24px;background:rgba(8,8,8,.78);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:10px 16px;display:flex;align-items:center;gap:10px}
@@ -91,8 +95,7 @@ h1 em{font-style:italic;color:var(--red)}
 
 .prob{background:var(--white);padding:108px 80px;position:relative;overflow:hidden}
 .prob::before{content:'$20,000';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:15rem;font-weight:900;color:rgba(12,12,12,.03);line-height:1;pointer-events:none;white-space:nowrap}
-.pg{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:start}
-.ic{background:var(--black);color:#fff;padding:20px 24px;border-radius:6px;border-left:4px solid var(--red);margin-top:26px}
+.ic{background:var(--black);color:#fff;padding:20px 24px;border-radius:6px;border-left:4px solid var(--red);margin-top:0;min-width:260px;max-width:320px}
 .ic-n{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--red);line-height:1}
 .ic-t{font-size:.81rem;color:rgba(255,255,255,.55);margin-top:7px;line-height:1.52}
 .scens{display:flex;flex-direction:column;gap:13px}
@@ -253,7 +256,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   .nm{display:none}
   .nm-mobile-call{display:flex;align-items:center;gap:7px;background:var(--red);color:#fff;font-size:.78rem;font-weight:600;padding:9px 14px;border-radius:4px;text-decoration:none;white-space:nowrap}
   .nm-mobile-call:hover{background:var(--red-lt)}
-  .hero-inner,.pg,.cg,.fgrd,.ti{grid-template-columns:1fr;gap:40px}
+  .hero-inner,.cg,.fgrd,.ti{grid-template-columns:1fr;gap:40px}
   .hl{padding:52px 24px 0}
   .hero-inner{padding:0 0 52px}
   .steps,.pcs{grid-template-columns:1fr}
@@ -261,7 +264,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   .prob,.how,.calc,.proof,.who,.trust,.fcta,footer{padding:68px 24px}
   .prob::before{display:none}.cv2{position:static}
   /* Image section mobile */
-  .prob-img{aspect-ratio:3/2;margin-bottom:0}
+  .prob-top{grid-template-columns:1fr;gap:24px;margin-bottom:32px}
+  .prob-body{grid-template-columns:1fr;gap:28px}
+  .prob-img{aspect-ratio:3/2}
+  .ic{min-width:unset;max-width:unset}
   .studio-strip{aspect-ratio:16/7;margin-top:36px}
   .who-photos{grid-template-columns:1fr;gap:12px;margin-top:32px}
   .who-photo img{aspect-ratio:3/2}
@@ -307,22 +313,24 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 
 <section class="prob" id="problem">
   <div class="inn">
-    <div class="pg">
-      <div class="reveal">
+    <div class="prob-top reveal">
+      <div class="prob-intro">
         <div class="ey2">The Real Cost of Guessing</div>
         <h2 class="sh2">Blueprints look right on paper. They feel <em>wrong</em> when it's too late.</h2>
         <p class="bp2">Change orders are the hidden tax of every construction project. A wall that needs to move. A kitchen island two feet too wide for how you actually cook. A bedroom that felt spacious at 14&times;16 on paper &mdash; and feels cramped in real life.</p>
         <p class="bp2">These aren't contractor mistakes. They're visualization gaps &mdash; the natural result of trying to imagine a three-dimensional space from a flat drawing. Nobody can do it perfectly. And when you're wrong after ground breaks, you pay for it.</p>
-        <div class="ic reveal d1">
-          <div class="ic-n">10 &ndash; 25%</div>
-          <div class="ic-t">Industry data shows change orders average 10% of total contract value &mdash; and up to 25% on complex custom builds. On a $300,000 home, that's $30,000 in decisions you wish you'd made before construction started.</div>
-        </div>
+      </div>
+      <div class="ic reveal d1">
+        <div class="ic-n">10 &ndash; 25%</div>
+        <div class="ic-t">Industry data shows change orders average 10% of total contract value &mdash; and up to 25% on complex custom builds. On a $300,000 home, that's $30,000 in decisions you wish you'd made before construction started.</div>
+      </div>
+    </div>
+    <div class="prob-body">
+      <div class="prob-img reveal">
+        <img src="img-problem.jpg" alt="Construction framing mid-build — the moment change orders become expensive" loading="lazy">
+        <p class="prob-img-caption">780 W Maple Rd, Suite F &middot; Troy, MI</p>
       </div>
       <div class="scens reveal d1">
-        <div class="prob-img reveal">
-          <img src="img-problem.jpg" alt="Construction framing mid-build — the moment change orders become expensive" loading="lazy">
-        </div>
-        <p class="prob-img-caption">780 W Maple Rd, Suite F &middot; Troy, MI</p>
         <div class="scn">
           <div class="sct"><strong>The kitchen island.</strong> Four feet wide on the plan &mdash; felt perfect. Week three of framing, two people can't pass each other without turning sideways.</div>
           <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural + labor delay + materials</div></div><div class="scc">$8,400</div></div>
@@ -376,6 +384,8 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     </div>
   </div>
 </section>
+
+<section class="vsec">
   <div class="inn">
     <div class="vhdr reveal">
       <div class="ey2" style="justify-content:center;">See It In Action</div>
