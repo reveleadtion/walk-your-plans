@@ -32,6 +32,8 @@ nav.sc{box-shadow:0 4px 32px rgba(0,0,0,.4)}
 .nc{background:var(--red)!important;color:#fff!important;padding:10px 20px;border-radius:4px;font-weight:600!important;white-space:nowrap}.nc:hover{background:var(--red-lt)!important}
 .nm-phone{font-size:.8rem;font-weight:500;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.03em;transition:color .2s;white-space:nowrap}.nm-phone:hover{color:#fff}
 .nm-mobile-call{display:none}
+.nm-mobile-sched{display:none}
+.nm-mobile-phone{display:none}
 .hero{min-height:100vh;background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding-top:72px}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
@@ -116,6 +118,11 @@ h1 em{font-style:italic;color:var(--red)}
 .sti{width:44px;height:44px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
 .stt{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--black);margin-bottom:9px}
 .stb{font-size:.84rem;color:var(--tmid);line-height:1.7}
+
+.inline-cta{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.84rem;font-weight:600;color:var(--red);text-decoration:none;transition:gap .2s}
+.inline-cta:hover{gap:10px}
+.how-cta{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-top:40px;margin-bottom:4px}
+.proof-cta{margin-top:32px}
 
 /* VIDEO SECTION */
 .vsec{background:var(--black);padding:96px 80px;border-top:1px solid rgba(255,255,255,.06)}
@@ -253,8 +260,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 @media(max-width:900px){
   nav{padding:0 16px}
   .nm{display:none}
-  .nm-mobile-call{display:flex;align-items:center;gap:7px;background:var(--red);color:#fff;font-size:.78rem;font-weight:600;padding:9px 14px;border-radius:4px;text-decoration:none;white-space:nowrap}
-  .nm-mobile-call:hover{background:var(--red-lt)}
+  .nm-mobile-sched{display:flex;align-items:center;gap:7px;background:var(--red);color:#fff;font-size:.82rem;font-weight:600;padding:10px 16px;border-radius:4px;text-decoration:none;white-space:nowrap}
+  .nm-mobile-sched:hover{background:var(--red-lt)}
+  .nm-mobile-phone{display:flex;align-items:center;color:rgba(255,255,255,.5);font-size:.75rem;text-decoration:none;white-space:nowrap;padding:4px 0}
+  .nm-mobile-phone:hover{color:#fff}
   .hero-inner,.cg,.fgrd,.ti{grid-template-columns:1fr;gap:40px}
   .hl{padding:52px 24px 0}
   .hero-inner{padding:0 0 52px}
@@ -284,7 +293,8 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <a href="tel:2486020110" class="nm-phone">&#128222; 248-602-0110</a>
     <a href="https://walkyourplansdetroit.as.me/" class="nc" target="_blank">Schedule Now</a>
   </div>
-  <a href="tel:2486020110" class="nm-mobile-call">&#128222; 248-602-0110</a>
+  <a href="tel:2486020110" class="nm-mobile-phone">&#128222; 248-602-0110</a>
+  <a href="https://walkyourplansdetroit.as.me/" class="nm-mobile-sched" target="_blank">Schedule Now</a>
 </nav>
 
 <section class="hero">
@@ -339,6 +349,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="sct"><strong>The great room ceiling.</strong> Vaulted to 14 feet sounded dramatic. In person it dwarfs the furniture and kills any sense of warmth. Changing it now means redoing the roofline.</div>
           <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural redesign + roofline + extended timeline</div></div><div class="scc">$22,500</div></div>
         </div>
+        <a href="https://walkyourplansdetroit.as.me/" class="inline-cta" target="_blank">Catch these before they happen &rarr;</a>
       </div>
     </div>
   </div>
@@ -371,6 +382,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="stb">Stand in your kitchen. Feel how wide the hallway is. See where the light falls. Make every adjustment here &mdash; not on your contractor's invoice. Half-day and full-day sessions available.</div>
       </div>
     </div>
+    <div class="how-cta reveal d2">
+      <a href="https://walkyourplansdetroit.as.me/" class="bp" target="_blank"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Schedule Your Session</a>
+      <a href="https://www.walkyourplansdetroit.com/contact" class="bg">Not ready yet? &rarr;</a>
+    </div>
     <div class="studio-strip reveal d1">
       <img src="img-studio.jpg" alt="Walk Your Plans Detroit projection studio — full scale floor plan experience" loading="lazy">
       <div class="studio-strip-label">
@@ -385,14 +400,14 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   <div class="inn">
     <div class="vhdr reveal">
       <div class="ey2" style="justify-content:center;">See It In Action</div>
-      <h2 class="ch2 reveal" style="text-align:center;margin-bottom:10px;">Watch what walking your plans <em>actually looks like.</em></h2>
+      <h2 class="sh2" style="text-align:center;margin-bottom:10px;">Watch what walking your plans <em>actually looks like.</em></h2>
       <p class="vsub">Two minutes. Your floor plan. Full scale. This is what our clients experience before a single wall goes up.</p>
     </div>
     <div class="vwrap reveal d1">
       <div class="vframe">
         <!-- Replace YOUR_YOUTUBE_ID with your YouTube video ID -->
         <iframe
-          src="https://www.youtube.com/embed/OA9Bp7kRu4s?si=29Q2vMIehAaSfr4R?rel=0&modestbranding=1&color=white"
+          src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID?rel=0&modestbranding=1&color=white"
           title="Walk Your Plans Detroit — See the Experience"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
@@ -413,6 +428,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="vcap-t">Catch what blueprints can't show you</div>
         </div>
       </div>
+      <a href="https://walkyourplansdetroit.as.me/" class="bp reveal d1" target="_blank"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Book a Session</a>
     </div>
   </div>
 </section>
@@ -481,6 +497,9 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div class="pcc reveal d2"><div class="pctag">Your net return</div><div class="pnum gr">$18,500+</div><div class="pdesc">That's the conservative case. On a $500K+ custom build, the math only gets more compelling &mdash; and so does the peace of mind.</div></div>
     </div>
     <p class="psrc">Industry change order data sourced from National Association of Home Builders (NAHB) cost-to-build surveys and construction industry benchmarks. Estimated build cost based on ~$200/sq ft Metro Detroit average. Individual results vary by project scope and complexity.</p>
+    <div class="proof-cta reveal">
+      <a href="https://walkyourplansdetroit.as.me/" class="bp" target="_blank"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Schedule Now</a>
+    </div>
   </div>
 </section>
 
@@ -547,14 +566,14 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <a href="https://walkyourplansdetroit.as.me/" class="bw" target="_blank">&#128197; Schedule Now</a>
       <a href="https://www.walkyourplansdetroit.com/contact" class="bow">Not ready? Schedule later &rarr;</a>
     </div>
-    <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out. Click "Schedule Later" (above) and fill out the form or <a href="mailto:info@walkyourplansdetroit.com">send us an email</a> and we'll reach out when the timing is right.</p>
+    <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out. Click "Schedule Later" (above) and fill out the form or <a href="/cdn-cgi/l/email-protection#8de5e8e1e1e2cdfaece1e6f4e2f8fffde1ece3fee9e8f9ffe2e4f9a3eee2e0">send us an email</a> and we'll reach out when the timing is right.</p>
   </div>
 </section>
 
 <footer>
   <div class="ftr">
     <a href="#" class="flog">Walk Your Plans <span>Detroit</span></a>
-    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="mailto:info@walkyourplansdetroit.com"><span class="__cf_email__" data-cfemail="95fdf0f9f9fad5e2f4f9feecfae0e7e5f9f4fbe6f1f0e1e7fafce1bbf6faf8">info@walkyourplansdetroit.com</span></a></div>
+    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="/cdn-cgi/l/email-protection#244c4148484b645345484f5d4b51565448454a57404150564b4d500a474b49"><span class="__cf_email__" data-cfemail="95fdf0f9f9fad5e2f4f9feecfae0e7e5f9f4fbe6f1f0e1e7fafce1bbf6faf8">[email&#160;protected]</span></a></div>
     <div class="finf" style="text-align:right;"><a href="https://www.walkyourplansdetroit.com/about" style="display:block;margin-bottom:4px;">About</a><a href="https://www.walkyourplansdetroit.com/customers">Who It's For</a></div>
   </div>
 </footer>
