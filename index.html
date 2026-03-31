@@ -66,15 +66,14 @@ h1 em{font-style:italic;color:var(--red)}
 .si img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Problem section photo */
-.prob-img{border-radius:10px;overflow:hidden;position:relative}
+.prob-img{border-radius:10px;overflow:hidden;aspect-ratio:4/3;flex-shrink:0}
 .prob-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s ease}
 .prob-img:hover img{transform:scale(1.03)}
-.prob-img-caption{font-family:var(--mono);font-size:.6rem;color:var(--tlt);letter-spacing:.08em;text-transform:uppercase;margin-top:10px}
-.prob-top{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;margin-bottom:48px}
-.prob-intro{max-width:580px}
-.prob-body{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.prob-hdr{margin-bottom:40px;max-width:680px}
+.prob-body{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.prob-left{display:flex;flex-direction:column;gap:16px}
 
-.prob{background:var(--white);padding:108px 80px;position:relative;overflow:hidden}
+.prob{background:var(--white);padding:88px 80px;position:relative;overflow:hidden}
 .prob::before{content:'$20,000';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:15rem;font-weight:900;color:rgba(12,12,12,.03);line-height:1;pointer-events:none;white-space:nowrap}
 .studio-strip{margin-top:52px;border-radius:12px;overflow:hidden;position:relative;aspect-ratio:16/6}
 .studio-strip img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
@@ -95,7 +94,7 @@ h1 em{font-style:italic;color:var(--red)}
 
 .prob{background:var(--white);padding:108px 80px;position:relative;overflow:hidden}
 .prob::before{content:'$20,000';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:15rem;font-weight:900;color:rgba(12,12,12,.03);line-height:1;pointer-events:none;white-space:nowrap}
-.ic{background:var(--black);color:#fff;padding:20px 24px;border-radius:6px;border-left:4px solid var(--red);margin-top:0;min-width:260px;max-width:320px}
+.ic{background:var(--black);color:#fff;padding:20px 24px;border-radius:6px;border-left:4px solid var(--red);margin-top:0}
 .ic-n{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--red);line-height:1}
 .ic-t{font-size:.81rem;color:rgba(255,255,255,.55);margin-top:7px;line-height:1.52}
 .scens{display:flex;flex-direction:column;gap:13px}
@@ -263,9 +262,8 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   .pcc::after{display:none}.pvs{display:none}
   .prob,.how,.calc,.proof,.who,.trust,.fcta,footer{padding:68px 24px}
   .prob::before{display:none}.cv2{position:static}
-  /* Image section mobile */
-  .prob-top{grid-template-columns:1fr;gap:24px;margin-bottom:32px}
-  .prob-body{grid-template-columns:1fr;gap:28px}
+  /* Problem section mobile */
+  .prob-body{grid-template-columns:1fr;gap:24px}
   .prob-img{aspect-ratio:3/2}
   .ic{min-width:unset;max-width:unset}
   .studio-strip{aspect-ratio:16/7;margin-top:36px}
@@ -313,22 +311,20 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 
 <section class="prob" id="problem">
   <div class="inn">
-    <div class="prob-top reveal">
-      <div class="prob-intro">
-        <div class="ey2">The Real Cost of Guessing</div>
-        <h2 class="sh2">Blueprints look right on paper. They feel <em>wrong</em> when it's too late.</h2>
-        <p class="bp2">Change orders are the hidden tax of every construction project. A wall that needs to move. A kitchen island two feet too wide for how you actually cook. A bedroom that felt spacious at 14&times;16 on paper &mdash; and feels cramped in real life.</p>
-        <p class="bp2">These aren't contractor mistakes. They're visualization gaps &mdash; the natural result of trying to imagine a three-dimensional space from a flat drawing. Nobody can do it perfectly. And when you're wrong after ground breaks, you pay for it.</p>
-      </div>
-      <div class="ic reveal d1">
-        <div class="ic-n">10 &ndash; 25%</div>
-        <div class="ic-t">Industry data shows change orders average 10% of total contract value &mdash; and up to 25% on complex custom builds. On a $300,000 home, that's $30,000 in decisions you wish you'd made before construction started.</div>
-      </div>
+    <div class="prob-hdr reveal">
+      <div class="ey2">The Real Cost of Guessing</div>
+      <h2 class="sh2">Blueprints look right on paper. They feel <em>wrong</em> when it's too late.</h2>
+      <p class="bp2">Change orders are the hidden tax of every construction project — a wall that needs to move, a kitchen island two feet too wide, a bedroom that felt spacious at 14&times;16 on paper and feels cramped in real life. These aren't contractor mistakes. They're visualization gaps. And when you're wrong after ground breaks, you pay for it.</p>
     </div>
     <div class="prob-body">
-      <div class="prob-img reveal">
-        <img src="img-problem.jpg" alt="Construction framing mid-build — the moment change orders become expensive" loading="lazy">
-        <p class="prob-img-caption">780 W Maple Rd, Suite F &middot; Troy, MI</p>
+      <div class="prob-left reveal">
+        <div class="ic">
+          <div class="ic-n">10 &ndash; 25%</div>
+          <div class="ic-t">Change orders average 10–25% of total contract value. On a $300,000 home, that's up to $30,000 in decisions you wish you'd made before construction started.</div>
+        </div>
+        <div class="prob-img">
+          <img src="img-problem.jpg" alt="Home under construction — framing stage before walls are finished" loading="lazy">
+        </div>
       </div>
       <div class="scens reveal d1">
         <div class="scn">
