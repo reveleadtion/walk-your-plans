@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Walk Your Plans Detroit</title>
+<meta name="description" content="Walk through your home at full scale before a single wall goes up. Troy, MI. Catch costly change orders before construction starts. $500/hr sessions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -298,7 +300,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 
 <section class="hero">
   <div class="hero-bg">
-    <img src="hero.jpg" alt="Walk Your Plans Detroit — immersive floor plan projection studio" fetchpriority="high">
+    <picture>
+      <source srcset="hero.webp" type="image/webp">
+      <img src="hero.jpg" alt="Walk Your Plans Detroit — immersive floor plan projection studio" fetchpriority="high" width="1920" height="1080">
+    </picture>
   </div>
   <div class="hero-inner">
   <div class="hl">
@@ -386,7 +391,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <a href="https://www.walkyourplansdetroit.com/contact" class="bg">Not ready yet? &rarr;</a>
     </div>
     <div class="studio-strip reveal d1">
-      <img src="img-studio.jpg" alt="Walk Your Plans Detroit projection studio — full scale floor plan experience" loading="lazy">
+      <picture>
+        <source srcset="img-studio.webp" type="image/webp">
+        <img src="img-studio.jpg" alt="Walk Your Plans Detroit projection studio — full scale floor plan experience" loading="lazy" width="1440" height="540">
+      </picture>
       <div class="studio-strip-label">
         <div class="ssl-dot"></div>
         <span class="ssl-txt">The Walk Your Plans Studio &middot; Troy, MI</span>
@@ -403,16 +411,20 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <p class="vsub">Two minutes. Your floor plan. Full scale. This is what our clients experience before a single wall goes up.</p>
     </div>
     <div class="vwrap reveal d1">
-      <div class="vframe">
-        <!-- Replace YOUR_YOUTUBE_ID with your YouTube video ID -->
-        <iframe
-          src="https://www.youtube.com/embed/OA9Bp7kRu4s?si=S9duuzGuknn4-okH?rel=0&modestbranding=1&color=white"
-          title="Walk Your Plans Detroit — See the Experience"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          loading="lazy">
-        </iframe>
+      <div class="vframe" id="yt-facade" style="cursor:pointer;background:#000;" onclick="loadYT(this)">
+        <img src="https://i.ytimg.com/vi/OA9Bp7kRu4s/maxresdefault.jpg"
+             alt="Watch the Walk Your Plans experience"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85"
+             loading="lazy" width="1280" height="720">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
+        </div>
       </div>
+      <script>
+      function loadYT(el) {
+        el.innerHTML = '<iframe src="https://www.youtube.com/embed/OA9Bp7kRu4s?autoplay=1&rel=0&modestbranding=1&color=white" title="Walk Your Plans Detroit" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>';
+      }
+      </script>
       <div class="vcaps">
         <div class="vcap reveal d1">
           <div class="vcap-n">01</div>
@@ -517,11 +529,17 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="https://walkyourplansdetroit.as.me/" class="bn" target="_blank"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Schedule Now</a></div>
     <div class="who-photos">
       <div class="who-photo reveal">
-        <img src="img-clients.jpg" alt="Homeowners walking their floor plan at Walk Your Plans Detroit" loading="lazy">
+        <picture>
+          <source srcset="img-clients.webp" type="image/webp">
+          <img src="img-clients.jpg" alt="Homeowners walking their floor plan at Walk Your Plans Detroit" loading="lazy" width="700" height="525">
+        </picture>
         <div class="who-photo-label">Homeowners &middot; custom build</div>
       </div>
       <div class="who-photo reveal d1">
-        <img src="img-architect.jpg" alt="Architect and builder reviewing plans at full scale" loading="lazy">
+        <picture>
+          <source srcset="img-architect.webp" type="image/webp">
+          <img src="img-architect.jpg" alt="Architect and builder reviewing plans at full scale" loading="lazy" width="700" height="525">
+        </picture>
         <div class="who-photo-label">Architects &amp; builders</div>
       </div>
     </div>
@@ -544,7 +562,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="reveal d1">
       <div class="rcrd">
         <div class="rcrd-photo">
-          <img src="img-studio-interior.jpg" alt="Walk Your Plans Detroit studio interior — immersive projection space" loading="lazy">
+          <picture>
+            <source srcset="img-studio-interior.webp" type="image/webp">
+            <img src="img-studio-interior.jpg" alt="Walk Your Plans Detroit studio interior — immersive projection space" loading="lazy" width="860" height="484">
+          </picture>
         </div>
         <div class="rtag">First client review</div>
         <div class="stars2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
@@ -566,19 +587,19 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <a href="https://www.walkyourplansdetroit.com/contact" class="bow">Not ready? Schedule later &rarr;</a>
     </div>
     <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out.</p>
-    <p class="ffne">Simply click "Schedule Later" and fill out the form or <a href="mailto:info@walkyourplansdetroit.com">send us an email</a> and we'll reach out when the timing is right.</p>
+    <p class="ffne">Simply click "Schedule Later" and fill out the form or <a href="/cdn-cgi/l/email-protection#a7cec9c1c8e7d0c6cbccdec8d2d5d7cbc6c9d4c3c2d3d5c8ced389c4c8ca">send us an email</a> and we'll reach out when the timing is right.</p>
   </div>
 </section>
 
 <footer>
   <div class="ftr">
     <a href="#" class="flog">Walk Your Plans <span>Detroit</span></a>
-    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="mailto:info@walkyourplansdetroit.com"><span class="__cf_email__" data-cfemail="95fdf0f9f9fad5e2f4f9feecfae0e7e5f9f4fbe6f1f0e1e7fafce1bbf6faf8">info@walkyourplansdetroit.com</span></a></div>
+    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="/cdn-cgi/l/email-protection#5f363139301f283e333426302a2d2f333e312c3b3a2b2d30362b713c3032"><span class="__cf_email__" data-cfemail="95fdf0f9f9fad5e2f4f9feecfae0e7e5f9f4fbe6f1f0e1e7fafce1bbf6faf8"><span class="__cf_email__" data-cfemail="1b72757d745b6c7a777062746e696b777a75687f7e6f6974726f35787476">[email&#160;protected]</span></span></a></div>
     <div class="finf" style="text-align:right;"><a href="https://www.walkyourplansdetroit.com/about" style="display:block;margin-bottom:4px;">About</a><a href="https://www.walkyourplansdetroit.com/customers">Who It's For</a></div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Nav scroll shadow
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
@@ -642,10 +663,4 @@ sqftSlr.addEventListener('input', upd);
 // Run on load
 upd();
 
-// Scroll-reveal with IntersectionObserver
-const revEls = document.querySelectorAll('.reveal');
-const revObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); } });
-}, { threshold: 0.12 });
-revEls.forEach(el => revObs.observe(el));
-</script></body></html>
+// Scroll-reveal with IntersectionObserv
