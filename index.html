@@ -337,7 +337,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="ic-t">Change orders average 10–25% of total contract value. On a $300,000 home, that's up to $30,000 in decisions you wish you'd made before construction started.</div>
         </div>
         <div class="prob-img">
-          <img src="img-problem.jpg" alt="Home under construction — framing stage before walls are finished" loading="lazy">
+          <picture>
+            <source srcset="img-problem.webp" type="image/webp">
+            <img src="img-problem.jpg" alt="Home under construction — framing stage before walls are finished" loading="lazy" width="700" height="525">
+          </picture>
         </div>
       </div>
       <div class="scens reveal d1">
@@ -411,11 +414,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <p class="vsub">Two minutes. Your floor plan. Full scale. This is what our clients experience before a single wall goes up.</p>
     </div>
     <div class="vwrap reveal d1">
-      <div class="vframe" id="yt-facade" style="cursor:pointer;background:#000;" onclick="loadYT(this)">
-        <img src="https://i.ytimg.com/vi/OA9Bp7kRu4s/maxresdefault.jpg"
-             alt="Watch the Walk Your Plans experience"
-             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85"
-             loading="lazy" width="1280" height="720">
+      <div class="vframe" id="yt-facade" style="cursor:pointer;background:url('https://i.ytimg.com/vi/OA9Bp7kRu4s/maxresdefault.jpg') center/cover #111;" onclick="loadYT(this)">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
         </div>
@@ -663,4 +662,12 @@ sqftSlr.addEventListener('input', upd);
 // Run on load
 upd();
 
-// Scroll-reveal with IntersectionObserv
+// Scroll-reveal with IntersectionObserver
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
