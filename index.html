@@ -29,7 +29,16 @@ html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--white);color:var(--black);overflow-x:hidden;font-size:16px;line-height:1.6}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(12,12,12,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(218,52,52,.12);transition:box-shadow .3s}
 nav.sc{box-shadow:0 4px 32px rgba(0,0,0,.4)}
-.nl{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:#fff;text-decoration:none}.nl span{color:var(--red)}
+.nl{display:flex;align-items:center;gap:11px;text-decoration:none}
+.nav-logo{width:36px;height:36px;object-fit:contain;display:block;flex-shrink:0}
+.nl-text{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:#fff;white-space:nowrap;line-height:1.2}
+.nl-text span{color:var(--red)}
+.footer-logo{width:32px;height:32px;object-fit:contain;display:block;flex-shrink:0;opacity:.7;transition:opacity .2s}
+.flog{display:flex;align-items:center;gap:10px;text-decoration:none}
+.flog:hover .footer-logo{opacity:1}
+.flog-text{font-family:var(--serif);font-size:.97rem;font-weight:700;color:rgba(255,255,255,.45);transition:color .2s;line-height:1.2}
+.flog-text span{color:var(--red)}
+.flog:hover .flog-text{color:rgba(255,255,255,.7)}
 .nm{display:flex;align-items:center;gap:28px}.nm a{font-size:.8rem;font-weight:500;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}.nm a:hover{color:#fff}
 .nc{background:var(--red)!important;color:#fff!important;padding:10px 20px;border-radius:4px;font-weight:600!important;white-space:nowrap}.nc:hover{background:var(--red-lt)!important}
 .nm-phone{font-size:.8rem;font-weight:500;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.03em;transition:color .2s;white-space:nowrap}.nm-phone:hover{color:#fff}
@@ -249,8 +258,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
 .ffne a{color:rgba(255,255,255,.8);text-decoration:underline}
 footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,255,255,.06)}
 .ftr{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
-.flog{font-family:var(--serif);font-size:.97rem;font-weight:700;color:rgba(255,255,255,.45);text-decoration:none}
-.flog span{color:var(--red)}
 .finf{font-size:.76rem;color:rgba(255,255,255,.24);line-height:1.7}
 .finf a{color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
 .finf a:hover{color:var(--red)}
@@ -261,6 +268,9 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 @media(max-width:900px){
   nav{padding:0 16px}
+  .nav-logo{width:30px;height:30px}
+  .nl-text{font-size:.88rem}
+  .nav-logo{width:34px;height:34px}
   .nm{display:none}
   .nm-mobile-sched{display:flex;align-items:center;gap:7px;background:var(--red);color:#fff;font-size:.82rem;font-weight:600;padding:10px 16px;border-radius:4px;text-decoration:none;white-space:nowrap}
   .nm-mobile-sched:hover{background:var(--red-lt)}
@@ -287,7 +297,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 <body>
 
 <nav id="nav">
-  <a href="#" class="nl">Walk Your Plans <span>Detroit</span></a>
+  <a href="#" class="nl">
+    <img src="logo.webp" alt="Walk Your Plans Detroit logo" class="nav-logo" width="36" height="36">
+    <span class="nl-text">Walk Your Plans <span>Detroit</span></span>
+  </a>
   <div class="nm">
     <a href="#how">How It Works</a>
     <a href="#who">Who It's For</a>
@@ -592,7 +605,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 
 <footer>
   <div class="ftr">
-    <a href="#" class="flog">Walk Your Plans <span>Detroit</span></a>
+    <a href="#" class="flog">
+      <img src="logo.webp" alt="Walk Your Plans Detroit logo" class="footer-logo" width="32" height="32">
+      <span class="flog-text">Walk Your Plans <span>Detroit</span></span>
+    </a>
     <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="/cdn-cgi/l/email-protection#5f363139301f283e333426302a2d2f333e312c3b3a2b2d30362b713c3032"><span class="__cf_email__" data-cfemail="95fdf0f9f9fad5e2f4f9feecfae0e7e5f9f4fbe6f1f0e1e7fafce1bbf6faf8"><span class="__cf_email__" data-cfemail="1b72757d745b6c7a777062746e696b777a75687f7e6f6974726f35787476">[email&#160;protected]</span></span></a></div>
     <div class="finf" style="text-align:right;"><a href="https://www.walkyourplansdetroit.com/about" style="display:block;margin-bottom:4px;">About</a><a href="https://www.walkyourplansdetroit.com/customers">Who It's For</a></div>
   </div>
