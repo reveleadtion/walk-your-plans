@@ -491,7 +491,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         </div>
         <div class="crow2 reveal d2">
           <div class="cr"><span class="rl">Estimated session length</span><span class="cval" id="hours-display">3 hrs</span></div>
-          <div class="cr"><span class="rl">Your session cost</span><span class="cval" id="session-cost">$1,500</span></div>
+          <div class="cr"><span class="rl">Your session cost</span><span class="cval" id="session-cost">$850</span></div>
           <div class="cr"><span class="rl">Typical preventable changes (<span id="co-pct-label">3.3%</span> of est. build cost)</span><span class="cval" id="cov">$22,500</span></div>
           <div class="cr hl"><span class="rl" style="color:rgba(255,255,255,.82);font-weight:600;">Estimated net savings</span><span class="cval" id="sav">$21,000</span></div>
         </div>
@@ -507,11 +507,11 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           </div>
           <hr class="bdvd">
           <div class="bi-item">
-            <div class="bit"><span class="bin">Session cost</span><span class="bia" id="bse">$1,500</span></div>
+            <div class="bit"><span class="bin">Session cost</span><span class="bia" id="bse">$850</span></div>
             <div class="btr"><div class="bfl fb" id="bsebar" style="width:3%"></div></div>
           </div>
           <div class="bi-item">
-            <div class="bit"><span class="bin">Net savings</span><span class="bia" id="bsav">$58,500</span></div>
+            <div class="bit"><span class="bin">Net savings</span><span class="bia" id="bsav">$21,650</span></div>
             <div class="btr"><div class="bfl fgn" id="bsavbar" style="width:97%"></div></div>
           </div>
         </div>
@@ -522,9 +522,9 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="session-detail">
           <div class="sd-row"><span class="sd-l">Home size</span><span class="sd-v" id="sd-sqft">3,000 sq ft</span></div>
           <div class="sd-row"><span class="sd-l">Est. build cost ($225/sq ft)</span><span class="sd-v" id="sd-build">$675,000</span></div>
-          <div class="sd-row"><span class="sd-l">Session length</span><span class="sd-v" id="sd-hrs">3 hours</span></div>
+          <div class="sd-row"><span class="sd-l">Session length</span><span class="sd-v" id="sd-hrs">1 hour</span></div>
           <div class="sd-row"><span class="sd-l">Session rate</span><span class="sd-v" id="sd-rate">$850 / hour</span></div>
-          <div class="sd-row sd-total"><span class="sd-l">Session total</span><span class="sd-v" id="sd-total">$1,500</span></div>
+          <div class="sd-row sd-total"><span class="sd-l">Session total</span><span class="sd-v" id="sd-total">$850</span></div>
         </div>
       </div>
     </div>
@@ -536,7 +536,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="ey2 reveal">By The Numbers</div>
     <h2 class="sh2 reveal" style="font-size:clamp(1.65rem,2.3vw,2.4rem);">The numbers that make this an easy decision.</h2>
     <div class="pcs">
-      <div class="pcc reveal"><div class="pctag">Session rate</div><div class="pnum or">From $850</div><div class="pdesc">Sessions are priced by length: 1 hr ($850), 2 hrs ($1,500), 3 hrs ($2,000), 4 hrs ($2,500), 5 hrs ($3,000). A typical 3,000 sq ft home runs about 3 hours. Most clients are surprised how much they resolve in a single session.</div><div class="pvs">vs</div></div>
+      <div class="pcc reveal"><div class="pctag">Session rate</div><div class="pnum or">From $850</div><div class="pdesc">Sessions are priced by length: 1 hr ($850), 2 hrs ($1,500), 3 hrs ($2,000), 4 hrs ($2,500), 5 hrs ($3,000). One hour per ~3,000 sq ft — a typical 3,000 sq ft home runs about 1 hour. Most clients are surprised how much they resolve in a single session.</div><div class="pvs">vs</div></div>
       <div class="pcc reveal d1"><div class="pctag">Avg. issues caught per session</div><div class="pnum or">10–12</div><div class="pdesc">Our walk-throughs typically surface 10–12 layout or design issues clients hadn't anticipated from blueprints alone — from traffic flow problems to room proportions that don't translate from paper.</div><div class="pvs">=</div></div>
       <div class="pcc reveal d2"><div class="pctag">Typical savings, 3,000 sq ft build</div><div class="pnum gr">~$10,000</div><div class="pdesc">Based on internal session data at the Metro Detroit mid-range. Larger or more complex builds see more. Even one structural revision caught early pays for the session many times over.</div></div>
     </div>
@@ -645,7 +645,7 @@ const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
 const fmtNum = n => Math.round(n).toLocaleString('en-US');
 
 function getHours(sqft) {
-  return Math.max(1, Math.ceil(sqft / 1000));
+  return Math.max(1, Math.ceil(sqft / 3000));
 }
 function getSessionCost(sqft) {
   const hours = getHours(sqft);
