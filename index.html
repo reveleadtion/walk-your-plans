@@ -50,8 +50,8 @@ window.addEventListener('load',function(){
 <!-- End Vercel Web Analytics -->
 
 <title>Walk Your Plans Detroit</title>
-<!-- Preload hero image to eliminate LCP delay -->
-<link rel="preload" as="image" href="hero.webp" type="image/webp" fetchpriority="high">
+<!-- Preload hero image — imagesrcset matches the <picture><source> so browser uses the preloaded resource -->
+<link rel="preload" as="image" href="hero.webp" imagesrcset="hero.webp" imagesizes="100vw" fetchpriority="high">
 <meta name="description" content="Walk through your home at full scale before a single wall goes up. Troy, MI. Catch costly change orders before construction starts. Sessions from $850.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -473,7 +473,8 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <p class="vsub">Two minutes. Your floor plan. Full scale. This is what our clients experience before a single wall goes up.</p>
     </div>
     <div class="vwrap reveal d1">
-      <div class="vframe" id="yt-facade" style="cursor:pointer;background:url('https://i.ytimg.com/vi/OA9Bp7kRu4s/maxresdefault.jpg') center/cover #111;" onclick="loadYT(this)">
+      <div class="vframe" id="yt-facade" style="cursor:pointer;background:#111;" onclick="loadYT(this)">
+        <img src="https://i.ytimg.com/vi/OA9Bp7kRu4s/maxresdefault.jpg" alt="Watch Walk Your Plans Detroit video" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
         </div>
@@ -510,7 +511,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <p class="csub reveal d1">Drag to your home's square footage. We'll estimate your session cost and what you realistically stand to save by catching change orders before ground breaks. These are conservative savings, you may find a much higher ROI if your design has high end materials.</p>
         <div class="slbl reveal d1">
           <div class="sltt"><span class="slll">Home size</span><span class="slv" id="sqft-display">3,000 sq ft</span></div>
-          <input type="range" id="sqft-slr" min="1000" max="10000" step="100" value="3000">
+          <input type="range" id="sqft-slr" min="1000" max="10000" step="100" value="3000" aria-label="Home size in square feet">
           <div class="slider-hints"><span>1,000 sq ft</span><span>10,000 sq ft</span></div>
         </div>
         <div class="crow2 reveal d2">
