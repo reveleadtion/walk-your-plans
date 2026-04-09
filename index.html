@@ -6,18 +6,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Meta Pixel — deferred to avoid blocking FCP -->
+<!-- Meta Pixel -->
 <script>
-window._fbqQueue=[];window.fbq=function(){window._fbqQueue.push(arguments)};
-window.fbq('init','1265233095752713');window.fbq('track','PageView');
-window.addEventListener('load',function(){
-  var s=document.createElement('script');s.async=true;
-  s.src='https://connect.facebook.net/en_US/fbevents.js';
-  s.onload=function(){
-    if(window._fbqQueue){window._fbqQueue.forEach(function(a){window.fbq.apply(null,a)});delete window._fbqQueue;}
-  };
-  document.head.appendChild(s);
-});
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1265233095752713');
+fbq('track', 'PageView');
 </script>
 <noscript>
   <img height="1" width="1" style="display:none"
@@ -25,19 +25,22 @@ window.addEventListener('load',function(){
 </noscript>
 <!-- End Meta Pixel -->
 
-<!-- LiveSession.io — deferred -->
-<script>
-window.addEventListener('load',function(){
-  window['__ls_namespace']='__ls';
-  var ls=document.createElement('script');ls.async=true;
-  ls.src='https://cdn.livesession.io/track.js';
-  ls.onload=function(){
-    __ls("init","fd38f301.15f7b42c",{keystrokes:false});
-    __ls("newPageView");
-  };
-  document.head.appendChild(ls);
-});
-</script>
+<!-- LiveSession.io code -->
+    <script type="text/javascript">
+    window['__ls_namespace'] = '__ls';
+    window['__ls_script_url'] = 'https://cdn.livesession.io/track.js';
+    !function(w, d, t, u, n) {
+          if (n in w) {if(w.console && w.console.log) { w.console.log('LiveSession namespace conflict. Please set window["__ls_namespace"].');} return;}
+          if (w[n]) return; var f = w[n] = function() { f.push ? f.push.apply(f, arguments) : f.store.push(arguments)};
+          if (!w[n]) w[n] = f; f.store = []; f.v = "1.1";
+  
+          var ls = d.createElement(t); ls.async = true; ls.src = u;
+          var s = d.getElementsByTagName(t)[0]; s.parentNode.insertBefore(ls, s);
+      }(window, document, 'script', window['__ls_script_url'], window['__ls_namespace']);
+  
+      __ls("init", "fd38f301.15f7b42c", { keystrokes: false });
+      __ls("newPageView");
+    </script>
 <!-- END LiveSession.io code -->
 
 <!-- Vercel Web Analytics -->
@@ -50,23 +53,13 @@ window.addEventListener('load',function(){
 <!-- End Vercel Web Analytics -->
 
 <title>Walk Your Plans Detroit</title>
-<!-- Preload hero image — imagesrcset matches the <picture><source> so browser uses the preloaded resource -->
-<link rel="preload" as="image" href="hero.webp" imagesrcset="hero.webp" imagesizes="100vw" fetchpriority="high">
 <meta name="description" content="Walk through your home at full scale before a single wall goes up. Troy, MI. Catch costly change orders before construction starts. Sessions from $850.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://i.ytimg.com">
-<!-- Preload the two most critical font variants to reduce CLS -->
-<link rel="preload" as="font" href="https://fonts.gstatic.com/s/dmsans/v15/rP2Yp2ywxg589TAk80ytmQ.woff2" type="font/woff2" crossorigin>
-<link rel="preload" as="font" href="https://fonts.gstatic.com/s/playfairdisplay/v37/nuFiD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.woff2" type="font/woff2" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap&font-display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-/* Declare system-font fallback metrics to match DM Sans, reducing CLS on font swap */
-@font-face{font-family:'DM Sans Fallback';src:local('Arial');ascent-override:94%;descent-override:24%;line-gap-override:0%;size-adjust:104%}
-/* Playfair Display fallback — matches Georgia metrics so h1/h2 don't reflow the paragraph below */
-@font-face{font-family:'Playfair Display Fallback';src:local('Georgia');ascent-override:112%;descent-override:28%;line-gap-override:0%;size-adjust:95%}
 :root{
   --black:#0c0c0c;
   --black-mid:#1a1a1a;
@@ -77,8 +70,8 @@ window.addEventListener('load',function(){
   --gray:#f4f4f4;
   --tmid:#4a4a4a;
   --tlt:#888888;
-  --serif:'Playfair Display','Playfair Display Fallback',Georgia,serif;
-  --sans:'DM Sans','DM Sans Fallback',sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
   --mono:'DM Mono',monospace
 }
 html{scroll-behavior:smooth}
@@ -110,7 +103,7 @@ nav.sc{box-shadow:0 4px 32px rgba(0,0,0,.4)}
 .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;width:100%;padding:0 0 80px}
 .hl{padding:80px 80px 0;position:relative;z-index:2;animation:fu .9s ease both;max-width:760px}
 .eyebrow{font-family:var(--mono);font-size:.68rem;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:12px}.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--red)}
-h1{font-family:var(--serif);font-size:clamp(2.5rem,3.6vw,3.9rem);font-weight:900;line-height:1.08;color:#fff;margin-bottom:26px;min-height:3lh}
+h1{font-family:var(--serif);font-size:clamp(2.5rem,3.6vw,3.9rem);font-weight:900;line-height:1.08;color:#fff;margin-bottom:26px}
 h1 em{font-style:italic;color:var(--red)}
 .hsub{font-size:.98rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.8;max-width:460px;margin-bottom:40px}
 .hstats{display:flex;gap:26px;margin-bottom:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -137,14 +130,12 @@ h1 em{font-style:italic;color:var(--red)}
 /* Problem section photo */
 .prob-img{border-radius:10px;overflow:hidden;aspect-ratio:4/3;flex-shrink:0}
 .prob-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s ease}
-.prob-img:hover img{transform:scale(1.03) translateZ(0)}
+.prob-img:hover img{transform:scale(1.03)}
 .prob-hdr{margin-bottom:40px;max-width:680px}
 .prob-body{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
 .prob-left{display:flex;flex-direction:column;gap:16px}
 
-.prob,.how,.vsec,.calc,.proof,.who,.trust,.fcta{content-visibility:auto;contain-intrinsic-size:0 600px}
-footer{content-visibility:auto;contain-intrinsic-size:0 120px}
-
+.prob{background:var(--white);padding:88px 80px;position:relative;overflow:hidden}
 .prob::before{content:'10-12';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:15rem;font-weight:900;color:rgba(12,12,12,.03);line-height:1;pointer-events:none;white-space:nowrap}
 .studio-strip{margin-top:52px;border-radius:12px;overflow:hidden;position:relative;aspect-ratio:16/6}
 .studio-strip img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
@@ -156,13 +147,15 @@ footer{content-visibility:auto;contain-intrinsic-size:0 120px}
 .who-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
 .who-photo{border-radius:10px;overflow:hidden;position:relative}
 .who-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .5s ease}
-.who-photo:hover img{transform:scale(1.04) translateZ(0)}
+.who-photo:hover img{transform:scale(1.04)}
 .who-photo-label{position:absolute;bottom:0;left:0;right:0;padding:28px 16px 14px;background:linear-gradient(to top,rgba(8,8,8,.82),transparent);font-family:var(--mono);font-size:.6rem;color:rgba(255,255,255,.7);letter-spacing:.09em;text-transform:uppercase}
 
 /* Trust section review card photo */
 .rcrd-photo{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;margin-bottom:22px}
 .rcrd-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
+.prob{background:var(--white);padding:108px 80px;position:relative;overflow:hidden}
+.prob::before{content:'10-12';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:15rem;font-weight:900;color:rgba(12,12,12,.03);line-height:1;pointer-events:none;white-space:nowrap}
 .ic{background:var(--black);color:#fff;padding:20px 24px;border-radius:6px;border-left:4px solid var(--red);margin-top:0}
 .ic-n{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--red);line-height:1}
 .ic-t{font-size:.81rem;color:rgba(255,255,255,.55);margin-top:7px;line-height:1.52}
@@ -320,7 +313,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 @keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fi{from{opacity:0}to{opacity:1}}
 .reveal{opacity:0;transform:translateY(17px);transition:opacity .65s ease,transform .65s ease}
-.reveal.in{opacity:1;transform:none}
+.reveal.in{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 @media(max-width:900px){
   nav{padding:0 16px}
@@ -371,7 +364,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   <div class="hero-bg">
     <picture>
       <source srcset="hero.webp" type="image/webp">
-      <img src="hero.jpg" alt="Walk Your Plans Detroit — immersive floor plan projection studio" fetchpriority="high" decoding="sync" width="1920" height="1080" sizes="100vw">
+      <img src="hero.jpg" alt="Walk Your Plans Detroit — immersive floor plan projection studio" fetchpriority="high" width="1920" height="1080">
     </picture>
   </div>
   <div class="hero-inner">
@@ -408,7 +401,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="prob-img">
           <picture>
             <source srcset="img-problem.webp" type="image/webp">
-            <img src="img-problem.jpg" alt="Home under construction — framing stage before walls are finished" loading="lazy" decoding="async" width="700" height="525" sizes="(max-width:900px) 100vw, 50vw">
+            <img src="img-problem.jpg" alt="Home under construction — framing stage before walls are finished" loading="lazy" width="700" height="525">
           </picture>
         </div>
       </div>
@@ -465,7 +458,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="studio-strip reveal d1">
       <picture>
         <source srcset="img-studio.webp" type="image/webp">
-        <img src="img-studio.jpg" alt="Walk Your Plans Detroit projection studio — full scale floor plan experience" loading="lazy" decoding="async" width="1440" height="540" sizes="(max-width:900px) 100vw, 1100px">
+        <img src="img-studio.jpg" alt="Walk Your Plans Detroit projection studio — full scale floor plan experience" loading="lazy" width="1440" height="540">
       </picture>
       <div class="studio-strip-label">
         <div class="ssl-dot"></div>
@@ -483,12 +476,16 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <p class="vsub">Two minutes. Your floor plan. Full scale. This is what our clients experience before a single wall goes up.</p>
     </div>
     <div class="vwrap reveal d1">
-      <div class="vframe" id="yt-facade" style="cursor:pointer;background:#111;" onclick="loadYT(this)">
-        <img src="https://i.ytimg.com/vi/OA9Bp7kRu4s/hqdefault.jpg" alt="Watch Walk Your Plans Detroit video" loading="lazy" decoding="async" width="480" height="360" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="vframe" id="yt-facade" style="cursor:pointer;background:url('https://i.ytimg.com/vi/OA9Bp7kRu4s/maxresdefault.jpg') center/cover #111;" onclick="loadYT(this)">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
         </div>
       </div>
+      <script>
+      function loadYT(el) {
+        el.innerHTML = '<iframe src="https://www.youtube.com/embed/OA9Bp7kRu4s?autoplay=1&rel=0&modestbranding=1&color=white" title="Walk Your Plans Detroit" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>';
+      }
+      </script>
       <div class="vcaps">
         <div class="vcap reveal d1">
           <div class="vcap-n">01</div>
@@ -516,7 +513,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <p class="csub reveal d1">Drag to your home's square footage. We'll estimate your session cost and what you realistically stand to save by catching change orders before ground breaks. These are conservative savings, you may find a much higher ROI if your design has high end materials.</p>
         <div class="slbl reveal d1">
           <div class="sltt"><span class="slll">Home size</span><span class="slv" id="sqft-display">3,000 sq ft</span></div>
-          <input type="range" id="sqft-slr" min="1000" max="10000" step="100" value="3000" aria-label="Home size in square feet">
+          <input type="range" id="sqft-slr" min="1000" max="10000" step="100" value="3000">
           <div class="slider-hints"><span>1,000 sq ft</span><span>10,000 sq ft</span></div>
         </div>
         <div class="crow2 reveal d2">
@@ -594,14 +591,14 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div class="who-photo reveal">
         <picture>
           <source srcset="img-clients.webp" type="image/webp">
-          <img src="img-clients.jpg" alt="Homeowners walking their floor plan at Walk Your Plans Detroit" loading="lazy" decoding="async" width="700" height="525" sizes="(max-width:900px) 100vw, 50vw">
+          <img src="img-clients.jpg" alt="Homeowners walking their floor plan at Walk Your Plans Detroit" loading="lazy" width="700" height="525">
         </picture>
         <div class="who-photo-label">Homeowners &middot; custom build</div>
       </div>
       <div class="who-photo reveal d1">
         <picture>
           <source srcset="img-architect.webp" type="image/webp">
-          <img src="img-architect.jpg" alt="Architect and builder reviewing plans at full scale" loading="lazy" decoding="async" width="700" height="525" sizes="(max-width:900px) 100vw, 50vw">
+          <img src="img-architect.jpg" alt="Architect and builder reviewing plans at full scale" loading="lazy" width="700" height="525">
         </picture>
         <div class="who-photo-label">Architects &amp; builders</div>
       </div>
@@ -627,7 +624,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="rcrd-photo">
           <picture>
             <source srcset="img-studio-interior.webp" type="image/webp">
-            <img src="img-studio-interior.jpg" alt="Walk Your Plans Detroit studio interior — immersive projection space" loading="lazy" decoding="async" width="860" height="484" sizes="(max-width:900px) 100vw, 860px">
+            <img src="img-studio-interior.jpg" alt="Walk Your Plans Detroit studio interior — immersive projection space" loading="lazy" width="860" height="484">
           </picture>
         </div>
         <div class="rtag">First client review</div>
@@ -660,20 +657,15 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <img src="logo.webp" alt="Walk Your Plans Detroit logo" class="footer-logo" width="32" height="32">
       <span class="flog-text">Walk Your Plans <span>Detroit</span></span>
     </a>
-    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="/cdn-cgi/l/email-protection#5f363139301f283e333426302a2d2f333e312c3b3a2b2d30362b713c3032"><span class="__cf_email__" data-cfemail="95fdf0f9f9fad5e2f4f9feecfae0e7e5f9f4fbe6f1f0e1e7fafce1bbf6faf8"><span class="__cf_email__" data-cfemail="1b72757d745b6c7a777062746e696b777a75687f7e6f6974726f35787476"><span class="__cf_email__" data-cfemail="92fbfcf4fdd2e5f3fef9ebfde7e0e2fef3fce1f6f7e6e0fdfbe6bcf1fdff"><span class="__cf_email__" data-cfemail="6900070f06291e08050210061c1b190508071a0d0c1d1b06001d470a0604">[email&#160;protected]</span></span></span></span></a></div>
+    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="/cdn-cgi/l/email-protection#5f363139301f283e333426302a2d2f333e312c3b3a2b2d30362b713c3032"><span class="__cf_email__" data-cfemail="95fdf0f9f9fad5e2f4f9feecfae0e7e5f9f4fbe6f1f0e1e7fafce1bbf6faf8"><span class="__cf_email__" data-cfemail="1b72757d745b6c7a777062746e696b777a75687f7e6f6974726f35787476"><span class="__cf_email__" data-cfemail="92fbfcf4fdd2e5f3fef9ebfde7e0e2fef3fce1f6f7e6e0fdfbe6bcf1fdff">info@walkyourplansdetroit.com</span></span></span></a></div>
     <div class="finf" style="text-align:right;"><a href="https://www.walkyourplansdetroit.com/about" style="display:block;margin-bottom:4px;">About</a><a href="https://www.walkyourplansdetroit.com/customers">Who It's For</a></div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script>
-// YouTube facade loader
-function loadYT(el) {
-  el.innerHTML = '<iframe src="https://www.youtube.com/embed/OA9Bp7kRu4s?autoplay=1&rel=0&modestbranding=1&color=white" title="Walk Your Plans Detroit" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>';
-}
-
-// Nav scroll shadow — passive listener avoids main-thread jank
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Nav scroll shadow
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40), {passive: true});
+window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
 
 // Calculator helpers
 const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
@@ -685,10 +677,15 @@ function getHours(sqft) {
 function getSessionCost(sqft) {
   const hours = getHours(sqft);
   const rates = { 1: 850, 2: 1500, 3: 2000, 4: 2500, 5: 3000 };
+  // For homes over 5,000 sq ft (6+ hours), extrapolate at $500/hr beyond 5 hrs
   if (hours <= 5) return rates[hours];
   return rates[5] + (hours - 5) * 500;
 }
-function getBuildCost(sqft) { return sqft * 225; }
+function getBuildCost(sqft) {
+  return sqft * 225;
+}
+// Preventable change order %, anchored to internal data (~$10K at 3,000 sq ft = ~1.48%)
+// Scales modestly with complexity: ~1.2% at 1,000 sq ft → ~2.5% at 10,000 sq ft
 function getCoPct(sqft) {
   const t = (sqft - 1000) / 9000;
   return 1.2 + 1.3 * Math.pow(Math.min(Math.max(t, 0), 1), 0.6);
@@ -722,35 +719,30 @@ function upd() {
   document.getElementById('sd-hrs').textContent = hrsLong;
   document.getElementById('sd-total').textContent = fmt(sessionCost);
 
+  // Dynamic effective rate label
   const effRate = hours > 0 ? Math.round(sessionCost / hours) : 0;
   const rateEl = document.getElementById('sd-rate');
   if (rateEl) rateEl.textContent = fmt(effRate) + ' / hour (tiered)';
+
 
   document.getElementById('bcobar').style.width = '100%';
   document.getElementById('bsebar').style.width = Math.max(1, Math.round(sessionCost / co * 100)) + '%';
   document.getElementById('bsavbar').style.width = Math.max(1, Math.round(sav / co * 100)) + '%';
 }
 
-// Throttle slider updates to once per animation frame to reduce TBT
-let rafPending = false;
+// Wire up slider
 const sqftSlr = document.getElementById('sqft-slr');
-sqftSlr.addEventListener('input', () => {
-  if (!rafPending) {
-    rafPending = true;
-    requestAnimationFrame(() => { upd(); rafPending = false; });
-  }
-}, {passive: true});
+sqftSlr.addEventListener('input', upd);
 
-// Defer initial calculator render and IntersectionObserver until after first paint
-const scheduleIdle = window.requestIdleCallback || (cb => setTimeout(cb, 1));
-scheduleIdle(() => {
-  upd();
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
-});
+// Run on load
+upd();
+
+// Scroll-reveal with IntersectionObserver
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(r => observer.observe(r));
 </script>
 </body>
 </html>
