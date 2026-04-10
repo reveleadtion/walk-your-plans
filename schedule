@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="logo.webp" type="image/webp">
+<link rel="apple-touch-icon" href="logo.webp">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1265233095752713');
+fbq('track','PageView');
+fbq('track','ViewContent',{content_name:'Schedule Page',content_category:'Booking'});
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1265233095752713&ev=PageView&noscript=1"/></noscript>
+
+<!-- LiveSession -->
+<script type="text/javascript">
+window['__ls_namespace']='__ls';window['__ls_script_url']='https://cdn.livesession.io/track.js';
+!function(w,d,t,u,n){if(n in w){return;}if(w[n])return;var f=w[n]=function(){f.push?f.push.apply(f,arguments):f.store.push(arguments)};if(!w[n])w[n]=f;f.store=[];f.v="1.1";var ls=d.createElement(t);ls.async=true;ls.src=u;var s=d.getElementsByTagName(t)[0];s.parentNode.insertBefore(ls,s);}(window,document,'script',window['__ls_script_url'],window['__ls_namespace']);
+__ls("init","fd38f301.15f7b42c",{keystrokes:false});
+__ls("newPageView");
+</script>
+
+<!-- Vercel Analytics -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<title>Book a Session — Walk Your Plans Detroit</title>
+<meta name="description" content="Walk through your home at full scale before a single wall goes up. Sessions from $850. Troy, MI.">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=DM+Sans:wght@300;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=DM+Sans:wght@300;500&display=swap" rel="stylesheet"></noscript>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0c0c0c;
+  --red:#da3434;
+  --white:#fff;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:60px;border-bottom:1px solid rgba(255,255,255,.07)}
+.nl{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo{width:26px;height:26px;object-fit:contain}
+.nl-text{font-family:var(--serif);font-size:.92rem;font-weight:900;color:#fff}
+.nl-text span{color:var(--red)}
+.nav-phone{font-size:.8rem;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.nav-phone:hover{color:#fff}
+
+header{padding:40px 24px 32px;text-align:center;border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.62rem;color:var(--red);letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+header h1{font-family:var(--serif);font-size:clamp(1.85rem,5.5vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:10px}
+header h1 em{font-style:italic;color:var(--red)}
+header p{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.7;max-width:320px;margin:0 auto 24px}
+.trust-row{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.tr-chip{font-size:.7rem;color:rgba(255,255,255,.32);display:flex;align-items:center;gap:5px}
+.tr-chip::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0}
+
+.acuity-wrap{position:relative;background:var(--white)}
+.acuity-wrap iframe{display:block;width:100%;height:100vh;min-height:700px;border:none}
+.loading{position:absolute;inset:0;background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .4s,visibility .4s}
+.loading.gone{opacity:0;visibility:hidden}
+.spin{width:26px;height:26px;border:2.5px solid #e8e8e8;border-top-color:var(--red);border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{font-size:.72rem;color:#aaa;letter-spacing:.05em}
+
+footer{padding:24px;border-top:1px solid rgba(255,255,255,.07);text-align:center}
+footer p{font-size:.7rem;color:rgba(255,255,255,.2);line-height:1.8}
+footer a{color:rgba(255,255,255,.32);text-decoration:none}
+footer a:hover{color:var(--red)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nl">
+    <img src="logo.webp" alt="Walk Your Plans Detroit" class="nav-logo" width="26" height="26">
+    <span class="nl-text">Walk Your Plans <span>Detroit</span></span>
+  </a>
+  <a href="tel:2486020110" class="nav-phone">&#128222; 248-602-0110</a>
+</nav>
+
+<header>
+  <div class="eyebrow">Troy, MI &mdash; Book Your Session</div>
+  <h1>Walk your plans before<br>you <em>break ground.</em></h1>
+  <p>Catch costly change orders before construction starts. Sessions from $850.</p>
+  <div class="trust-row">
+    <span class="tr-chip">10–12 issues caught per session</span>
+    <span class="tr-chip">From $850</span>
+    <span class="tr-chip">Troy, MI</span>
+  </div>
+</header>
+
+<div class="acuity-wrap">
+  <div class="loading" id="loading">
+    <div class="spin"></div>
+    <p>Loading scheduler…</p>
+  </div>
+  <iframe
+    id="acuity"
+    src="https://app.acuityscheduling.com/schedule.php?owner=36187574&ref=embedded_csp"
+    title="Schedule Appointment"
+    allow="payment"
+    onload="onLoad()">
+  </iframe>
+</div>
+
+<footer>
+  <p>Questions? <a href="tel:2486020110">Call 248-602-0110</a> &nbsp;&middot;&nbsp; <a href="/">Back to main site</a></p>
+</footer>
+
+<script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
+<script>
+function onLoad(){
+  document.getElementById('loading').classList.add('gone');
+  try{fbq('track','ViewContent',{content_name:'Scheduler Loaded'});}catch(e){}
+}
+
+window.addEventListener('message',function(e){
+  if(!e.origin||!e.origin.includes('acuityscheduling.com'))return;
+  var msg=typeof e.data==='string'?e.data:(e.data&&(e.data.event||e.data.action)||'');
+  if(!msg)return;
+  if(/date|time|step/i.test(msg)){
+    try{fbq('track','InitiateCheckout',{content_name:'Date Selected'});}catch(e){}
+    try{__ls('event','booking_date_selected');}catch(e){}
+  }
+  if(/confirm|scheduled|booked|success/i.test(msg)){
+    try{fbq('track','Purchase',{value:850,currency:'USD',content_name:'Session Booked'});}catch(e){}
+    try{__ls('event','booking_confirmed');}catch(e){}
+    try{va('event',{name:'booking_confirmed'});}catch(e){}
+  }
+},false);
+</script>
+
+</body>
+</html>
