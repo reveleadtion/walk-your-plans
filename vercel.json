@@ -1,13 +1,5 @@
 {
-  "headers": [
-    {
-      "source": "/schedule",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/html"
-        }
-      ]
-    }
+  "rewrites": [
+    { "source": "/schedule", "destination": "/schedule.html" }
   ]
 }
