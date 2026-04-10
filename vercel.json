@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/schedule",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html"
+        }
+      ]
+    }
+  ]
+}
