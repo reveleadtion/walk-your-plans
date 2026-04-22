@@ -37,33 +37,18 @@ window.addEventListener('load',function(){
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1265233095752713&ev=PageView&noscript=1"/></noscript>
 
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wcuzz9l7yk");
+<!-- LiveSession.io — deferred after load -->
+<script>
+window['__ls_namespace']='__ls';
+window['__ls']=window['__ls']||function(){(window['__ls'].store=window['__ls'].store||[]).push(arguments)};
+window.addEventListener('load',function(){
+  var s=document.createElement('script');
+  s.async=true;s.src='https://cdn.livesession.io/track.js';
+  s.onload=function(){__ls('init','fd38f301.15f7b42c',{keystrokes:false});__ls('newPageView');};
+  document.head.appendChild(s);
+});
 </script>
-<!-- End of Microsoft Clarity -->
-
-<!-- LiveSession.io code -->
-    <script type="text/javascript">
-    window['__ls_namespace'] = '__ls';
-    window['__ls_script_url'] = 'https://cdn.livesession.io/track.js';
-    !function(w, d, t, u, n) {
-          if (n in w) {if(w.console && w.console.log) { w.console.log('LiveSession namespace conflict. Please set window["__ls_namespace"].');} return;}
-          if (w[n]) return; var f = w[n] = function() { f.push ? f.push.apply(f, arguments) : f.store.push(arguments)};
-          if (!w[n]) w[n] = f; f.store = []; f.v = "1.1";
-  
-          var ls = d.createElement(t); ls.async = true; ls.src = u;
-          var s = d.getElementsByTagName(t)[0]; s.parentNode.insertBefore(ls, s);
-      }(window, document, 'script', window['__ls_script_url'], window['__ls_namespace']);
-  
-      __ls("init", "fd38f301.15f7b42c", { keystrokes: false });
-      __ls("newPageView");
-    </script>
-<!-- END LiveSession.io code -->
+<!-- END LiveSession.io -->
 
 <!-- Vercel Analytics -->
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
