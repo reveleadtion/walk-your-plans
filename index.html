@@ -789,6 +789,17 @@ _idle(function(){
 (function () {
   'use strict';
 
+  // Wait for fbq to be fully loaded before doing anything
+  function waitForFbq(cb) {
+    if (typeof window.fbq === 'function' && window.fbq.loaded) {
+      cb();
+    } else {
+      setTimeout(function () { waitForFbq(cb); }, 100);
+    }
+  }
+
+  waitForFbq(function() {
+
   // ─── State ────────────────────────────────────────────────────────────────
 
   var signals = {
