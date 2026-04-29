@@ -40,6 +40,20 @@ fbq('track','PageView');
 </noscript>
 <!-- End Meta Pixel -->
 
+<!-- Facebook Click ID Capture -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var fbclid = params.get('fbclid');
+  if (fbclid) {
+    sessionStorage.setItem('fbclid', fbclid);
+    document.cookie = '_fbc=fb.1.' + Date.now() + '.' + fbclid 
+      + '; path=/; max-age=7776000';
+  }
+})();
+</script>
+<!-- End Facebook Click ID Capture -->
+
 <!-- LiveSession.io — deferred after load -->
 <script>
 window['__ls_namespace']='__ls';
@@ -896,6 +910,19 @@ _idle(function(){
     }
   });
 
+  // ─── Pass fbclid to Acuity on Schedule click ──────────────────────────────
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('a[href="/schedule"]');
+    if (el) {
+      var fbclid = sessionStorage.getItem('fbclid');
+      if (fbclid) {
+        var url = new URL(el.href, window.location.origin);
+        url.searchParams.set('fbclid', fbclid);
+        el.href = url.toString();
+      }
+    }
+  });
+    
 })();
 </script>
     
