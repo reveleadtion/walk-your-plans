@@ -762,110 +762,64 @@ _idle(function(){
   reveals.forEach(function(el){observer.observe(el);});
 });
 </script>
-<script>
-    /**
- * Walk Your Plans Detroit — Qualified Lead Event
- * -----------------------------------------------
- * Fires fbq('track', 'Lead') when a visitor meets 2 of 4 qualifying signals.
- * Signals are designed to filter passive scrollers from genuine evaluators.
- *
- * SIGNALS:
- *   1. Scroll depth  — reached 55% of page (past calculator/proof sections)
- *   2. Time on page  — 45 seconds of active tab time
- *   3. Engagement    — interacted with ROI slider OR played the video
- *   4. CTA proximity — scrolled into view of any .bp / .bw / .nc button
- *
- * FIRE THRESHOLD: 2 of 4 signals met
- *
- * ALSO FIRES:
- *   - ViewContent when calculator section enters viewport (mid-funnel)
- *   - ScheduleIntent when any Schedule Now button is clicked (low-funnel)
- */
 
+<script>
 (function () {
   'use strict';
 
-  // Wait for fbq to be fully loaded before doing anything
-  function waitForFbq(cb) {
-    if (typeof window.fbq === 'function' && window.fbq.loaded) {
-      cb();
-    } else {
-      setTimeout(function () { waitForFbq(cb); }, 100);
-    }
-  }
-
-  waitForFbq(function() {
-
-  // ─── State ────────────────────────────────────────────────────────────────
-
   var signals = {
-    scrollDepth:  false,   // 55% page scroll
-    timeOnPage:   false,   // 45s active tab time
-    engagement:   false,   // slider drag or video click
-    ctaProximity: false    // scrolled to a CTA button
+    scrollDepth:  false,
+    timeOnPage:   false,
+    engagement:   false,
+    ctaProximity: false
   };
 
   var firedEvents = {
-    qualifiedLead:   false,
-    viewContent:     false,
-    scheduleIntent:  false
+    qualifiedLead:  false,
+    viewContent:    false,
+    scheduleIntent: false
   };
 
-  // How many signals needed to fire Lead
-  var THRESHOLD = 2;
-
-  // Active-time counter (pauses when tab is hidden)
-  var activeSeconds   = 0;
-  var TIME_TARGET     = 45; // seconds
-  var timerInterval   = null;
-
-  // ─── Core: check if threshold met ────────────────────────────────────────
+  var THRESHOLD    = 2;
+  var activeSeconds = 0;
+  var TIME_TARGET  = 45;
+  var timerInterval = null;
 
   function checkThreshold() {
     if (firedEvents.qualifiedLead) return;
-
-    var met = Object.keys(signals).reduce(function (count, key) {
-      return signals[key] ? count + 1 : count;
-    }, 0);
-
+    var met = 0;
+    if (signals.scrollDepth)  met++;
+    if (signals.timeOnPage)   met++;
+    if (signals.engagement)   met++;
+    if (signals.ctaProximity) met++;
     if (met >= THRESHOLD) {
       firedEvents.qualifiedLead = true;
-
-      // Primary conversion event Meta will optimise toward
       fbq('track', 'Lead', {
         content_name:     'Qualified Lead — Walk Your Plans Detroit',
         content_category: 'Home Build / Construction',
         signals_met:      met
       });
-
-      // Also push to dataLayer if GTM ever gets added
       if (window.dataLayer) {
         window.dataLayer.push({ event: 'qualified_lead', signals_met: met });
       }
-
       stopTimer();
     }
   }
 
-  // ─── Signal 1: Scroll depth (55%) ─────────────────────────────────────────
-
+  // Signal 1 + Signal 4 on scroll
   function onScroll() {
     if (!signals.scrollDepth) {
-      var scrolled = window.scrollY + window.innerHeight;
-      var total    = document.body.scrollHeight;
-
-      if (scrolled / total >= 0.55) {
+      var pct = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+      if (pct >= 0.55) {
         signals.scrollDepth = true;
         checkThreshold();
       }
     }
-
-    // CTA proximity — any primary button in viewport
     if (!signals.ctaProximity) {
-      var ctaEls = document.querySelectorAll('.bp, .bw, .nc');
-      for (var i = 0; i < ctaEls.length; i++) {
-        var rect = ctaEls[i].getBoundingClientRect();
-        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+      var els = document.querySelectorAll('.bp, .bw, .nc');
+      for (var i = 0; i < els.length; i++) {
+        var r = els[i].getBoundingClientRect();
+        if (r.top >= 0 && r.bottom <= window.innerHeight) {
           signals.ctaProximity = true;
           checkThreshold();
           break;
@@ -873,93 +827,68 @@ _idle(function(){
       }
     }
   }
-
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // ─── Signal 2: Active time on page ────────────────────────────────────────
-
+  // Signal 2 — active time
   function startTimer() {
     if (timerInterval) return;
     timerInterval = setInterval(function () {
       activeSeconds++;
-      if (activeSeconds >= TIME_TARGET && !signals.timeOnPage) {
+      if (activeSeconds >= TIME_TARGET) {
         signals.timeOnPage = true;
         checkThreshold();
         stopTimer();
       }
     }, 1000);
   }
-
   function stopTimer() {
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-    }
+    clearInterval(timerInterval);
+    timerInterval = null;
   }
-
-  // Pause timer on hidden tab, resume on focus
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) {
-      stopTimer();
-    } else {
-      if (!signals.timeOnPage && !firedEvents.qualifiedLead) startTimer();
-    }
+    if (document.hidden) { stopTimer(); }
+    else if (!firedEvents.qualifiedLead) { startTimer(); }
   });
-
   startTimer();
 
-  // ─── Signal 3: Engagement — slider + video ────────────────────────────────
-
+  // Signal 3 — slider + video
   var sliderEl = document.getElementById('sqft-slr');
   if (sliderEl) {
     sliderEl.addEventListener('input', function () {
-      if (!signals.engagement) {
-        signals.engagement = true;
-        checkThreshold();
-      }
+      if (!signals.engagement) { signals.engagement = true; checkThreshold(); }
     }, { passive: true });
   }
-
   var videoEl = document.getElementById('yt-facade');
   if (videoEl) {
     videoEl.addEventListener('click', function () {
-      if (!signals.engagement) {
-        signals.engagement = true;
-        checkThreshold();
-      }
+      if (!signals.engagement) { signals.engagement = true; checkThreshold(); }
     });
   }
 
-  // ─── Mid-funnel: ViewContent when calculator enters viewport ──────────────
-
+  // Mid-funnel: ViewContent on calculator visible
   var calcSection = document.getElementById('calculator');
   if (calcSection && 'IntersectionObserver' in window) {
     var calcObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting && !firedEvents.viewContent) {
           firedEvents.viewContent = true;
-
           fbq('track', 'ViewContent', {
             content_name:     'ROI Calculator',
             content_category: 'Qualified Evaluator',
             content_type:     'product'
           });
-
           calcObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.4 });
-
     calcObserver.observe(calcSection);
   }
 
-  // ─── Low-funnel: ScheduleIntent on any CTA click ─────────────────────────
-
+  // Low-funnel: ScheduleIntent on CTA click
   document.addEventListener('click', function (e) {
     var el = e.target.closest('a[href="/schedule"], a.bp, a.bw, a.nc');
     if (el && !firedEvents.scheduleIntent) {
       firedEvents.scheduleIntent = true;
-
       fbq('trackCustom', 'ScheduleIntent', {
         content_name: 'Schedule Now CTA',
         button_text:  el.textContent.trim().substring(0, 50)
@@ -969,5 +898,6 @@ _idle(function(){
 
 })();
 </script>
+    
 </body>
 </html>
