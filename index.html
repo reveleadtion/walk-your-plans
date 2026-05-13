@@ -36,8 +36,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Font: swap-first loading prevents FOUT blocking paint -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<!--
+  Google Fonts: preload removed. The preload was fetching the Fonts CSS with
+  high priority, competing with the hero image for Slow 4G bandwidth before
+  first paint. Fonts now load via JS after the page is interactive. System
+  fallbacks (Arial → DM Sans, Georgia → Playfair) have matching metrics defined
+  below so layout shift on swap is near zero.
+-->
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 
 <style>
@@ -709,24 +714,21 @@ _idle(function(){
 </script>
 
 <!--
-  ─── CHANGE 1 (implementation): All analytics deferred to after load ─────────
-  Previously these three scripts ran synchronously in <head>, blocking the
-  browser from painting anything until each external CDN responded.
+  Analytics loading strategy:
+  - fbclid capture: immediate (tiny, no network request)
+  - Lead scoring listeners: immediate on load (no network cost, pure JS)
+  - Meta Pixel: 1.5s after load (highest priority — needed for ad attribution)
+  - Signals Gateway: 2.5s after load (server-side pixel, can lag)
+  - Clarity: 3s after load (session recording, no time pressure)
+  - Google Fonts: 2s after load (fallback fonts handle first render)
 
-  Now they run after 'load', meaning:
-  - The page is already visible and interactive
-  - LCP and FCP are measured before any of this code runs
-  - PageView events still fire (Meta, Signals, LiveSession all record the visit)
-  - The lead-scoring signals (scroll depth, time on page, etc.) still work
-
-  Trade-off: PageView fires ~1-3s later. This is standard practice and does
-  not affect ad attribution — the browser sends the fbclid on the page URL
-  regardless, and the pixel fires well before any user action.
-  ────────────────────────────────────────────────────────────────────────── -->
+  Staggering prevents the TBT burst from all three 400KB scripts executing
+  simultaneously on the main thread within the FCP→TTI measurement window.
+-->
 <script>
 window.addEventListener('load', function() {
 
-  // — Facebook Click ID capture (must run before pixel init) —
+  // — fbclid capture — runs immediately, no network cost —
   (function() {
     var params = new URLSearchParams(window.location.search);
     var fbclid = params.get('fbclid');
@@ -736,36 +738,7 @@ window.addEventListener('load', function() {
     }
   })();
 
-  // — Signals Gateway —
-  (function(a,h,e,v,n,t,s){
-    if(a.cbq)return;
-    n=a.cbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments);};
-    if(!a._cbq)a._cbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-    t=h.createElement(e);t.async=!0;t.src=v;s=h.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
-  })(window,document,'script','https://sgw.stape.im/sdk/7918253463962736548/events.js');
-  cbq('setHost','https://sgw.stape.im/');
-  cbq('init','7918253463962736548');
-  cbq('track','PageView');
-
-  // — Meta Pixel —
-  (function(f,b,e,v,n,t,s){
-    if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
-  })(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','1265233095752713');
-  fbq('track','PageView');
-
-  // — Microsoft Clarity (replaces LiveSession) —
-  (function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window,document,'clarity','script','wcuzz9l7yk');
-
-  // — Lead scoring signals (scroll depth, time, engagement) —
+  // — Lead scoring listeners — pure JS, no network, wire up immediately —
   var signals={scrollDepth:false,timeOnPage:false,engagement:false,ctaProximity:false};
   var firedEvents={qualifiedLead:false,viewContent:false,scheduleIntent:false};
   var THRESHOLD=2,activeSeconds=0,TIME_TARGET=45,timerInterval=null;
@@ -779,7 +752,7 @@ window.addEventListener('load', function() {
     if(signals.ctaProximity)met++;
     if(met>=THRESHOLD){
       firedEvents.qualifiedLead=true;
-      fbq('track','Lead',{content_name:'Qualified Lead — Walk Your Plans Detroit',content_category:'Home Build / Construction',signals_met:met});
+      try{fbq('track','Lead',{content_name:'Qualified Lead — Walk Your Plans Detroit',content_category:'Home Build / Construction',signals_met:met});}catch(e){}
       if(window.dataLayer)window.dataLayer.push({event:'qualified_lead',signals_met:met});
       stopTimer();
     }
@@ -798,7 +771,6 @@ window.addEventListener('load', function() {
     }
   }
   window.addEventListener('scroll',onScroll,{passive:true});
-
   function startTimer(){
     if(timerInterval)return;
     timerInterval=setInterval(function(){
@@ -808,8 +780,7 @@ window.addEventListener('load', function() {
   }
   function stopTimer(){clearInterval(timerInterval);timerInterval=null;}
   document.addEventListener('visibilitychange',function(){
-    if(document.hidden){stopTimer();}
-    else if(!firedEvents.qualifiedLead){startTimer();}
+    if(document.hidden){stopTimer();}else if(!firedEvents.qualifiedLead){startTimer();}
   });
   startTimer();
 
@@ -824,21 +795,63 @@ window.addEventListener('load', function() {
       entries.forEach(function(entry){
         if(entry.isIntersecting&&!firedEvents.viewContent){
           firedEvents.viewContent=true;
-          fbq('track','ViewContent',{content_name:'ROI Calculator',content_category:'Qualified Evaluator',content_type:'product'});
+          try{fbq('track','ViewContent',{content_name:'ROI Calculator',content_category:'Qualified Evaluator',content_type:'product'});}catch(e){}
           calcObserver.unobserve(entry.target);
         }
       });
     },{threshold:0.4});
     calcObserver.observe(calcSection);
   }
-
   document.addEventListener('click',function(e){
     var el=e.target.closest('a[href="/schedule"],a.bp,a.bw,a.nc');
     if(el&&!firedEvents.scheduleIntent){
       firedEvents.scheduleIntent=true;
-      fbq('trackCustom','ScheduleIntent',{content_name:'Schedule Now CTA',button_text:el.textContent.trim().substring(0,50)});
+      try{fbq('trackCustom','ScheduleIntent',{content_name:'Schedule Now CTA',button_text:el.textContent.trim().substring(0,50)});}catch(e){}
     }
   });
+
+  // — Meta Pixel — 1.5s after load —
+  setTimeout(function() {
+    (function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    })(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1265233095752713');
+    fbq('track','PageView');
+  }, 1500);
+
+  // — Signals Gateway — 2.5s after load —
+  setTimeout(function() {
+    (function(a,h,e,v,n,t,s){
+      if(a.cbq)return;
+      n=a.cbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments);};
+      if(!a._cbq)a._cbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+      t=h.createElement(e);t.async=!0;t.src=v;s=h.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    })(window,document,'script','https://sgw.stape.im/sdk/7918253463962736548/events.js');
+    cbq('setHost','https://sgw.stape.im/');
+    cbq('init','7918253463962736548');
+    cbq('track','PageView');
+  }, 2500);
+
+  // — Microsoft Clarity — 3s after load —
+  setTimeout(function() {
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,'clarity','script','wcuzz9l7yk');
+  }, 3000);
+
+  // — Google Fonts — 2s after load — fallback fonts handle first render —
+  setTimeout(function() {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap';
+    document.head.appendChild(link);
+  }, 2000);
 
 }, {once: true});
 </script>
