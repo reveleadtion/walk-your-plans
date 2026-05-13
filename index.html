@@ -18,24 +18,23 @@
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 
-<link rel="preload" as="image" href="logo.webp" fetchpriority="high">
+<link rel="preload" as="image" href="logo.webp" fetchpriority="low">
 <title>Walk Your Plans Detroit</title>
 <meta name="description" content="Walk through your home at full scale before a single wall goes up. Troy, MI. Catch costly change orders before construction starts. Sessions from $850.">
 
 <!--
-  ─── CHANGE 2: Preconnects reordered — hero image origin first ──────────────
-  Browsers only act on the first ~6 preconnects. Critical origins first.
-  Removed dns-prefetch for analytics origins since those scripts are now deferred.
-  ────────────────────────────────────────────────────────────────────────── -->
+  Hero image preload — responsive.
+  Without media, mobile preloads the 1920px desktop image, burning all Slow 4G
+  bandwidth before the page can paint. Mobile gets hero-mobile.webp (target ≤100 KB).
+-->
+<link rel="preload" as="image"
+  href="hero-mobile.webp"
+  imagesrcset="hero-mobile.webp 900w, hero.webp 1920w"
+  imagesizes="100vw"
+  fetchpriority="high">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!--
-  ─── CHANGE 3: Hero image preload ───────────────────────────────────────────
-  fetchpriority="high" was already present — kept. Added imagesizes to help
-  the browser pick the right resource before layout is known.
-  ────────────────────────────────────────────────────────────────────────── -->
-<link rel="preload" as="image" href="hero.webp" imagesrcset="hero.webp" imagesizes="100vw" fetchpriority="high">
 
 <!-- Font: swap-first loading prevents FOUT blocking paint -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -275,7 +274,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 .reveal.in{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 @media(max-width:900px){
-  nav{padding:0 16px}
+  nav{padding:0 16px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(12,12,12,.98)}
   .nav-logo{width:30px;height:30px}
   .nl-text{font-size:.88rem}
   .nm{display:none}
@@ -321,11 +320,8 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 <section class="hero">
   <div class="hero-bg">
     <picture>
-      <!--
-        CHANGE 4: Explicit width/height on LCP image.
-        Prevents the browser reserving zero space then reflowing when image arrives.
-        Also ensures fetchpriority="high" from the preload link above matches this src.
-      -->
+      <!-- Mobile: portrait crop, ≤100 KB target. Desktop: full 1920px landscape. -->
+      <source media="(max-width:900px)" srcset="hero-mobile.webp" type="image/webp">
       <source srcset="hero.webp" type="image/webp">
       <img src="hero.jpg" alt="Walk Your Plans Detroit — immersive floor plan projection studio"
            fetchpriority="high" decoding="sync"
