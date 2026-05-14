@@ -6,27 +6,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!--
-  ─── CHANGE 1: All analytics removed from <head> ────────────────────────────
-  Signals Gateway, Meta Pixel, and LiveSession previously blocked rendering.
-  They now fire after the 'load' event (see bottom of body).
-  This is the primary fix for LCP 6.9s → target <2.5s and FCP 3.0s → <1.8s.
-  PageView and Lead events still fire — just after paint, not before it.
-  ────────────────────────────────────────────────────────────────────────── -->
-
-<!-- Vercel Analytics — lightweight, no external round-trip needed -->
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 
 <link rel="preload" as="image" href="logo.webp" fetchpriority="low">
 <title>Walk Your Plans Detroit</title>
-<meta name="description" content="Walk through your home at full scale before a single wall goes up. Troy, MI. Catch costly change orders before construction starts. Sessions from $850.">
+<meta name="description" content="Walk through your home or outdoor space at full scale before a single wall goes up. Troy, MI. Catch costly change orders before construction starts. Sessions from $850.">
 
-<!--
-  Hero image preload — responsive.
-  Without media, mobile preloads the 1920px desktop image, burning all Slow 4G
-  bandwidth before the page can paint. Mobile gets hero-mobile.webp (target ≤100 KB).
--->
 <link rel="preload" as="image"
   href="hero-mobile.webp"
   imagesrcset="hero-mobile.webp 900w, hero.webp 1920w"
@@ -35,14 +21,6 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!--
-  Google Fonts: preload removed. The preload was fetching the Fonts CSS with
-  high priority, competing with the hero image for Slow 4G bandwidth before
-  first paint. Fonts now load via JS after the page is interactive. System
-  fallbacks (Arial → DM Sans, Georgia → Playfair) have matching metrics defined
-  below so layout shift on swap is near zero.
--->
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 
 <style>
@@ -104,6 +82,12 @@ h1 em{font-style:italic;color:var(--red)}
 .bn{display:inline-flex;align-items:center;gap:9px;background:var(--black);color:#fff;font-size:.87rem;font-weight:600;padding:15px 28px;border-radius:4px;text-decoration:none;border:2px solid var(--black);transition:all .25s}
 .bn:hover{background:var(--black-mid);transform:translateY(-2px)}
 
+/* — LANDSCAPING BADGE — */
+.use-case-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.ucb{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;padding:5px 11px;border-radius:3px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.5)}
+.ucb.active{background:rgba(218,52,52,.15);border-color:rgba(218,52,52,.4);color:rgba(255,255,255,.85)}
+.ucb-dot{width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0}
+
 .ey2{font-family:var(--mono);font-size:.68rem;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .ey2::before{content:'';display:block;width:28px;height:1px;background:var(--red)}
 .sh2{font-family:var(--serif);font-size:clamp(1.85rem,2.7vw,2.8rem);font-weight:900;line-height:1.1;color:var(--black);margin-bottom:22px}
@@ -139,6 +123,12 @@ h1 em{font-style:italic;color:var(--red)}
 .scn{background:var(--white);border:1px solid #e8e8e8;border-radius:8px;padding:20px 24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
 .scn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(0,0,0,.07)}
 .scn::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red)}
+/* landscape scenario gets a green tint accent */
+.scn.landscape-scn::before{background:linear-gradient(to bottom,var(--red),#2d8a4e)}
+.scn-type{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tlt);margin-bottom:8px}
+.scn-type-dot{width:4px;height:4px;border-radius:50%;background:var(--tlt);flex-shrink:0}
+.scn-type-dot.green{background:#2d8a4e}
+.scn-type.green{color:#2d6a40}
 .sct{font-size:.83rem;color:var(--tmid);line-height:1.55;margin-bottom:11px}
 .scb{display:flex;align-items:center;justify-content:space-between}
 .sctag{font-size:.66rem;color:var(--tlt);text-transform:uppercase;letter-spacing:.07em}
@@ -228,6 +218,8 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
 .fc{background:var(--white);border:1px solid #e8e8e8;border-radius:10px;padding:28px 30px;display:flex;gap:20px;align-items:flex-start;transition:transform .2s,box-shadow .2s,border-color .2s}
 .fc:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(0,0,0,.07);border-color:rgba(218,52,52,.4)}
 .fi{flex-shrink:0;width:40px;height:40px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+/* landscape card icon gets a green tint */
+.fi.green{background:linear-gradient(135deg,#1a5c35,#2d8a4e)}
 .ft{font-family:var(--serif);font-size:1.08rem;font-weight:700;color:var(--black);margin-bottom:7px}
 .fb3{font-size:.83rem;color:var(--tmid);line-height:1.65}
 .fhk{margin-top:9px;font-size:.76rem;color:var(--red);font-weight:600;font-style:italic}
@@ -302,6 +294,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   .vcaps{flex-direction:column}
   .vcap{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
   .vcap:last-child{border-bottom:none}
+  .use-case-bar{gap:7px}
 }
 </style>
 </head>
@@ -325,7 +318,6 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
 <section class="hero">
   <div class="hero-bg">
     <picture>
-      <!-- Mobile: portrait crop, ≤100 KB target. Desktop: full 1920px landscape. -->
       <source media="(max-width:900px)" srcset="hero-mobile.webp" type="image/webp">
       <source srcset="hero.webp" type="image/webp">
       <img src="hero.jpg" alt="Walk Your Plans Detroit — immersive floor plan projection studio"
@@ -336,8 +328,16 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   <div class="hero-inner">
   <div class="hl">
     <div class="eyebrow">Troy, MI &middot; Metro Detroit's Immersive Design Experience</div>
+
+    <!-- USE-CASE BADGES — home builds primary, landscaping secondary -->
+    <div class="use-case-bar">
+      <span class="ucb active"><span class="ucb-dot"></span>Home Builds</span>
+      <span class="ucb active"><span class="ucb-dot"></span>Additions &amp; Remodels</span>
+      <span class="ucb"><span class="ucb-dot"></span>Outdoor &amp; Landscape Projects</span>
+    </div>
+
     <h1>Most walk-throughs catch <em>10–12 change orders</em> before construction starts.</h1>
-    <p class="hsub">You can't visualize a floor plan from paper. Nobody can. So we built one. Walk through your home at full scale before a single wall goes up. One session typically saves $10,000+ &mdash; and the peace of mind is something the math can't fully capture.</p>
+    <p class="hsub">You can't visualize a floor plan from paper. Nobody can. So we built one. Walk through your home — or your outdoor living space — at full scale before a single wall goes up or a shovel hits the ground. One session typically saves $10,000+.</p>
     <div class="hstats">
       <div><div class="sn">From $850</div><div class="sl">Session rate</div></div>
       <div><div class="sn">10–12</div><div class="sl">Avg. issues caught per session</div></div>
@@ -356,13 +356,13 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="prob-hdr reveal">
       <div class="ey2">The Real Cost of Guessing</div>
       <h2 class="sh2">Blueprints look right on paper. They feel <em>wrong</em> when it's too late.</h2>
-      <p class="bp2">Change orders are the hidden cost of every construction project — a wall that needs to move, a kitchen island two feet too wide, a bedroom that felt spacious at 14&times;16 on paper and feels cramped in real life. These aren't contractor mistakes. They're visualization gaps. Clients who walk their plans before ground breaks typically identify 10–12 of these issues. Fixing them in a session costs a fraction of fixing them mid-build.</p>
+      <p class="bp2">Change orders are the hidden cost of every construction project — a wall that needs to move, a kitchen island two feet too wide, a bedroom that felt spacious at 14&times;16 on paper and feels cramped in real life. The same is true outdoors: a patio that looked generous on a landscape plan, an outdoor kitchen that eats the yard, a fire pit tucked in the wrong corner. These aren't contractor mistakes. They're visualization gaps. Clients who walk their plans before ground breaks typically identify 10–12 of these issues.</p>
     </div>
     <div class="prob-body">
       <div class="prob-left reveal">
         <div class="ic">
           <div class="ic-n">10 &ndash; 12</div>
-          <div class="ic-t">The average walk-through session identifies 10–12 potential change orders before construction starts. Catching even a few of these before ground breaks is where the real savings happen.</div>
+          <div class="ic-t">The average walk-through session identifies 10–12 potential change orders before construction starts — across home builds, additions, and outdoor living projects. Catching even a few before ground breaks is where the real savings happen.</div>
         </div>
         <div class="prob-img">
           <picture>
@@ -373,16 +373,19 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       </div>
       <div class="scens reveal d1">
         <div class="scn">
+          <div class="scn-type"><span class="scn-type-dot"></span>Home build</div>
           <div class="sct"><strong>The kitchen island.</strong> Four feet wide on the plan &mdash; felt perfect. Week three of framing, two people can't pass each other without turning sideways.</div>
           <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural + labor delay + materials</div></div><div class="scc">$8,400</div></div>
         </div>
         <div class="scn">
+          <div class="scn-type"><span class="scn-type-dot"></span>Home build</div>
           <div class="sct"><strong>The master bedroom.</strong> 14&times;18 sounded generous. Standing in the framed space &mdash; king bed mentally placed &mdash; it doesn't feel right. Moving a load-bearing wall is a different conversation now.</div>
           <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural engineer + framing revision + delay</div></div><div class="scc">$12,200</div></div>
         </div>
-        <div class="scn">
-          <div class="sct"><strong>The great room ceiling.</strong> Vaulted to 14 feet sounded dramatic. In person it dwarfs the furniture and kills any sense of warmth. Changing it now means redoing the roofline.</div>
-          <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Structural redesign + roofline + extended timeline</div></div><div class="scc">$22,500</div></div>
+        <div class="scn landscape-scn">
+          <div class="scn-type green"><span class="scn-type-dot green"></span>Landscape project</div>
+          <div class="sct"><strong>The outdoor kitchen.</strong> Twelve feet of counter space read beautifully on the landscape plan. Standing in the projected layout, it dominates the patio and blocks the sight line to the yard. Moving it now means re-routing the gas line and relocating the pergola footings.</div>
+          <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Gas re-route + hardscape revision + pergola</div></div><div class="scc">$9,800</div></div>
         </div>
         <a href="/schedule" class="inline-cta" target="_blank" onclick="scheduleClick()">Catch these before they happen &rarr;</a>
       </div>
@@ -402,23 +405,23 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="stn">01</div>
         <div class="sti"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.95V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg></div>
         <div class="stt">Book a 15-min intro call</div>
-        <div class="stb">Tell us about your project &mdash; where you are in the process and what questions keep you up at night. We'll tell you exactly what a session would look like and what it could save you.</div>
+        <div class="stb">Tell us about your project &mdash; where you are in the process and what questions keep you up at night. We'll tell you exactly what a session would look like for your home build, remodel, or outdoor project.</div>
       </div>
       <div class="step reveal d1">
         <div class="stn">02</div>
         <div class="sti"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-        <div class="stt">Send us your floor plans</div>
-        <div class="stb">Upload your plans and elevations. We'll prepare your full-scale projection in our Troy studio. Don't have final plans yet? We can work with preliminary drawings too.</div>
+        <div class="stt">Send us your plans</div>
+        <div class="stb">Upload your floor plans, elevations, or landscape designs. We'll prepare your full-scale projection in our Troy studio. Preliminary drawings work too &mdash; you don't need permit-ready plans to benefit.</div>
       </div>
       <div class="step reveal d2">
         <div class="stn">03</div>
         <div class="sti"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
-        <div class="stt">Walk through your home</div>
-        <div class="stb">Stand in your kitchen. Feel how wide the hallway is. See where the light falls. Make every adjustment here &mdash; not on your contractor's invoice. Half-day and full-day sessions available.</div>
+        <div class="stt">Walk through your space</div>
+        <div class="stb">Stand in your kitchen. Feel how wide the patio is. See where the outdoor kitchen sits relative to the seating area. Make every adjustment here &mdash; not on your contractor's invoice.</div>
       </div>
     </div>
     <div class="how-cta reveal d2">
-      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Schedule Your Session</a>
+      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Your Session</a>
       <a href="https://www.walkyourplansdetroit.com/contact" class="bg">Not ready yet? &rarr;</a>
     </div>
     <div class="studio-strip reveal d1">
@@ -428,7 +431,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       </picture>
       <div class="studio-strip-label">
         <div class="ssl-dot"></div>
-        <span class="ssl-txt">The Walk Your Plans Studio &middot; Troy, MI</span>
+        <span class="ssl-txt">The Walk Your Plans Studio &middot; Troy, MI &middot; Floor Plans &amp; Outdoor Designs</span>
       </div>
     </div>
   </div>
@@ -439,14 +442,9 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="vhdr reveal">
       <div class="ey2" style="justify-content:center;">See It In Action</div>
       <h2 class="ch2 reveal" style="text-align:center;margin-bottom:10px;">Watch what walking your plans <em>actually looks like.</em></h2>
-      <p class="vsub">Two minutes. Your floor plan. Full scale. This is what our clients experience before a single wall goes up.</p>
+      <p class="vsub">Two minutes. Your floor plan — or landscape design. Full scale. This is what our clients experience before a single wall goes up or a shovel breaks ground.</p>
     </div>
     <div class="vwrap reveal d1">
-      <!--
-        CHANGE 5: YouTube facade (click-to-load) was already in place — kept as-is.
-        This avoids loading the YouTube iframe (and all its JS) until the user clicks.
-        Estimated savings: ~500 KiB of third-party JS deferred.
-      -->
       <div class="vframe" id="yt-facade" style="cursor:pointer;background:#111;" onclick="loadYT(this)">
         <img src="https://i.ytimg.com/vi/OA9Bp7kRu4s/maxresdefault.jpg" alt="Walk Your Plans Detroit video preview" loading="lazy" decoding="async" width="1280" height="720" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
@@ -455,8 +453,8 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       </div>
       <div class="vcaps">
         <div class="vcap reveal d1"><div class="vcap-n">01</div><div class="vcap-t">Your plans projected at full scale</div></div>
-        <div class="vcap reveal d2"><div class="vcap-n">02</div><div class="vcap-t">Walk every room before framing starts</div></div>
-        <div class="vcap reveal d3"><div class="vcap-n">03</div><div class="vcap-t">Catch what blueprints can't show you</div></div>
+        <div class="vcap reveal d2"><div class="vcap-n">02</div><div class="vcap-t">Walk every room — or every outdoor zone — before work starts</div></div>
+        <div class="vcap reveal d3"><div class="vcap-n">03</div><div class="vcap-t">Catch what blueprints and landscape plans can't show you</div></div>
       </div>
       <a href="/schedule" class="bp reveal d1" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Now</a>
     </div>
@@ -469,10 +467,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div>
         <div class="ey2">Do The Math</div>
         <h2 class="ch2 reveal">How big is your project? <em>What's one mistake worth?</em></h2>
-        <p class="csub reveal d1">Drag to your home's square footage. We'll estimate your session cost and what you realistically stand to save by catching change orders before ground breaks. These are conservative savings, you may find a much higher ROI if your design has high end materials.</p>
+        <p class="csub reveal d1">Drag to your project's square footage — home build, addition, or outdoor living space. We'll estimate your session cost and what you realistically stand to save by catching change orders before ground breaks. The more custom the build and the higher the material quality, the higher the ROI.</p>
         <div class="slbl reveal d1">
-          <div class="sltt"><span class="slll">Home size</span><span class="slv" id="sqft-display">3,000 sq ft</span></div>
-          <input type="range" id="sqft-slr" min="1000" max="10000" step="100" value="3000" aria-label="Home size in square feet">
+          <div class="sltt"><span class="slll">Project size</span><span class="slv" id="sqft-display">3,000 sq ft</span></div>
+          <input type="range" id="sqft-slr" min="1000" max="10000" step="100" value="3000" aria-label="Project size in square feet">
           <div class="slider-hints"><span>1,000 sq ft</span><span>10,000 sq ft</span></div>
         </div>
         <div class="crow2 reveal d2">
@@ -481,7 +479,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="cr"><span class="rl">Typical preventable changes (<span id="co-pct-label">3.3%</span> of est. build cost)</span><span class="cval" id="cov">$22,500</span></div>
           <div class="cr hl"><span class="rl" style="color:rgba(255,255,255,.82);font-weight:600;">Estimated net savings</span><span class="cval" id="sav">$21,000</span></div>
         </div>
-        <div class="co-note reveal d2">* Estimated build cost at $225/sq ft — Metro Detroit mid-range custom. Preventable change figure based on internal session data (~$10K per 3,000 sq ft, scaling with project size). Individual projects vary.</div>
+        <div class="co-note reveal d2">* Estimated build cost at $225/sq ft — Metro Detroit mid-range custom. Preventable change figure based on internal session data (~$10K per 3,000 sq ft, scaling with project size). Applies to home builds and outdoor living projects. Individual projects vary.</div>
         <div class="reveal d3"><a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Your Session</a></div>
       </div>
       <div class="cv2 reveal d1">
@@ -506,7 +504,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="rbs">return on your session investment</div>
         </div>
         <div class="session-detail">
-          <div class="sd-row"><span class="sd-l">Home size</span><span class="sd-v" id="sd-sqft">3,000 sq ft</span></div>
+          <div class="sd-row"><span class="sd-l">Project size</span><span class="sd-v" id="sd-sqft">3,000 sq ft</span></div>
           <div class="sd-row"><span class="sd-l">Est. build cost ($225/sq ft)</span><span class="sd-v" id="sd-build">$675,000</span></div>
           <div class="sd-row"><span class="sd-l">Session length</span><span class="sd-v" id="sd-hrs">1 hour</span></div>
           <div class="sd-row"><span class="sd-l">Session rate</span><span class="sd-v" id="sd-rate">$850 / hour</span></div>
@@ -522,9 +520,9 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <div class="ey2 reveal">By The Numbers</div>
     <h2 class="sh2 reveal" style="font-size:clamp(1.65rem,2.3vw,2.4rem);">The numbers that make this an easy decision.</h2>
     <div class="pcs">
-      <div class="pcc reveal"><div class="pctag">Session rate</div><div class="pnum or">From $850</div><div class="pdesc">Sessions are priced by length: 1 hr ($850), 2 hrs ($1,500), 3 hrs ($2,000), 4 hrs ($2,500), 5 hrs ($3,000). One hour per ~3,000 sq ft — a typical 3,000 sq ft home runs about 1 hour. Most clients are surprised how much they resolve in a single session.</div><div class="pvs">vs</div></div>
-      <div class="pcc reveal d1"><div class="pctag">Avg. issues caught per session</div><div class="pnum or">10–12</div><div class="pdesc">Our walk-throughs typically surface 10–12 layout or design issues clients hadn't anticipated from blueprints alone — from traffic flow problems to room proportions that don't translate from paper.</div><div class="pvs">=</div></div>
-      <div class="pcc reveal d2"><div class="pctag">Typical savings, 3,000 sq ft build</div><div class="pnum gr">~$10,000</div><div class="pdesc">Based on internal session data at the Metro Detroit mid-range. Larger or more complex builds see more. Even one structural revision caught early pays for the session many times over.</div></div>
+      <div class="pcc reveal"><div class="pctag">Session rate</div><div class="pnum or">From $850</div><div class="pdesc">Sessions are priced by length: 1 hr ($850), 2 hrs ($1,500), 3 hrs ($2,000), 4 hrs ($2,500), 5 hrs ($3,000). One hour per ~3,000 sq ft for home builds; outdoor living projects are scoped on complexity. Most clients are surprised how much they resolve in a single session.</div><div class="pvs">vs</div></div>
+      <div class="pcc reveal d1"><div class="pctag">Avg. issues caught per session</div><div class="pnum or">10–12</div><div class="pdesc">Our walk-throughs typically surface 10–12 layout or design issues clients hadn't anticipated — from traffic flow problems in a home build to scale mismatches in an outdoor kitchen or patio layout.</div><div class="pvs">=</div></div>
+      <div class="pcc reveal d2"><div class="pctag">Typical savings, 3,000 sq ft build</div><div class="pnum gr">~$10,000</div><div class="pdesc">Based on internal session data at the Metro Detroit mid-range — across home builds and outdoor projects. Even one structural or hardscape revision caught early pays for the session many times over.</div></div>
     </div>
     <p class="psrc">Session savings estimate based on internal data: ~$10,000 per 3,000 sq ft build. Est. build cost at $225/sq ft — Metro Detroit mid-range custom. Industry change order data sourced from Dodge Data & Analytics and NAHB construction surveys. Individual results vary by project scope and complexity.</p>
     <div class="proof-cta reveal">
@@ -543,23 +541,31 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div class="fc reveal"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div><div><div class="ft">Homeowners</div><div class="fb3">You've dreamed about this home for years. You can't afford to get it wrong. Walk every room at full scale and build with the confidence that what you approved on paper is what you want to live in.</div><div class="fhk">"I thought I knew what my kitchen would feel like. Walking it changed everything."</div></div></div>
       <div class="fc reveal d1"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></div><div><div class="ft">Architects &amp; Designers</div><div class="fb3">Get faster client buy-in, fewer revision cycles, and a differentiator no competing firm has. When your clients walk their plans before ground breaks, they arrive at decisions &mdash; not second-guesses.</div><div class="fhk">"We used to spend three meetings on layout approvals. Now it happens in one session."</div></div></div>
       <div class="fc reveal d1"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div><div><div class="ft">Builders &amp; Developers</div><div class="fb3">Reduce expensive change orders during construction. When everyone has walked the plans, "I didn't realize" stops being a phrase you hear mid-build.</div><div class="fhk">"This paid for itself the first time we avoided a structural revision."</div></div></div>
+      <!-- LANDSCAPE CARD -->
+      <div class="fc reveal d2"><div class="fi green"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><div class="ft">Landscape Architects &amp; Designers</div><div class="fb3">Outdoor living is high-stakes design — patios, pools, outdoor kitchens, pergolas. Your clients can't feel scale from a plan any more than they can from a floor plan. Walk the layout before a single shovel breaks ground and eliminate the change orders that kill outdoor project margins.</div><div class="fhk">"We caught a patio flow issue that would have been a complete hardscape re-pour."</div></div></div>
       <div class="fc reveal d2"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div class="ft">Commercial Developers</div><div class="fb3">Healthcare, retail, fitness, hospitality &mdash; any space where layout defines the experience. Walk your floor plan with stakeholders before costs are locked in.</div><div class="fhk">"We caught a patient flow issue that would have cost six figures to retrofit."</div></div></div>
     </div>
     <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="/schedule" class="bn" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Now</a></div>
-    <div class="who-photos">
+
+    <!-- WHO PHOTOS — 3 photos: homeowners, architects, + landscape session -->
+    <div class="who-photos" style="grid-template-columns:1fr 1fr 1fr;" class="reveal">
       <div class="who-photo reveal">
         <picture>
           <source srcset="img-clients.webp" type="image/webp">
-          <img src="img-clients.jpg" alt="Homeowners walking their floor plan at Walk Your Plans Detroit" loading="lazy" decoding="async" width="700" height="525" sizes="(max-width:900px) 100vw, 50vw">
+          <img src="img-clients.jpg" alt="Homeowners walking their floor plan at Walk Your Plans Detroit" loading="lazy" decoding="async" width="700" height="525" sizes="(max-width:900px) 100vw, 33vw">
         </picture>
         <div class="who-photo-label">Homeowners &middot; custom build</div>
       </div>
       <div class="who-photo reveal d1">
         <picture>
           <source srcset="img-architect.webp" type="image/webp">
-          <img src="img-architect.jpg" alt="Architect and builder reviewing plans at full scale" loading="lazy" decoding="async" width="700" height="525" sizes="(max-width:900px) 100vw, 50vw">
+          <img src="img-architect.jpg" alt="Architect and builder reviewing plans at full scale" loading="lazy" decoding="async" width="700" height="525" sizes="(max-width:900px) 100vw, 33vw">
         </picture>
         <div class="who-photo-label">Architects &amp; builders</div>
+      </div>
+      <div class="who-photo reveal d2">
+        <img src="wyp_landscaping.webp" alt="Landscape design projected at full scale — Walk Your Plans Detroit" loading="lazy" decoding="async" width="1340" height="895" sizes="(max-width:900px) 100vw, 33vw">
+        <div class="who-photo-label">Landscape &amp; outdoor living</div>
       </div>
     </div>
   </div>
@@ -572,10 +578,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <h2 class="th2">You don't need to take our word for it. <em>The math speaks for itself.</em></h2>
       <p class="tb2">We're new to Metro Detroit and building our review base one walk-through at a time. What we can tell you: the concept isn't new. Walk Your Plans operates across the country with the same consistent result &mdash; clients who walk their plans before ground breaks catch issues they never would have caught from a 2D drawing, and they resolve them before those issues carry a contractor's markup.</p>
       <div class="tpts">
-        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Walk-throughs typically surface 10–12 layout issues</strong> clients hadn't anticipated — traffic flow problems, room proportions that don't translate from paper, window placement that blocks natural light.</div></div>
-        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Internal data shows ~$10,000 in typical savings</strong> on a 3,000 sq ft Metro Detroit build — not an outlier figure, a consistent outcome across session types.</div></div>
+        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Walk-throughs typically surface 10–12 layout issues</strong> clients hadn't anticipated — traffic flow problems, room proportions that don't translate from paper, outdoor kitchen placement that kills the view.</div></div>
+        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Internal data shows ~$10,000 in typical savings</strong> on a 3,000 sq ft Metro Detroit build — not an outlier figure, a consistent outcome across session types including outdoor living projects.</div></div>
         <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Change orders are inevitable in any build</strong> — but discretionary ones, the kind that come from not being able to visualize a space, are the ones a session prevents.</div></div>
-        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Located in Troy, MI</strong> &mdash; 780 W Maple Road, Suite F. Bring your architect. Your builder. Your partner. Catch everything before it costs you.</div></div>
+        <div class="tpt"><div class="tdot"></div><div class="ttxt"><strong>Located in Troy, MI</strong> &mdash; 780 W Maple Road, Suite F. Bring your architect. Your landscape designer. Your builder. Catch everything before it costs you.</div></div>
       </div>
     </div>
     <div class="reveal d1">
@@ -600,13 +606,13 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   <div class="fci">
     <div class="fey">Troy, MI &mdash; 780 W Maple Road, Suite F</div>
     <h2 class="fh2">Stop guessing.<br>Start knowing.</h2>
-    <p class="fsub">A 15-minute phone call is all it takes to find out if a session is right for your project. No pressure. No commitment. Just a conversation about what walking your plans would look like &mdash; and what it could save you.</p>
+    <p class="fsub">A 15-minute phone call is all it takes to find out if a session is right for your project — whether you're building a home, planning an addition, or designing the outdoor living space you've always wanted. No pressure. No commitment.</p>
     <div class="fbs">
       <a href="/schedule" class="bw" target="_blank" onclick="scheduleClick()">&#128197; Schedule Now</a>
       <a href="https://www.walkyourplansdetroit.com/contact" class="bow">Not ready? Schedule later &rarr;</a>
     </div>
     <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out.</p>
-    <p class="ffne">Simply click "Schedule Later" and fill out the form or <a href="/cdn-cgi/l/email-protection#a7cec9c1c8e7d0c6cbccdec8d2d5d7cbc6c9d4c3c2d3d5c8ced389c4c8ca">send us an email</a> and we'll reach out when the timing is right.</p>
+    <p class="ffne">Simply click "Schedule Later" and fill out the form or <a href="mailto:hello@walkyourplansdetroit.com">send us an email</a> and we'll reach out when the timing is right.</p>
   </div>
 </section>
 
@@ -616,23 +622,19 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <img src="logo.webp" alt="Walk Your Plans Detroit logo" class="footer-logo" width="32" height="32">
       <span class="flog-text">Walk Your Plans <span>Detroit</span></span>
     </a>
-    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="/cdn-cgi/l/email-protection#5f363139301f283e333426302a2d2f333e312c3b3a2b2d30362b713c3032">Email Us</a></div>
+    <div class="finf">780 W Maple Road, Suite F &middot; Troy, MI 48084<br><a href="tel:2486020110">248-602-0110</a> &middot; <a href="mailto:hello@walkyourplansdetroit.com">Email Us</a></div>
     <div class="finf" style="text-align:right;"><a href="https://www.walkyourplansdetroit.com/about" style="display:block;margin-bottom:4px;">About</a><a href="https://www.walkyourplansdetroit.com/customers">Who It's For</a></div>
   </div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script>
 
-<!-- ─── First-party page JS (no third-party, no blocking) ──────────────────── -->
 <script>
-// YouTube facade
 function loadYT(el){el.innerHTML='<iframe src="https://www.youtube.com/embed/OA9Bp7kRu4s?autoplay=1&rel=0&modestbranding=1&color=white" title="Walk Your Plans Detroit" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>';}
 
-// Nav scroll shadow
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40), {passive:true});
 
-// Calculator helpers
 const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
 const fmtNum = n => Math.round(n).toLocaleString('en-US');
 function getHours(sqft) { return Math.max(1, Math.ceil(sqft / 3000)); }
@@ -685,11 +687,9 @@ sqftSlr.addEventListener('input', function(){
   if(!_raf){_raf=true;requestAnimationFrame(function(){upd();_raf=false;});}
 }, {passive:true});
 
-// Tracking helpers — safe to call before analytics loads, queued internally
 function trackCalcCTA(){ try{cbq('trackCustom','CalculatorCTA');}catch(e){} try{fbq('trackCustom','CalculatorCTA');}catch(e){} }
 function scheduleClick(){
   try{fbq('track','Schedule');}catch(e){}
-  // Pass fbclid to schedule page
   const fbclid = sessionStorage.getItem('fbclid');
   if(fbclid){
     const links = document.querySelectorAll('a[href="/schedule"]');
@@ -701,7 +701,6 @@ function scheduleClick(){
   }
 }
 
-// Defer initial render + scroll observer
 const _idle = window.requestIdleCallback || function(cb){setTimeout(cb,1);};
 _idle(function(){
   upd();
@@ -713,22 +712,8 @@ _idle(function(){
 });
 </script>
 
-<!--
-  Analytics loading strategy:
-  - fbclid capture: immediate (tiny, no network request)
-  - Lead scoring listeners: immediate on load (no network cost, pure JS)
-  - Meta Pixel: 1.5s after load (highest priority — needed for ad attribution)
-  - Signals Gateway: 2.5s after load (server-side pixel, can lag)
-  - Clarity: 3s after load (session recording, no time pressure)
-  - Google Fonts: 2s after load (fallback fonts handle first render)
-
-  Staggering prevents the TBT burst from all three 400KB scripts executing
-  simultaneously on the main thread within the FCP→TTI measurement window.
--->
 <script>
 window.addEventListener('load', function() {
-
-  // — fbclid capture — runs immediately, no network cost —
   (function() {
     var params = new URLSearchParams(window.location.search);
     var fbclid = params.get('fbclid');
@@ -738,129 +723,47 @@ window.addEventListener('load', function() {
     }
   })();
 
-  // — Lead scoring listeners — pure JS, no network, wire up immediately —
   var signals={scrollDepth:false,timeOnPage:false,engagement:false,ctaProximity:false};
   var firedEvents={qualifiedLead:false,viewContent:false,scheduleIntent:false};
   var THRESHOLD=2,activeSeconds=0,TIME_TARGET=45,timerInterval=null;
-
   function checkThreshold(){
     if(firedEvents.qualifiedLead)return;
     var met=0;
-    if(signals.scrollDepth)met++;
-    if(signals.timeOnPage)met++;
-    if(signals.engagement)met++;
-    if(signals.ctaProximity)met++;
-    if(met>=THRESHOLD){
-      firedEvents.qualifiedLead=true;
-      try{fbq('track','Lead',{content_name:'Qualified Lead — Walk Your Plans Detroit',content_category:'Home Build / Construction',signals_met:met});}catch(e){}
-      if(window.dataLayer)window.dataLayer.push({event:'qualified_lead',signals_met:met});
-      stopTimer();
-    }
+    if(signals.scrollDepth)met++;if(signals.timeOnPage)met++;if(signals.engagement)met++;if(signals.ctaProximity)met++;
+    if(met>=THRESHOLD){firedEvents.qualifiedLead=true;try{fbq('track','Lead',{content_name:'Qualified Lead — Walk Your Plans Detroit',content_category:'Home Build / Construction',signals_met:met});}catch(e){}stopTimer();}
   }
   function onScroll(){
-    if(!signals.scrollDepth){
-      var pct=(window.scrollY+window.innerHeight)/document.body.scrollHeight;
-      if(pct>=0.55){signals.scrollDepth=true;checkThreshold();}
-    }
-    if(!signals.ctaProximity){
-      var els=document.querySelectorAll('.bp,.bw,.nc');
-      for(var i=0;i<els.length;i++){
-        var r=els[i].getBoundingClientRect();
-        if(r.top>=0&&r.bottom<=window.innerHeight){signals.ctaProximity=true;checkThreshold();break;}
-      }
-    }
+    if(!signals.scrollDepth){var pct=(window.scrollY+window.innerHeight)/document.body.scrollHeight;if(pct>=0.55){signals.scrollDepth=true;checkThreshold();}}
+    if(!signals.ctaProximity){var els=document.querySelectorAll('.bp,.bw,.nc');for(var i=0;i<els.length;i++){var r=els[i].getBoundingClientRect();if(r.top>=0&&r.bottom<=window.innerHeight){signals.ctaProximity=true;checkThreshold();break;}}}
   }
   window.addEventListener('scroll',onScroll,{passive:true});
-  function startTimer(){
-    if(timerInterval)return;
-    timerInterval=setInterval(function(){
-      activeSeconds++;
-      if(activeSeconds>=TIME_TARGET){signals.timeOnPage=true;checkThreshold();stopTimer();}
-    },1000);
-  }
+  function startTimer(){if(timerInterval)return;timerInterval=setInterval(function(){activeSeconds++;if(activeSeconds>=TIME_TARGET){signals.timeOnPage=true;checkThreshold();stopTimer();}},1000);}
   function stopTimer(){clearInterval(timerInterval);timerInterval=null;}
-  document.addEventListener('visibilitychange',function(){
-    if(document.hidden){stopTimer();}else if(!firedEvents.qualifiedLead){startTimer();}
-  });
+  document.addEventListener('visibilitychange',function(){if(document.hidden){stopTimer();}else if(!firedEvents.qualifiedLead){startTimer();}});
   startTimer();
-
   var sliderEl=document.getElementById('sqft-slr');
   if(sliderEl)sliderEl.addEventListener('input',function(){if(!signals.engagement){signals.engagement=true;checkThreshold();}},{passive:true});
   var videoEl=document.getElementById('yt-facade');
   if(videoEl)videoEl.addEventListener('click',function(){if(!signals.engagement){signals.engagement=true;checkThreshold();}});
-
   var calcSection=document.getElementById('calculator');
   if(calcSection&&'IntersectionObserver' in window){
-    var calcObserver=new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting&&!firedEvents.viewContent){
-          firedEvents.viewContent=true;
-          try{fbq('track','ViewContent',{content_name:'ROI Calculator',content_category:'Qualified Evaluator',content_type:'product'});}catch(e){}
-          calcObserver.unobserve(entry.target);
-        }
-      });
-    },{threshold:0.4});
+    var calcObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting&&!firedEvents.viewContent){firedEvents.viewContent=true;try{fbq('track','ViewContent',{content_name:'ROI Calculator',content_category:'Qualified Evaluator',content_type:'product'});}catch(e){}calcObserver.unobserve(entry.target);}});},{threshold:0.4});
     calcObserver.observe(calcSection);
   }
-  document.addEventListener('click',function(e){
-    var el=e.target.closest('a[href="/schedule"],a.bp,a.bw,a.nc');
-    if(el&&!firedEvents.scheduleIntent){
-      firedEvents.scheduleIntent=true;
-      try{fbq('trackCustom','ScheduleIntent',{content_name:'Schedule Now CTA',button_text:el.textContent.trim().substring(0,50)});}catch(e){}
-    }
-  });
+  document.addEventListener('click',function(e){var el=e.target.closest('a[href="/schedule"],a.bp,a.bw,a.nc');if(el&&!firedEvents.scheduleIntent){firedEvents.scheduleIntent=true;try{fbq('trackCustom','ScheduleIntent',{content_name:'Schedule Now CTA',button_text:el.textContent.trim().substring(0,50)});}catch(e){};}});
 
-  // — Meta Pixel — 1.5s after load —
-  setTimeout(function() {
-    (function(f,b,e,v,n,t,s){
-      if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
-    })(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1265233095752713');
-    fbq('track','PageView');
-  }, 1500);
+  setTimeout(function(){(function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);})(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1265233095752713');fbq('track','PageView');},1500);
 
-  // — Signals Gateway — 2.5s after load —
-  setTimeout(function() {
-    (function(a,h,e,v,n,t,s){
-      if(a.cbq)return;
-      n=a.cbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments);};
-      if(!a._cbq)a._cbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-      t=h.createElement(e);t.async=!0;t.src=v;s=h.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
-    })(window,document,'script','https://sgw.stape.im/sdk/7918253463962736548/events.js');
-    cbq('setHost','https://sgw.stape.im/');
-    cbq('init','7918253463962736548');
-    cbq('track','PageView');
-  }, 2500);
+  setTimeout(function(){(function(a,h,e,v,n,t,s){if(a.cbq)return;n=a.cbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments);};if(!a._cbq)a._cbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=h.createElement(e);t.async=!0;t.src=v;s=h.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);})(window,document,'script','https://sgw.stape.im/sdk/7918253463962736548/events.js');cbq('setHost','https://sgw.stape.im/');cbq('init','7918253463962736548');cbq('track','PageView');},2500);
 
-  // — Microsoft Clarity — 3s after load —
-  setTimeout(function() {
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window,document,'clarity','script','wcuzz9l7yk');
-  }, 3000);
+  setTimeout(function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','wcuzz9l7yk');},3000);
 
-  // — Google Fonts — 2s after load — fallback fonts handle first render —
-  setTimeout(function() {
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap';
-    document.head.appendChild(link);
-  }, 2000);
+  setTimeout(function(){var link=document.createElement('link');link.rel='stylesheet';link.href='https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap';document.head.appendChild(link);},2000);
 
-}, {once: true});
+},{once:true});
 </script>
 
-<!-- Meta Pixel noscript fallback (still useful for users without JS) -->
-<noscript>
-  <img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1265233095752713&ev=PageView&noscript=1"/>
-</noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1265233095752713&ev=PageView&noscript=1"/></noscript>
 
 </body>
 </html>
