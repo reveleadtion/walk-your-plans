@@ -173,8 +173,9 @@ window.addEventListener('message',function(e){
     try{fbq('track','InitiateCheckout',{content_name:'Date Selected'});}catch(e){}
     try{__ls('event','booking_date_selected');}catch(e){}
   }
-  if(/confirm|scheduled|booked|success/i.test(msg)){
+if(/confirm|scheduled|booked|success/i.test(msg)){
     try{fbq('track','Purchase',{value:850,currency:'USD',content_name:'Session Booked'});}catch(e){}
+    try{cbq('track','Purchase',{value:850,currency:'USD',content_name:'Session Booked'});}catch(e){}
     try{__ls('event','booking_confirmed');}catch(e){}
     try{va('event',{name:'booking_confirmed'});}catch(e){}
   }
