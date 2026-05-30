@@ -69,13 +69,13 @@ nav.sc{box-shadow:0 4px 32px rgba(0,0,0,.4)}
 .nm-phone:hover{color:#fff}
 .nm-mobile-sched{display:none}
 
-/* ─── MOBILE SECTION-JUMP BAR ─────────────────────────────────────────────── */
-/* Hidden on desktop, visible on mobile below the main nav row */
-.mobile-jumpbar{display:none;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-top:1px solid rgba(255,255,255,.07);padding:0 16px;background:rgba(12,12,12,.97)}
-.mobile-jumpbar::-webkit-scrollbar{display:none}
-.mjb-inner{display:flex;gap:0;white-space:nowrap;min-width:max-content}
-.mjb-link{display:inline-flex;align-items:center;padding:9px 11px;font-size:.67rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;flex-shrink:0}
-.mjb-link:hover,.mjb-link:active{color:#fff;border-bottom-color:var(--red)}
+/* ─── MOBILE SUB-NAV ───────────────────────────────────────────────────────── */
+/* Phone + calculator anchor only. Hidden on desktop. */
+.mobile-subnav{display:none;align-items:center;justify-content:space-between;padding:0 16px;height:34px;border-top:1px solid rgba(255,255,255,.07);background:rgba(12,12,12,.97)}
+.msn-phone{display:flex;align-items:center;gap:6px;font-size:.74rem;color:rgba(255,255,255,.45);text-decoration:none}
+.msn-phone:active{color:#fff}
+.msn-calc{font-size:.72rem;font-weight:600;color:var(--red);text-decoration:none;letter-spacing:.03em;text-transform:uppercase}
+.msn-calc:active{opacity:.7}
 
 /* ─── HERO ───────────────────────────────────────────────────────────────── */
 .hero{min-height:100vh;background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding-top:72px}
@@ -323,10 +323,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   .nm{display:none}
   .nm-mobile-sched{display:flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-size:.76rem;font-weight:600;padding:8px 13px;border-radius:4px;text-decoration:none;white-space:nowrap;flex-shrink:0;margin-left:8px}
   .nm-mobile-sched:hover{background:var(--red-lt)}
-  /* show jump bar on mobile */
-  .mobile-jumpbar{display:block}
-  /* hero needs extra top padding to clear nav (56px) + jumpbar (~38px) */
-  .hero{padding-top:94px}
+  /* show mobile sub-nav */
+  .mobile-subnav{display:flex}
+  /* hero top padding: 56px nav + 34px subnav */
+  .hero{padding-top:90px}
   .hero-inner,.cg,.fgrd,.ti{grid-template-columns:1fr;gap:40px}
   .hl{padding:52px 24px 0}
   .hero-inner{padding:0 0 52px}
@@ -365,15 +365,10 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     </div>
     <a href="/schedule" class="nm-mobile-sched" target="_blank" onclick="scheduleClick()">Schedule Now</a>
   </div>
-  <!-- Mobile section-jump bar — only visible ≤900px -->
-  <div class="mobile-jumpbar" aria-label="Page sections">
-    <div class="mjb-inner">
-      <a href="#problem" class="mjb-link">The Problem</a>
-      <a href="#how" class="mjb-link">How It Works</a>
-      <a href="#calculator" class="mjb-link">ROI Calculator</a>
-      <a href="#who" class="mjb-link">Who It's For</a>
-      <a href="#contact" class="mjb-link">Contact</a>
-    </div>
+  <!-- Mobile sub-nav — phone + savings CTA only -->
+  <div class="mobile-subnav">
+    <a href="tel:2486020110" class="msn-phone">&#128222;&nbsp;248-602-0110</a>
+    <a href="#calculator" class="msn-calc">See What You'd Save ↓</a>
   </div>
 </nav>
 
