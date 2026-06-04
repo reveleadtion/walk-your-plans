@@ -99,13 +99,19 @@ h1 em{font-style:italic;color:var(--red);cursor:default;user-select:none}
 .hstats{display:flex;gap:26px;margin-bottom:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08)}
 .sn{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--red);line-height:1;cursor:default;user-select:none}
 .sl{font-size:.7rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;cursor:default;user-select:none}
-.hctas{display:flex;gap:13px;flex-wrap:wrap}
+.hctas{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
 .bp{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;font-size:.87rem;font-weight:600;padding:15px 28px;border-radius:4px;text-decoration:none;border:2px solid var(--red);transition:all .25s}
 .bp:hover{background:var(--red-lt);border-color:var(--red-lt);transform:translateY(-2px);box-shadow:0 12px 28px rgba(218,52,52,.3)}
 .bg{display:inline-flex;align-items:center;gap:9px;background:transparent;color:rgba(255,255,255,.65);font-size:.87rem;font-weight:500;padding:15px 28px;border-radius:4px;text-decoration:none;border:1.5px solid rgba(255,255,255,.18);transition:all .25s}
 .bg:hover{color:#fff;border-color:rgba(255,255,255,.45)}
 .bn{display:inline-flex;align-items:center;gap:9px;background:var(--black);color:#fff;font-size:.87rem;font-weight:600;padding:15px 28px;border-radius:4px;text-decoration:none;border:2px solid var(--black);transition:all .25s}
 .bn:hover{background:var(--black-mid);transform:translateY(-2px)}
+
+/* quiet secondary "not ready?" text link — never competes with the main CTA */
+.softlink{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:400;color:rgba(255,255,255,.5);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:1px;transition:color .2s,border-color .2s}
+.softlink:hover{color:#fff;border-color:rgba(255,255,255,.5)}
+.softlink-dk{color:var(--tlt);border-bottom-color:rgba(0,0,0,.18)}
+.softlink-dk:hover{color:var(--black);border-bottom-color:rgba(0,0,0,.4)}
 
 /* use-case badges — decorative only */
 .use-case-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
@@ -361,9 +367,9 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <a href="#calculator">ROI Calculator</a>
       <a href="#who">Who It's For</a>
       <a href="tel:2486020110" class="nm-phone">&#128222; 248-602-0110</a>
-      <a href="/schedule" class="nc" target="_blank" onclick="scheduleClick()">Schedule Now</a>
+      <a href="/schedule" class="nc" target="_blank" onclick="scheduleClick()">Book a Free Intro Call</a>
     </div>
-    <a href="/schedule" class="nm-mobile-sched" target="_blank" onclick="scheduleClick()">Schedule Now</a>
+    <a href="/schedule" class="nm-mobile-sched" target="_blank" onclick="scheduleClick()">Book a Free Intro Call</a>
   </div>
   <!-- Mobile sub-nav — phone + savings CTA only -->
   <div class="mobile-subnav">
@@ -400,8 +406,8 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div><div class="sn">$10K+</div><div class="sl">Typical savings, 3,000 sq ft</div></div>
     </div>
     <div class="hctas">
-      <a href="#calculator" class="bp" onclick="trackCalcCTA()">💰 See What You'd Save</a>
-      <a href="https://www.walkyourplansdetroit.com/contact" class="bg">Not ready? Schedule later &rarr;</a>
+      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
+      <a href="https://www.walkyourplansdetroit.com/contact" class="softlink">Not ready? Reach out later &rarr;</a>
     </div>
   </div>
   </div>
@@ -443,7 +449,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="sct"><strong>The outdoor kitchen.</strong> Twelve feet of counter space read beautifully on the landscape plan. Standing in the projected layout, it dominates the patio and blocks the sight line to the yard. Moving it now means re-routing the gas line and relocating the pergola footings.</div>
           <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Gas re-route + hardscape revision + pergola</div></div><div class="scc">$9,800</div></div>
         </div>
-        <a href="/schedule" class="inline-cta" target="_blank" onclick="scheduleClick()">Catch these before they happen &rarr;</a>
+        <a href="/schedule" class="inline-cta" target="_blank" onclick="scheduleClick()">Book a Free Intro Call &rarr;</a>
       </div>
     </div>
   </div>
@@ -477,8 +483,8 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       </div>
     </div>
     <div class="how-cta reveal d2">
-      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Your Session</a>
-      <a href="https://www.walkyourplansdetroit.com/contact" class="bg">Not ready yet? &rarr;</a>
+      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
+      <a href="https://www.walkyourplansdetroit.com/contact" class="softlink softlink-dk">Not ready yet? Reach out later &rarr;</a>
     </div>
     <div class="studio-strip reveal d1">
       <picture>
@@ -512,7 +518,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="vcap reveal d2"><div class="vcap-n">02</div><div class="vcap-t">Walk every room — or every outdoor zone — before work starts</div></div>
         <div class="vcap reveal d3"><div class="vcap-n">03</div><div class="vcap-t">Catch what blueprints and landscape plans can't show you</div></div>
       </div>
-      <a href="/schedule" class="bp reveal d1" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Now</a>
+      <a href="/schedule" class="bp reveal d1" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
     </div>
   </div>
 </section>
@@ -536,7 +542,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="cr hl"><span class="rl" style="color:rgba(255,255,255,.82);font-weight:600;">Estimated net savings</span><span class="cval" id="sav">$21,000</span></div>
         </div>
         <div class="co-note reveal d2">* Estimated build cost at $225/sq ft — Metro Detroit mid-range custom. Preventable change figure based on internal session data (~$10K per 3,000 sq ft, scaling with project size). Applies to home builds and outdoor living projects. Individual projects vary.</div>
-        <div class="reveal d3"><a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Your Session</a></div>
+        <div class="reveal d3"><a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a></div>
       </div>
       <div class="cv2 reveal d1">
         <div class="cv2l">Cost breakdown &middot; your project</div>
@@ -582,7 +588,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     </div>
     <p class="psrc">Session savings estimate based on internal data: ~$10,000 per 3,000 sq ft build. Est. build cost at $225/sq ft — Metro Detroit mid-range custom. Industry change order data sourced from Dodge Data & Analytics and NAHB construction surveys. Individual results vary by project scope and complexity.</p>
     <div class="proof-cta reveal">
-      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Now</a>
+      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
     </div>
   </div>
 </section>
@@ -600,7 +606,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div class="fc reveal d2"><div class="fi green"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><div class="ft">Landscape Architects &amp; Designers</div><div class="fb3">Outdoor living is high-stakes design — patios, pools, outdoor kitchens, pergolas. Your clients can't feel scale from a plan any more than they can from a floor plan. Walk the layout before a single shovel breaks ground and eliminate the change orders that kill outdoor project margins.</div><div class="fhk">"We caught a patio flow issue that would have been a complete hardscape re-pour."</div></div></div>
       <div class="fc reveal d2"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div class="ft">Commercial Developers</div><div class="fb3">Healthcare, retail, fitness, hospitality &mdash; any space where layout defines the experience. Walk your floor plan with stakeholders before costs are locked in.</div><div class="fhk">"We caught a patient flow issue that would have cost six figures to retrofit."</div></div></div>
     </div>
-    <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="/schedule" class="bn" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Schedule Now</a></div>
+    <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="/schedule" class="bn" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a></div>
     <div class="who-photos reveal">
       <div class="who-photo reveal">
         <picture>
@@ -661,11 +667,11 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <h2 class="fh2">Stop guessing.<br>Start knowing.</h2>
     <p class="fsub">A 15-minute phone call is all it takes to find out if a session is right for your project — whether you're building a home, planning an addition, or designing the outdoor living space you've always wanted. No pressure. No commitment.</p>
     <div class="fbs">
-      <a href="/schedule" class="bw" target="_blank" onclick="scheduleClick()">&#128197; Schedule Now</a>
-      <a href="https://www.walkyourplansdetroit.com/contact" class="bow">Not ready? Schedule later &rarr;</a>
+      <a href="/schedule" class="bw" target="_blank" onclick="scheduleClick()">&#128197; Book a Free Intro Call</a>
+      <a href="https://www.walkyourplansdetroit.com/contact" class="softlink">Not ready? Reach out later &rarr;</a>
     </div>
     <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out.</p>
-    <p class="ffne">Simply click "Schedule Later" and fill out the form or <a href="mailto:hello@walkyourplansdetroit.com">send us an email</a> and we'll reach out when the timing is right.</p>
+    <p class="ffne">Simply click "Reach out later" and fill out the form or <a href="mailto:hello@walkyourplansdetroit.com">send us an email</a> and we'll reach out when the timing is right.</p>
   </div>
 </section>
 
