@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand tokens (mirrors the landing page) */
+  --black: #0c0c0c;
+  --black-mid: #1a1a1a;
+  --red: #da3434;
+  --red-lt: #e86060;
+  --red-dk: #c22020;
+  --white: #ffffff;
+  --gray: #f4f4f4;
+  --gray-line: #e8e8e8;
+  --tmid: #4a4a4a;
+  --tlt: #888888;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  /* LIGHT background for the main build site. */
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: rgba(218, 52, 52, 0.18);
+  }
+}
+
+@layer components {
+  /* Mono eyebrow / label — carried straight from the landing page. */
+  .eyebrow {
+    @apply font-mono text-red uppercase flex items-center gap-3;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+  }
+  .eyebrow::before {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--red);
+  }
+
+  /* Serif headline with italic-red emphasis (use <em> inside). */
+  .headline {
+    @apply font-serif text-black;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .headline em {
+    @apply not-italic text-red;
+    font-style: italic;
+  }
+
+  /* Primary red button — links to /schedule everywhere. */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-red text-white font-semibold rounded;
+    padding: 15px 28px;
+    font-size: 0.87rem;
+    border: 2px solid var(--red);
+    transition: all 0.25s;
+  }
+  .btn-primary:hover {
+    background: var(--red-lt);
+    border-color: var(--red-lt);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(218, 52, 52, 0.25);
+  }
+
+  /* Secondary / ghost button on a light surface. */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 font-medium rounded;
+    color: var(--tmid);
+    padding: 15px 28px;
+    font-size: 0.87rem;
+    border: 1.5px solid rgba(12, 12, 12, 0.16);
+    transition: all 0.25s;
+  }
+  .btn-ghost:hover {
+    color: var(--black);
+    border-color: rgba(12, 12, 12, 0.4);
+  }
+
+  /* Card surface used by directory + cost templates. */
+  .card {
+    @apply bg-white rounded-[10px];
+    border: 1px solid var(--gray-line);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.07);
+    border-color: rgba(218, 52, 52, 0.4);
+  }
+}

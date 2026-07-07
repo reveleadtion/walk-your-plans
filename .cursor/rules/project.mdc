@@ -1,0 +1,40 @@
+---
+description: Walk Your Plans Detroit — persistent project guardrails
+alwaysApply: true
+---
+
+# Stack (locked — do not substitute)
+- Framework: Next.js (App Router, TypeScript, React Server Components by default).
+- Hosting: Vercel.
+- Database/Auth/Storage: Supabase (Postgres). Client libs: `@supabase/supabase-js` + `@supabase/ssr`.
+- Booking: Cal.com embed for MVP; custom Supabase booking flow only in Phase 3+ if needed.
+- Payments: Stripe Checkout (hosted). Never build a custom card form.
+- Transactional email: Resend.
+- Content generation: Node script using `@anthropic-ai/sdk`.
+- Styling: Tailwind CSS, matching the existing brand (tokens below).
+
+# Security rules (NON-NEGOTIABLE)
+1. Secrets are server-only. The Supabase `service_role` key, Stripe secret key, Anthropic API key, and Resend key must NEVER appear in client code and must NEVER use the `NEXT_PUBLIC_` prefix. Only `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` may be public.
+2. `.env.local` is gitignored. Never commit any `.env*` file with real values. Provide `.env.example` with placeholders only.
+3. Row Level Security on every table. Content tables get a public `select` policy. `bookings` gets NO public policies — written only server-side.
+4. Never trust the client for price or auth. Session price and any authorization decision are validated server-side against the database.
+5. Rate-limit every public route that costs money (Anthropic, Stripe, Resend).
+6. Stripe handles cards. Use hosted Stripe Checkout. Confirm payment via signed webhook, not the client redirect alone.
+7. No verbose errors in production. Never return stack traces, DB structure, or file paths to the client.
+8. Run `npm audit` before each deploy. Pin dependencies.
+
+# Conventions
+- Server Components fetch data directly; Client Components only for interactivity.
+- Content pages: `generateStaticParams` + `export const revalidate = 86400` (ISR).
+- Every page exports `generateMetadata` (title, description, canonical, OG).
+- Every entity page includes JSON-LD structured data.
+- Slugs are stored in the DB, never generated at request time from user input.
+
+# Brand / design tokens
+--black:#0c0c0c; --black-mid:#1a1a1a; --red:#da3434; --red-lt:#e86060; --red-dk:#c22020;
+--white:#ffffff; --gray:#f4f4f4;
+Fonts: Playfair Display (serif, headlines/numbers), DM Sans (body), DM Mono (eyebrows/labels).
+
+The main build site uses a LIGHT background (white / gray) with red accent and
+serif headlines with italic-red emphasis — calmer/broader than the dark `go.`
+landing page, which stays the stripped-down high-conversion asset.
