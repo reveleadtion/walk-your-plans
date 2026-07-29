@@ -55,8 +55,8 @@ fbq('track','PageView');
 <script defer src="/_vercel/insights/script.js"></script>
 
 <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
-<title>Book a Session — Walk Your Plans Detroit</title>
-<meta name="description" content="Walk through your home at full scale before a single wall goes up. Sessions from $850. Troy, MI.">
+<title>Book a Free Intro Call — Walk Your Plans Detroit</title>
+<meta name="description" content="Book a free 15-minute intro call with Walk Your Plans Detroit. Talk through your project — no pressure, no commitment. Troy, MI.">
 <meta name="robots" content="noindex">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,12 +125,12 @@ footer a:hover{color:var(--red)}
 </nav>
 
 <header>
-  <div class="eyebrow">Troy, MI &mdash; Book Your Session</div>
-  <h1>Walk your plans before<br>you <em>break ground.</em></h1>
-  <p>Catch costly change orders before construction starts. Sessions from $850.</p>
+  <div class="eyebrow">Troy, MI &mdash; Free 15-Minute Intro Call</div>
+  <h1>Book your free<br><em>intro call.</em></h1>
+  <p>A quick 15-minute call to talk through your project and see if a full-scale walk-through is right for you. No pressure, no commitment.</p>
   <div class="trust-row">
-    <span class="tr-chip">10–12 issues caught per session</span>
-    <span class="tr-chip">From $850</span>
+    <span class="tr-chip">15-minute call</span>
+    <span class="tr-chip">No commitment</span>
     <span class="tr-chip">Troy, MI</span>
   </div>
 </header>
@@ -142,7 +142,7 @@ footer a:hover{color:var(--red)}
   </div>
   <iframe
     id="acuity"
-    src="https://app.acuityscheduling.com/schedule.php?owner=36187574&ref=embedded_csp"
+    src="https://app.acuityscheduling.com/schedule.php?owner=36187574&appointmentType=80150452&ref=embedded_csp"
     title="Schedule Appointment"
     allow="payment"
     loading="eager"
@@ -159,7 +159,7 @@ footer a:hover{color:var(--red)}
 <script>
 function onLoad(){
   document.getElementById('loading').classList.add('gone');
-  try{fbq('track','ViewContent',{content_name:'Scheduler Loaded'});}catch(e){}
+  try{fbq('track','ViewContent',{content_name:'Intro Call Scheduler'});}catch(e){}
 }
 
 window.addEventListener('message',function(e){
@@ -167,14 +167,15 @@ window.addEventListener('message',function(e){
   var msg=typeof e.data==='string'?e.data:(e.data&&(e.data.event||e.data.action)||'');
   if(!msg)return;
   if(/date|time|step/i.test(msg)){
-    try{fbq('track','InitiateCheckout',{content_name:'Date Selected'});}catch(e){}
-    try{__ls('event','booking_date_selected');}catch(e){}
+    try{fbq('trackCustom','IntroCallDateSelected');}catch(e){}
+    try{__ls('event','intro_call_date_selected');}catch(e){}
   }
-if(/confirm|scheduled|booked|success/i.test(msg)){
-    try{fbq('track','Purchase',{value:850,currency:'USD',content_name:'Session Booked'});}catch(e){}
-    try{cbq('track','Purchase',{value:850,currency:'USD',content_name:'Session Booked'});}catch(e){}
-    try{__ls('event','booking_confirmed');}catch(e){}
-    try{va('event',{name:'booking_confirmed'});}catch(e){}
+  if(/confirm|scheduled|booked|success/i.test(msg)){
+    // The free intro call is the conversion — fire Schedule, not a paid Purchase.
+    try{fbq('track','Schedule',{content_name:'Intro Call Booked'});}catch(e){}
+    try{cbq('track','Schedule',{content_name:'Intro Call Booked'});}catch(e){}
+    try{__ls('event','intro_call_booked');}catch(e){}
+    try{va('event',{name:'intro_call_booked'});}catch(e){}
   }
 },false);
 </script>
