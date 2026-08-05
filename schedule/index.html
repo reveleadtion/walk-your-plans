@@ -140,16 +140,35 @@ footer a:hover{color:var(--red)}
     <div class="spin"></div>
     <p>Loading scheduler…</p>
   </div>
-  <iframe
-    id="acuity"
-    src="https://app.acuityscheduling.com/schedule.php?owner=36187574&appointmentType=80150452&ref=embedded_csp"
-    title="Schedule Appointment"
-    allow="payment"
-    loading="eager"
-    importance="high"
-    onload="onLoad()">
-  </iframe>
 </div>
+
+<script>
+(function(){
+  function ck(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';}
+
+  var p   = new URLSearchParams(location.search);
+  var fbc = ck('_fbc');
+  if(!fbc && p.get('fbclid')) fbc = 'fb.1.'+Date.now()+'.'+p.get('fbclid');
+  var fbp = ck('_fbp');
+
+  var u = 'https://app.acuityscheduling.com/schedule.php'
+        + '?owner=36187574'
+        + '&appointmentType=80150452'
+        + '&ref=embedded_csp';
+
+  if(fbc) u += '&field:1111111=' + encodeURIComponent(fbc);
+  if(fbp) u += '&field:2222222=' + encodeURIComponent(fbp);
+
+  var ifr = document.createElement('iframe');
+  ifr.id    = 'acuity';
+  ifr.title = 'Schedule Appointment';
+  ifr.setAttribute('allow','payment');
+  ifr.setAttribute('loading','eager');
+  ifr.addEventListener('load', onLoad);
+  ifr.src = u;                                  // set src last
+  document.querySelector('.acuity-wrap').appendChild(ifr);
+})();
+</script>
 
 <footer>
   <p>Questions? <a href="tel:2486020110">Call 248-602-0110</a> &nbsp;&middot;&nbsp; <a href="/">Back to main site</a></p>
