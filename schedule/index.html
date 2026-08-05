@@ -156,6 +156,8 @@ footer a:hover{color:var(--red)}
         + '&appointmentType=80150452'
         + '&ref=embedded_csp';
 
+  // NOTE: 1111111 / 2222222 are PLACEHOLDERS — replace with the real Acuity
+  // custom-field IDs for _fbc / _fbp, or these values won't attach to anything.
   if(fbc) u += '&field:1111111=' + encodeURIComponent(fbc);
   if(fbp) u += '&field:2222222=' + encodeURIComponent(fbp);
 
@@ -164,7 +166,11 @@ footer a:hover{color:var(--red)}
   ifr.title = 'Schedule Appointment';
   ifr.setAttribute('allow','payment');
   ifr.setAttribute('loading','eager');
-  ifr.addEventListener('load', onLoad);
+  ifr.addEventListener('load', function(){
+    var l = document.getElementById('loading');
+    if(l) l.classList.add('gone');
+    try{fbq('track','ViewContent',{content_name:'Intro Call Scheduler'});}catch(e){}
+  });
   ifr.src = u;                                  // set src last
   document.querySelector('.acuity-wrap').appendChild(ifr);
 })();
@@ -176,11 +182,6 @@ footer a:hover{color:var(--red)}
 
 <script src="https://embed.acuityscheduling.com/js/embed.js" defer></script>
 <script>
-function onLoad(){
-  document.getElementById('loading').classList.add('gone');
-  try{fbq('track','ViewContent',{content_name:'Intro Call Scheduler'});}catch(e){}
-}
-
 window.addEventListener('message',function(e){
   if(!e.origin||!e.origin.includes('acuityscheduling.com'))return;
   var msg=typeof e.data==='string'?e.data:(e.data&&(e.data.event||e.data.action)||'');
