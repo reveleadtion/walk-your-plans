@@ -798,7 +798,7 @@ window.addEventListener('load', function() {
     if(signals.engagement)met++;
     if(met>=THRESHOLD){
       firedEvents.qualifiedLead=true;
-      try{fbq('track','Lead',{content_name:'Qualified Lead — Walk Your Plans Detroit',content_category:'Home Build / Construction',signals_met:met});}catch(e){}
+      try{fbq('trackCustom','ScheduleIntent',{content_name:'Qualified Engagement — Walk Your Plans Detroit',content_category:'Home Build / Construction',signals_met:met});}catch(e){}
       stopTimer();
     }
   }

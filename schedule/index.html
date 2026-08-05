@@ -191,9 +191,9 @@ window.addEventListener('message',function(e){
     try{__ls('event','intro_call_date_selected');}catch(e){}
   }
   if(/confirm|scheduled|booked|success/i.test(msg)){
-    // The free intro call is the conversion — fire Schedule, not a paid Purchase.
-    try{fbq('track','Schedule',{content_name:'Intro Call Booked'});}catch(e){}
-    try{cbq('track','Schedule',{content_name:'Intro Call Booked'});}catch(e){}
+    // The Acuity booking is the one and only Lead conversion (browser + CAPI).
+    try{fbq('track','Lead',{content_name:'Intro Call Booked'});}catch(e){}
+    try{cbq('track','Lead',{content_name:'Intro Call Booked'});}catch(e){}
     try{__ls('event','intro_call_booked');}catch(e){}
     try{va('event',{name:'intro_call_booked'});}catch(e){}
   }
