@@ -31,7 +31,18 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)
 }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1265233095752713');
+// Manual Advanced Matching — hydrate from URL params when the funnel passes them.
+// NOTE: email/phone typed into the Acuity iframe are cross-origin and cannot be
+// read here; those reach Meta via the Stape CAPI path instead. The pixel hashes
+// these values with SHA-256 automatically.
+(function(){
+  var q = new URLSearchParams(location.search), am = {};
+  var em = q.get('em') || q.get('email');      if(em) am.em = em.trim().toLowerCase();
+  var ph = q.get('ph') || q.get('phone');      if(ph) am.ph = ph.replace(/\D/g,'');
+  var fn = q.get('fn') || q.get('first_name'); if(fn) am.fn = fn.trim().toLowerCase();
+  var ln = q.get('ln') || q.get('last_name');  if(ln) am.ln = ln.trim().toLowerCase();
+  fbq('init','1265233095752713', am);
+})();
 fbq('track','PageView');
 </script>
 <noscript>
