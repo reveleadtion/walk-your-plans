@@ -31,7 +31,27 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)
 }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1265233095752713');
+// ─── Manual Advanced Matching ───────────────────────────────────────────────
+// external_id: a stable first-party ID (no PII, highest match lift). Persisted
+//   in a cookie so it's consistent across visits and every event.
+// em/ph/fn/ln: hydrated from URL params when the funnel passes them; the pixel
+//   SHA-256 hashes these automatically. Email/phone typed inside the Acuity
+//   iframe are cross-origin and cannot be read here — those reach Meta via CAPI.
+(function(){
+  function ck(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';}
+  var xid = ck('_wyp_xid');
+  if(!xid){
+    xid = (self.crypto && crypto.randomUUID) ? crypto.randomUUID()
+        : 'x'+Date.now().toString(36)+Math.random().toString(36).slice(2);
+    document.cookie = '_wyp_xid='+xid+'; path=/; max-age=63072000; SameSite=Lax';
+  }
+  var q = new URLSearchParams(location.search), am = { external_id: xid };
+  var em = q.get('em') || q.get('email');      if(em) am.em = em.trim().toLowerCase();
+  var ph = q.get('ph') || q.get('phone');      if(ph) am.ph = ph.replace(/\D/g,'');
+  var fn = q.get('fn') || q.get('first_name'); if(fn) am.fn = fn.trim().toLowerCase();
+  var ln = q.get('ln') || q.get('last_name');  if(ln) am.ln = ln.trim().toLowerCase();
+  fbq('init','1265233095752713', am);
+})();
 fbq('track','PageView');
 </script>
 <noscript>
