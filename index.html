@@ -21,6 +21,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Preconnect to Acuity so the inline scheduler iframe (below the fold) is ready fast -->
+<link rel="preconnect" href="https://app.acuityscheduling.com" crossorigin>
+<link rel="preconnect" href="https://embed.acuityscheduling.com" crossorigin>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 
 <style>
@@ -351,7 +354,26 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
   .vcap{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
   .vcap:last-child{border-bottom:none}
   .use-case-bar{gap:7px}
+  .book-hdr{padding:60px 20px 24px}
+  .acuity-wrap{border-radius:0;border-left:none;border-right:none}
 }
+
+/* ─── INLINE BOOKING (Acuity embed) ──────────────────────────────────────── */
+.book{background:var(--black);border-top:1px solid rgba(255,255,255,.06);padding:0 0 6px;scroll-margin-top:88px}
+.book-hdr{max-width:640px;margin:0 auto;text-align:center;padding:84px 24px 30px}
+.book-hdr .sh2{color:#fff;margin-bottom:12px}
+.book-sub{font-size:.93rem;color:rgba(255,255,255,.45);line-height:1.7;max-width:440px;margin:0 auto;cursor:default;user-select:none}
+.acuity-wrap{position:relative;background:var(--white);max-width:960px;margin:0 auto;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.acuity-wrap iframe{display:block;width:100%;height:100vh;min-height:720px;border:none}
+.loading{position:absolute;inset:0;background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .4s,visibility .4s}
+.loading.gone{opacity:0;visibility:hidden}
+.spin{width:26px;height:26px;border:2.5px solid #e8e8e8;border-top-color:var(--red);border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{font-size:.72rem;color:#aaa;letter-spacing:.05em}
+.book-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.book-alt{text-align:center;font-size:.78rem;color:rgba(255,255,255,.4);padding:18px 24px 6px;max-width:640px;margin:0 auto;line-height:1.7}
+.book-fallback a,.book-alt a{color:var(--red);text-decoration:none;font-weight:600}
+.book-alt a:hover,.book-fallback a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -367,9 +389,9 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <a href="#calculator">ROI Calculator</a>
       <a href="#who">Who It's For</a>
       <a href="tel:2486020110" class="nm-phone">&#128222; 248-602-0110</a>
-      <a href="/schedule" class="nc" target="_blank" onclick="scheduleClick()">Book a Free Intro Call</a>
+      <a href="#book" class="nc" onclick="scheduleClick()">Book a Free Intro Call</a>
     </div>
-    <a href="/schedule" class="nm-mobile-sched" target="_blank" onclick="scheduleClick()">Book a Free Intro Call</a>
+    <a href="#book" class="nm-mobile-sched" onclick="scheduleClick()">Book a Free Intro Call</a>
   </div>
   <!-- Mobile sub-nav — phone + savings CTA only -->
   <div class="mobile-subnav">
@@ -406,7 +428,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div><div class="sn">$10K+</div><div class="sl">Typical savings, 3,000 sq ft</div></div>
     </div>
     <div class="hctas">
-      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
+      <a href="#book" class="bp" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
       <a href="https://www.walkyourplansdetroit.com/contact" class="softlink">Not ready? Reach out later &rarr;</a>
     </div>
   </div>
@@ -449,7 +471,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="sct"><strong>The outdoor kitchen.</strong> Twelve feet of counter space read beautifully on the landscape plan. Standing in the projected layout, it dominates the patio and blocks the sight line to the yard. Moving it now means re-routing the gas line and relocating the pergola footings.</div>
           <div class="scb"><div><div class="sctag">Change order</div><div class="scnt">Gas re-route + hardscape revision + pergola</div></div><div class="scc">$9,800</div></div>
         </div>
-        <a href="/schedule" class="inline-cta" target="_blank" onclick="scheduleClick()">Book a Free Intro Call &rarr;</a>
+        <a href="#book" class="inline-cta" onclick="scheduleClick()">Book a Free Intro Call &rarr;</a>
       </div>
     </div>
   </div>
@@ -483,7 +505,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       </div>
     </div>
     <div class="how-cta reveal d2">
-      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
+      <a href="#book" class="bp" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
       <a href="https://www.walkyourplansdetroit.com/contact" class="softlink softlink-dk">Not ready yet? Reach out later &rarr;</a>
     </div>
     <div class="studio-strip reveal d1">
@@ -518,7 +540,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
         <div class="vcap reveal d2"><div class="vcap-n">02</div><div class="vcap-t">Walk every room — or every outdoor zone — before work starts</div></div>
         <div class="vcap reveal d3"><div class="vcap-n">03</div><div class="vcap-t">Catch what blueprints and landscape plans can't show you</div></div>
       </div>
-      <a href="/schedule" class="bp reveal d1" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
+      <a href="#book" class="bp reveal d1" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
     </div>
   </div>
 </section>
@@ -542,7 +564,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
           <div class="cr hl"><span class="rl" style="color:rgba(255,255,255,.82);font-weight:600;">Estimated net savings</span><span class="cval" id="sav">$21,000</span></div>
         </div>
         <div class="co-note reveal d2">* Estimated build cost at $225/sq ft — Metro Detroit mid-range custom. Preventable change figure based on internal session data (~$10K per 3,000 sq ft, scaling with project size). Applies to home builds and outdoor living projects. Individual projects vary.</div>
-        <div class="reveal d3"><a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a></div>
+        <div class="reveal d3"><a href="#book" class="bp" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a></div>
       </div>
       <div class="cv2 reveal d1">
         <div class="cv2l">Cost breakdown &middot; your project</div>
@@ -588,7 +610,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     </div>
     <p class="psrc">Session savings estimate based on internal data: ~$10,000 per 3,000 sq ft build. Est. build cost at $225/sq ft — Metro Detroit mid-range custom. Industry change order data sourced from Dodge Data & Analytics and NAHB construction surveys. Individual results vary by project scope and complexity.</p>
     <div class="proof-cta reveal">
-      <a href="/schedule" class="bp" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
+      <a href="#book" class="bp" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a>
     </div>
   </div>
 </section>
@@ -606,7 +628,7 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
       <div class="fc reveal d2"><div class="fi green"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><div class="ft">Landscape Architects &amp; Designers</div><div class="fb3">Outdoor living is high-stakes design — patios, pools, outdoor kitchens, pergolas. Your clients can't feel scale from a plan any more than they can from a floor plan. Walk the layout before a single shovel breaks ground and eliminate the change orders that kill outdoor project margins.</div><div class="fhk">"We caught a patio flow issue that would have been a complete hardscape re-pour."</div></div></div>
       <div class="fc reveal d2"><div class="fi"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div class="ft">Commercial Developers</div><div class="fb3">Healthcare, retail, fitness, hospitality &mdash; any space where layout defines the experience. Walk your floor plan with stakeholders before costs are locked in.</div><div class="fhk">"We caught a patient flow issue that would have cost six figures to retrofit."</div></div></div>
     </div>
-    <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="/schedule" class="bn" target="_blank" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a></div>
+    <div class="mc reveal"><p class="mcq">"Ready to stop guessing and start knowing?"</p><a href="#book" class="bn" onclick="scheduleClick()"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>Book a Free Intro Call</a></div>
     <div class="who-photos reveal">
       <div class="who-photo reveal">
         <picture>
@@ -667,12 +689,30 @@ footer{background:var(--black);padding:42px 80px;border-top:1px solid rgba(255,2
     <h2 class="fh2">Stop guessing.<br>Start knowing.</h2>
     <p class="fsub">A 15-minute phone call is all it takes to find out if a session is right for your project — whether you're building a home, planning an addition, or designing the outdoor living space you've always wanted. No pressure. No commitment.</p>
     <div class="fbs">
-      <a href="/schedule" class="bw" target="_blank" onclick="scheduleClick()">&#128197; Book a Free Intro Call</a>
+      <a href="#book" class="bw" onclick="scheduleClick()">&#128197; Book a Free Intro Call</a>
       <a href="https://www.walkyourplansdetroit.com/contact" class="softlink">Not ready? Reach out later &rarr;</a>
     </div>
     <p class="ffne">Not ready to book? That's okay &mdash; some of our best clients are 6&ndash;9 months out.</p>
     <p class="ffne">Simply click "Reach out later" and fill out the form or <a href="mailto:hello@walkyourplansdetroit.com">send us an email</a> and we'll reach out when the timing is right.</p>
   </div>
+</section>
+
+<section class="book" id="book">
+  <div class="book-hdr reveal">
+    <div class="ey2" style="justify-content:center;">Book Your Free Intro Call</div>
+    <h2 class="sh2">Grab a time that works &mdash; <em>right here.</em></h2>
+    <p class="book-sub">A quick 15-minute call to talk through your project and see if a full-scale walk-through is right for you. No pressure, no commitment.</p>
+  </div>
+  <div class="acuity-wrap">
+    <div class="loading" id="book-loading">
+      <div class="spin"></div>
+      <p>Loading scheduler&hellip;</p>
+    </div>
+    <noscript>
+      <div class="book-fallback"><a href="/schedule">Open the scheduler &rarr;</a></div>
+    </noscript>
+  </div>
+  <p class="book-alt">Having trouble seeing the scheduler? <a href="/schedule">Open it on its own page &rarr;</a> or call <a href="tel:2486020110">248-602-0110</a>.</p>
 </section>
 
 <footer>
@@ -726,7 +766,7 @@ function upd() {
   document.getElementById('bco').textContent = fmt(co);
   document.getElementById('bse').textContent = fmt(sessionCost);
   document.getElementById('bsav').textContent = fmt(sav);
-  document.getElementById('roix').textContent = mul + '\u00d7';
+  document.getElementById('roix').textContent = mul + '×';
   document.getElementById('sd-sqft').textContent = fmtNum(sqft) + ' sq ft';
   document.getElementById('sd-build').textContent = fmt(buildCost);
   document.getElementById('sd-hrs').textContent = hrsLong;
@@ -771,13 +811,24 @@ _idle(function(){
 
 <script>
 window.addEventListener('load', function() {
-  // fbclid capture
+  // fbclid capture + stable first-party external_id
+  var wypXid;
   (function() {
+    function ck(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';}
     var params = new URLSearchParams(window.location.search);
     var fbclid = params.get('fbclid');
     if (fbclid) {
       sessionStorage.setItem('fbclid', fbclid);
       document.cookie = '_fbc=fb.1.' + Date.now() + '.' + fbclid + '; path=/; max-age=7776000';
+    }
+    // external_id: highest-lift advanced-matching signal, no PII. Persisted (2y)
+    // and shared path=/ with /schedule so it's identical across visits/pages.
+    // The Lead now fires from the inline scheduler on THIS page, so match it here.
+    wypXid = ck('_wyp_xid');
+    if(!wypXid){
+      wypXid = (self.crypto && crypto.randomUUID) ? crypto.randomUUID()
+             : 'x'+Date.now().toString(36)+Math.random().toString(36).slice(2);
+      document.cookie = '_wyp_xid='+wypXid+'; path=/; max-age=63072000; SameSite=Lax';
     }
   })();
 
@@ -841,7 +892,7 @@ window.addEventListener('load', function() {
 
   // Low-funnel: ScheduleIntent on CTA click
   document.addEventListener('click',function(e){
-    var el=e.target.closest('a[href="/schedule"],a.bp,a.bw,a.nc');
+    var el=e.target.closest('a[href="#book"]');
     if(el&&!firedEvents.scheduleIntent){
       firedEvents.scheduleIntent=true;
       try{fbq('trackCustom','ScheduleIntent',{content_name:'Schedule Now CTA',button_text:el.textContent.trim().substring(0,50)});}catch(e){}
@@ -851,7 +902,7 @@ window.addEventListener('load', function() {
   // Deferred pixel loads — after page is interactive
   setTimeout(function(){
     (function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);})(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1265233095752713');fbq('track','PageView');
+    fbq('init','1265233095752713', wypXid ? {external_id:wypXid} : undefined);fbq('track','PageView');
   },1500);
 
   setTimeout(function(){
@@ -870,6 +921,64 @@ window.addEventListener('load', function() {
   },2000);
 
 },{once:true});
+</script>
+
+<script>
+/* ─── Inline Acuity scheduler: lazy-build + conversion tracking ─────────────
+   Ports the /schedule embed onto this page so the ad handoff never opens a new
+   tab or second page (fatal in the Facebook in-app browser). Booking confirm is
+   the one and only Lead conversion (browser fbq + Stape CAPI cbq). */
+(function(){
+  var built=false;
+  function ck(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';}
+  function buildAcuity(){
+    if(built)return;
+    var wrap=document.querySelector('.acuity-wrap');
+    if(!wrap)return;
+    built=true;
+    var p=new URLSearchParams(location.search);
+    var fbc=ck('_fbc'); if(!fbc&&p.get('fbclid')) fbc='fb.1.'+Date.now()+'.'+p.get('fbclid');
+    var fbp=ck('_fbp');
+    var u='https://app.acuityscheduling.com/schedule.php?owner=36187574&appointmentType=80150452&ref=embedded_csp';
+    if(fbc) u+='&field:18949662='+encodeURIComponent(fbc);
+    if(fbp) u+='&field:18949659='+encodeURIComponent(fbp);
+    var ifr=document.createElement('iframe');
+    ifr.id='acuity'; ifr.title='Schedule Appointment';
+    ifr.setAttribute('allow','payment'); ifr.setAttribute('loading','eager');
+    ifr.addEventListener('load',function(){
+      var l=document.getElementById('book-loading'); if(l) l.classList.add('gone');
+      try{fbq('track','ViewContent',{content_name:'Intro Call Scheduler'});}catch(e){}
+    });
+    ifr.src=u;                                    // set src last
+    wrap.appendChild(ifr);
+    var s=document.createElement('script'); s.src='https://embed.acuityscheduling.com/js/embed.js'; s.defer=true; document.body.appendChild(s);
+  }
+  // Build when the scheduler nears the viewport, or the moment any CTA is tapped.
+  var target=document.getElementById('book');
+  if(target&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){buildAcuity();io.disconnect();}});},{rootMargin:'800px 0px'});
+    io.observe(target);
+  } else { buildAcuity(); }
+  document.addEventListener('click',function(e){ if(e.target.closest('a[href="#book"]')) buildAcuity(); },{passive:true});
+
+  // Conversion signals from the embedded Acuity iframe (cross-origin postMessage).
+  window.addEventListener('message',function(e){
+    if(!e.origin||!e.origin.includes('acuityscheduling.com'))return;
+    var msg=typeof e.data==='string'?e.data:(e.data&&(e.data.event||e.data.action)||'');
+    if(!msg)return;
+    if(/date|time|step/i.test(msg)){
+      try{fbq('trackCustom','IntroCallDateSelected');}catch(e){}
+      try{__ls('event','intro_call_date_selected');}catch(e){}
+    }
+    if(/confirm|scheduled|booked|success/i.test(msg)){
+      // The Acuity booking is the one and only Lead conversion (browser + CAPI).
+      try{fbq('track','Lead',{content_name:'Intro Call Booked'});}catch(e){}
+      try{cbq('track','Lead',{content_name:'Intro Call Booked'});}catch(e){}
+      try{__ls('event','intro_call_booked');}catch(e){}
+      try{va('event',{name:'intro_call_booked'});}catch(e){}
+    }
+  },false);
+})();
 </script>
 
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1265233095752713&ev=PageView&noscript=1"/></noscript>
